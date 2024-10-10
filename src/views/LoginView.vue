@@ -1,0 +1,96 @@
+<template>
+  <div id="app" class="back">
+    <el-container>
+      <el-header>
+        <el-button @click="handleClick" class="el-icon-arrow-left" style="font-size: 40px;float: left">
+        </el-button>
+      </el-header>
+        <div class="form">
+          <div style="margin: 10px 115px; font-size: 44px;letter-spacing: 15px;"><a>欢迎使用</a></div>
+          <div style="margin: 20px 115px; font-size: 14px;letter-spacing: 3px;font-style: italic;"><a>welcome</a></div>
+            <el-form ref="user" :model="user" :rules="rules" label-width="100px">
+              <el-form-item label="账号" prop="username">
+                <el-input class="button_back" v-model="user.username" placeholder="请输入账号" prefix-icon="el-icon-user" clearable ></el-input>
+              </el-form-item>
+              <el-form-item label="密码" prop="password">
+                <el-input class="button_back" type="password" v-model="user.password" prefix-icon="el-icon-lock" placeholder="请输入密码" clearable show-password ></el-input>
+              </el-form-item>
+              <el-form-item class="button_group">
+                <el-button type="primary" style="width: 200px;" @click="handleLogin" class="custom-button">登录</el-button>
+                <el-button type="link" @click="goToRegister" class="custom-button">注册</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
+    </el-container>
+    </div>
+  </template>
+  
+  <script>
+import { Container } from 'element-ui';
+
+
+  // import axios from 'axios';
+
+  export default {
+
+    data() {
+      return {
+        user: {},
+        rules: {
+        username: [
+          {required: true, message: '请输入用户名', trigger: 'blur'},
+          {min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur'}
+        ],
+        password: [
+          {required: true, message: '请输入密码', trigger: 'blur'},
+          {min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur'}
+        ],
+      }
+      };
+    },
+    methods: {
+      handleLogin() {
+        // 登录逻辑
+        console.log('Logging in with:', this.user);
+      },
+      goToRegister() {
+      // 跳转到注册页面
+      this.$router.push('/Register');
+    },
+      handleClick(){
+        this.$router.push('/');
+      }
+    },
+  };
+  </script>
+  
+  <style scoped>
+
+  .button_back{
+    width: 320px;
+  }
+  .el-header{
+    background-color: #B3C0D1;
+    opacity: 0.2;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+  .back{
+    height: 100vh;
+   background-image: linear-gradient(to bottom right,#efeced,#3F5EFB);
+   overflow: hidden;
+    cursor: url('../../public/image/kl.png'), auto !important;
+  }
+  .custom-button{
+  width: 100px;
+}
+  .button-group {
+    display: flex; /* 启用 Flexbox */
+    justify-content: space-between; /* 按钮之间的空间均匀分布 */
+}
+  .form{
+    margin-top: 17%;
+    margin-left: 34%;
+  }
+  </style>
