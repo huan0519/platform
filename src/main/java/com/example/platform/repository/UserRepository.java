@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository {
     User login(User user);
     int register(User user);
+    User selectByUsername(String username);
 }

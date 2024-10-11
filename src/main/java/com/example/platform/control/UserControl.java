@@ -1,12 +1,9 @@
 package com.example.platform.control;
 
+import com.example.platform.common.result;
 import com.example.platform.entity.User;
 import com.example.platform.service.UserService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -16,11 +13,15 @@ public class UserControl {
     @Resource
     private UserService userService;
     @PostMapping("/login")
-    public String login(@RequestBody User user) {
-        return userService.login(user);
+    public result login(@RequestBody User user) {
+        return result.success(userService.login(user));
     }
     @PostMapping("/register")
-    public String register(@RequestBody User user) {
-        return userService.register(user);
+    public result register(@RequestBody User user) {
+        return result.success(userService.register(user));
+    }
+    @GetMapping("/username/{username}")
+    public result finduser(@PathVariable("username") String username) {
+        return result.success(userService.selectByUsername(username));
     }
 }
