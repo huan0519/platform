@@ -1,20 +1,44 @@
 <template>
-    <div class="el-main">
-
+    <div class="main_body">
+      <component :is="currentPageComponent"> </component>
     </div>
 </template>
 
 <style>
-.el-main {
-    height: 100vh;
-    text-align: center;
+.main_body {
     overflow-y: auto; /* 如果内容超出屏幕高度，显示滚动条 */
-    background-color: #42b983;
   }
 </style>
 
 <script>
-export default {
+import Homepage from "@/views/homepage.vue";
+import Cloud_platform from "@/views/Cloud_Platform.vue";
+import Help from "@/views/Help.vue";
+import Applied from "@/views/Applied.vue";
 
+export default {
+  components:{
+    Homepage,
+    Cloud_platform,
+    Help,
+    Applied
+  },
+  // data(){
+  //   return{
+  //     currentPage: 'Homepage'
+  //   };
+  // },
+  props:['currentPage'],
+  computed:{
+    currentPageComponent(){
+      const pages = {
+        'Homepage': Homepage,
+        'Cloud_platform': Cloud_platform,
+        'Help': Help,
+        'Applied': Applied
+      };
+      return pages[this.currentPage] || 'div';
+    }
+  }
 }
 </script>

@@ -1,32 +1,25 @@
 <template>
-  <div id="app">
-    <Vue_header></Vue_header>
-    <div>
-      <Vue_aside></Vue_aside>
-      <Vue_main></Vue_main>
-    </div>
-  </div>
+  <el-container>
+    <Vue_aside></Vue_aside>
+    <Cloud_main></Cloud_main>
+  </el-container>
 </template>
 
 <script>
-import Vue from "vue";
-import vue_header from "@/components/vue_header.vue";
-import vue_aside from "@/components/vue_aside.vue";
-import Vue_main from "@/components/vue_main.vue";
-import ElementUI from "element-ui";
+import Vue_aside from "@/components/vue_aside.vue";
+import Cloud_main from "@/components/cloud_main.vue";
 
-
-Vue.component(ElementUI)
-
-export default {
+export default{
   components:{
-    Vue_main,
-    vue_header,
-    vue_aside
+    Vue_aside,
+    Cloud_main
   }
 }
 </script>
 
-<style>
+<style scoped>
+.cloud{
+  display: inline-block;
+}
 
 </style>

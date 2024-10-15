@@ -1,14 +1,13 @@
 <template>
     <div class="header">
-    <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal" @select="handleSelect">
-        <el-menu-item class="el-menu-item" index="1">首页</el-menu-item>
-        <el-menu-item class="el-menu-item" index="2">云平台</el-menu-item>
-        <el-menu-item style="width: 100px" index="3">使用教程</el-menu-item>
-        <el-menu-item style="width: 100px" index="4">应用统计</el-menu-item>
-        <router-link style="padding: 45px;" to="/login" class="link">
-            <i class="el-icon-user"></i>
-            登录
-        </router-link>
+    <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal">
+        <el-menu-item @click="GoToPage('Homepage')" class="el-menu-item" index="1">首页</el-menu-item>
+        <el-menu-item @click="GoToPage('Cloud_platform')" class="el-menu-item" index="2">云平台</el-menu-item>
+        <el-menu-item @click="GoToPage('Help')" style="width: 100px" index="3">使用教程</el-menu-item>
+        <el-menu-item @click="GoToPage('Applied')" style="width: 100px" index="4">应用统计</el-menu-item>
+      <div style="margin-left: 20px;margin-right: 20px">
+        <userinfo></userinfo>
+      </div>
     </el-menu>
          
     </div>
@@ -18,18 +17,23 @@
 <script>
 import ElementUI from 'element-ui';
 import Vue from 'vue';
+import userinfo from "@/components/userinfo.vue";
+
 
 Vue.component(ElementUI);
 
 export default{
+  components:{
+    userinfo
+  },
     data() {
       return {
         activeIndex: '1'
       };
     },
     methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
+      GoToPage(page)  {
+        this.$emit('navigate',page);
       }
     }
 

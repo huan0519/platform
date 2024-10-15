@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <Vue_header></Vue_header>
-    <div>
-      <Vue_main></Vue_main>
-    </div>
+    <Vue_header @navigate="handleNavigation"></Vue_header>
+      <Vue_main :current-page="currentPage"></Vue_main>
   </div>
 </template>
 
@@ -20,7 +18,17 @@ export default {
 
   components: {
     Vue_header,
-    Vue_main
+    Vue_main,
+  },
+  data(){
+    return{
+      currentPage:'Homepage'
+    };
+  },
+  methods:{
+    handleNavigation(page){
+      this.currentPage = page;
+    }
   }
 }
 </script>
@@ -31,7 +39,5 @@ export default {
   flex-direction: column;
   height: 100vh; /* 视口高度 */
 }
-
-
 
 </style>
