@@ -23,13 +23,9 @@ export default {
     Help,
     Applied
   },
-  // data(){
-  //   return{
-  //     currentPage: 'Homepage'
-  //   };
-  // },
   props:['currentPage'],
   computed:{
+    //实现动态切换页面
     currentPageComponent(){
       const pages = {
         'Homepage': Homepage,

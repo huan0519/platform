@@ -28,10 +28,12 @@ export default{
   },
     data() {
       return {
+        //默认
         activeIndex: '1'
       };
     },
     methods: {
+    //点击事件，通过emit告知父组件要跳转的界面
       GoToPage(page)  {
         this.$emit('navigate',page);
       }

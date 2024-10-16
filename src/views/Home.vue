@@ -22,10 +22,12 @@ export default {
   },
   data(){
     return{
+      //默认页面：主页
       currentPage:'Homepage'
     };
   },
   methods:{
+    //将header中取到的页面赋值给currentPage
     handleNavigation(page){
       this.currentPage = page;
     }

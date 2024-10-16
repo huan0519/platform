@@ -1,3 +1,4 @@
+<!--右上角个人头像和用户名显示组件-->
 <template>
     <div class="user-info">
       <div v-if="isLoggedIn" class="af_login">
@@ -23,7 +24,7 @@ export default {
   name: 'UserInfo',
   data() {
     return {
-      isLoggedIn: true, // 这里需要根据实际情况来设置
+      isLoggedIn: false, // 这里需要根据实际情况来设置
       userName: 'maxia', // 实际用户名
       userAvatar: avetar, // 实际用户头像路径
     };

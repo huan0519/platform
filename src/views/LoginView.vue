@@ -58,6 +58,7 @@ import { Container } from 'element-ui';
       this.$router.push('/Register');
     },
       handleClick(){
+        //回主页
         this.$router.push('/');
       }
     },

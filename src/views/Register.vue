@@ -70,6 +70,7 @@
         this.$router.push('/Login');
       },
       handleClick(){
+        //回主页
         this.$router.push('/');
       }
     },

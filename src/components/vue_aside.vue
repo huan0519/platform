@@ -8,7 +8,7 @@
               <i class="el-icon-document"></i>图表分类
             </div>
           </el-menu-item>
-          <el-submenu index="1">
+          <el-submenu index="1" >
             <template slot="title">
               <span slot="title">数据可视化</span>
             </template>
@@ -21,10 +21,10 @@
               <el-menu-item index="1-3">选项3</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="2">
-            <span slot="title">数据归一化</span>
+          <el-menu-item index="2" @click="goToPart('Data_visualization')">
+            <span slot="title">数据可视化</span>
           </el-menu-item>
-          <el-menu-item index="4">
+          <el-menu-item index="4" @click="goToPart('AI_analysis')">
             <span slot="title">AI辅助分析</span>
           </el-menu-item>
         </el-menu>
@@ -53,20 +53,27 @@ export default {
       };
     },
     computed:{
+      //改变图标方法
       iconClass() {
       return this.isDrawerOpen ? this.iconOpen : this.iconClose;
-    },
+      },
     },
 
     methods: {
+      //aside栏完全收回方法
       toggleDrawer() {
       this.isDrawerOpen = !this.isDrawerOpen
       if (this.isDrawerOpen){
         this.sidewidth=0
       }else {
         this.sidewidth=200
+        }
+      },
+      //页面跳转方法
+      goToPart(page){
+        this.$emit('navigate1', page);
+        console.log(page);
       }
-    }
     }
   }
 
