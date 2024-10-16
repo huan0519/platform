@@ -12,7 +12,7 @@
 
 <script>
 import Homepage from "@/views/homepage.vue";
-import Cloud_platform from "@/views/Cloud_Platform.vue";
+import Cloud_platform from "@/views/cloud_platform.vue";
 import Help from "@/views/Help.vue";
 import Applied from "@/views/Applied.vue";
 

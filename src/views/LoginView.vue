@@ -24,12 +24,10 @@
     </el-container>
     </div>
   </template>
-  
+
   <script>
 import { Container } from 'element-ui';
-
-
-  // import axios from 'axios';
+import axios from "axios";
 
   export default {
 
@@ -51,7 +49,21 @@ import { Container } from 'element-ui';
     methods: {
       handleLogin() {
         // 登录逻辑
-        console.log('Logging in with:', this.user);
+        // this.$refs['userform'].validate((valid) => {
+        //   if (valid) {
+        //     axios.post("http://localhost:8085/user/login", this.user).then(res => {
+        //       if (res.data.code === '200') {
+        //         localStorage.setItem("user", JSON.stringify(res.data.data))
+        //         this.$router.push("/")
+        //         this.$message.success("登录成功")
+        //       } else {
+        //         this.$message.error(res.data.msg)
+        //       }
+        //     })
+        //   } else {
+        //     return false;
+        //   }
+        // });
       },
       goToRegister() {
       // 跳转到注册页面
@@ -64,7 +76,7 @@ import { Container } from 'element-ui';
     },
   };
   </script>
-  
+
   <style scoped>
 
   .button_back{
