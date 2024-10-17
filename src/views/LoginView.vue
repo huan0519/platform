@@ -8,12 +8,12 @@
         <div class="form">
           <div style="margin: 10px 115px; font-size: 44px;letter-spacing: 15px;"><a>欢迎使用</a></div>
           <div style="margin: 20px 115px; font-size: 14px;letter-spacing: 3px;font-style: italic;"><a>welcome</a></div>
-            <el-form ref="user" :model="user" :rules="rules" label-width="100px">
+            <el-form ref="user" :model="userform" :rules="rules" label-width="100px">
               <el-form-item label="账号" prop="username">
-                <el-input class="button_back" v-model="user.username" placeholder="请输入账号" prefix-icon="el-icon-user" clearable ></el-input>
+                <el-input class="button_back" v-model="userform.username" placeholder="请输入账号" prefix-icon="el-icon-user" clearable ></el-input>
               </el-form-item>
               <el-form-item label="密码" prop="password">
-                <el-input class="button_back" type="password" v-model="user.password" prefix-icon="el-icon-lock" placeholder="请输入密码" clearable show-password ></el-input>
+                <el-input class="button_back" type="password" v-model="userform.password" prefix-icon="el-icon-lock" placeholder="请输入密码" clearable show-password ></el-input>
               </el-form-item>
               <el-form-item class="button_group">
                 <el-button type="primary" style="width: 200px;" @click="handleLogin" class="custom-button">登录</el-button>
@@ -24,18 +24,18 @@
     </el-container>
     </div>
   </template>
-  
+
   <script>
-import { Container } from 'element-ui';
-
-
-  // import axios from 'axios';
+  import axios from 'axios';
 
   export default {
 
     data() {
       return {
-        user: {},
+        userform: {
+          username: '',
+          password: ''
+        },
         rules: {
         username: [
           {required: true, message: '请输入用户名', trigger: 'blur'},
@@ -43,14 +43,26 @@ import { Container } from 'element-ui';
         ],
         password: [
           {required: true, message: '请输入密码', trigger: 'blur'},
-          {min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur'}
+          {min: 8, max: 20, message: '长度在 8 到 20 个字符', trigger: 'blur'}
         ],
-      }
+      },
+        mockUsers: [
+          { username: 'admin', password: '123456' }
+        ]
       };
     },
     methods: {
       handleLogin() {
         // 登录逻辑
+        const user = this.mockUsers.find(u => u.username === this.userform.username);
+        if (user && user.password === this.userform.password) {
+          this.$message.success("登录成功");
+          // 这里可以跳转到主页或其他页面
+          this.$router.push('/');
+        } else {
+          this.$message.error("登陆失败");
+          // 这里可以显示登录失败的提示信息
+        }
         console.log('Logging in with:', this.user);
         // this.$refs['userform'].validate((valid) => {
         //   if (valid) {

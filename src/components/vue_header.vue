@@ -69,7 +69,6 @@ export default{
   background-color: rgb(255, 255, 255);
 }
 .header{
-    height: 60px;
     width: 100%;
     background-color: #66FFFF;
 }
@@ -84,7 +83,6 @@ export default{
     
 }
 .el-menu-item{
-    height: 100vh;
     width: 90px;
     margin-bottom: 0;
     font-size: medium;
