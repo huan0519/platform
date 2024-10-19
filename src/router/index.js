@@ -4,7 +4,7 @@ import Home from '@/views/Home.vue'
 import Login from '@/views/LoginView.vue'
 import Register from '@/views/Register.vue'
 import Personal_center from "@/views/Personal_center.vue";
-import Cloud_platform from "@/views/Cloud_Platform.vue";
+import Cloud_platform from "@/views/cloud_platform.vue";
 
 Vue.use(VueRouter)
 
