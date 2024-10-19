@@ -32,6 +32,8 @@ export default {
 <style scoped>
 .cloud_body{
   background-color: darkgrey;
-  width: 100%;
+  width: 100vw;
+  overflow-y: auto;
+  height: 100vh;
 }
 </style>

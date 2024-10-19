@@ -15,4 +15,7 @@ export default{
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-}</style>
+  overflow-y: auto;
+  width: 100vw;
+}
+</style>

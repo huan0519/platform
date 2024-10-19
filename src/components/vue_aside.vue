@@ -1,14 +1,14 @@
 <template>
+  <div id="app">
   <div style="display: flex;">
-      <div style="display: flex;">
-      <el-aside :width="sidewidth + 'px'" :collapse="isDrawerOpen">
-        <el-menu default-active="1-4-1" class="el-menu-vertical-demo">
-          <el-menu-item index="0">
+      <el-aside :width="sidewidth + 'px'" :collapse="isDrawerOpen" class="el-aside">
+        <el-menu default-active="1-4-1">
+          <el-menu-item index="1">
             <div slot="title">
               <i class="el-icon-document"></i>图表分类
             </div>
           </el-menu-item>
-          <el-submenu index="1" >
+          <el-submenu index="2" >
             <template slot="title">
               <span slot="title">数据可视化</span>
             </template>
@@ -21,7 +21,7 @@
               <el-menu-item index="1-3">选项3</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="2" @click="goToPart('Data_visualization')">
+          <el-menu-item index="3" @click="goToPart('Data_visualization')">
             <span slot="title">数据可视化</span>
           </el-menu-item>
           <el-menu-item index="4" @click="goToPart('AI_analysis')">
@@ -29,12 +29,11 @@
           </el-menu-item>
         </el-menu>
       </el-aside>
-      </div>
     <div>
-    <button :label="false" @click="toggleDrawer" style="height:5vh;width: 3vw;;border: none;padding: 0;border-bottom-right-radius: 30%;position: fixed"><i :class="iconClass" style="font-size: 25px"></i></button>
+      <button :label="false" @click="toggleDrawer" style="height:5vh;width: 3vw;;border: none;padding: 0;border-bottom-right-radius: 30%;position: fixed"><i :class="iconClass" style="font-size: 25px"></i></button>
     </div>
   </div>
-
+  </div>
 </template>
 
 <script>
@@ -80,13 +79,19 @@ export default {
 </script>
 
 <style>
-
-.el-menu-vertical-demo{
+body{
   height: 100vh;
-  width: 199px;
-  }
+  position: fixed;
+  margin-top: -1px;
+  padding-top: -1px;
+}
+
 .button{
   height: 5vh;
 }
-
+.el-aside{
+  width: 199px;
+  height: 94vh;
+  padding: 0;
+}
 </style>

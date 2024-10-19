@@ -1,19 +1,28 @@
 <template>
-  <el-container>
-<!--    设置监听事件实现页面跳转-->
-    <Vue_aside @navigate1="handleNavigation1"></Vue_aside>
-    <Cloud_main :current-part="currentPart"></Cloud_main>
-  </el-container>
+  <div id="app">
+    <border></border>
+    <!--    设置监听事件实现页面跳转-->
+      <div class="cloud_pf">
+        <div>
+          <Vue_aside @navigate1="handleNavigation1" class="cloud-aside"></Vue_aside>
+        </div>
+        <Cloud_main :current-part="currentPart"></Cloud_main>
+      </div>
+  </div>
 </template>
 
 <script>
+import Vue_header from "@/components/vue_header.vue";
 import Vue_aside from "@/components/vue_aside.vue";
 import Cloud_main from "@/components/cloud_main.vue";
+import border from "@/components/header-border.vue"
 
 export default{
   components:{
     Vue_aside,
-    Cloud_main
+    Cloud_main,
+    Vue_header,
+    border
   },
   data(){
     return{
@@ -31,8 +40,8 @@ export default{
 </script>
 
 <style scoped>
-.cloud{
-  display: inline-block;
+.cloud_pf{
+  display: flex;
 }
 
 </style>

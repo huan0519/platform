@@ -14,16 +14,6 @@ Vue.use(ElementUI);
 
 Vue.use(VueParticles);
 
-// export default new VueRouter({
-//   routes: [
-//     {
-//       path: '/',
-//       name: 'Home',
-//       component: Home
-//     },
-//   ]
-// });
-
 new Vue({
   router,
   render: h => h(App)

@@ -2,7 +2,7 @@
 <template>
     <div class="user-info">
       <div v-if="isLoggedIn" class="af_login">
-        <img :src="userAvatar" class="avatar" @click="goToPersonalCenter" />
+        <img :src="userAvatar" class="avatar" @click="Send_Page" />
         <span class="username">{{ userName }}</span>
       </div>
       <div v-else class="login-link">
@@ -30,8 +30,8 @@ export default {
     };
   },
   methods: {
-    goToPersonalCenter() {
-      this.$router.push('/personal_center');
+    Send_Page() {
+      this.$emit('ChangePage');
     },
   },
 };

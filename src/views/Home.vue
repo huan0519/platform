@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Vue_header @navigate="handleNavigation"></Vue_header>
-      <Vue_main :current-page="currentPage"></Vue_main>
+    <Vue_header></Vue_header>
+    <router-view :key="$route.path"></router-view>
   </div>
 </template>
 
@@ -15,6 +15,8 @@ import Vue from 'vue';
 Vue.component(ElementUI)
 
 export default {
+  name:"App",
+
 
   components: {
     Vue_header,
@@ -27,10 +29,7 @@ export default {
     };
   },
   methods:{
-    //将header中取到的页面赋值给currentPage
-    handleNavigation(page){
-      this.currentPage = page;
-    }
+
   }
 }
 </script>
@@ -39,7 +38,7 @@ export default {
 #app{
   display: flex;
   flex-direction: column;
-  height: 100vh; /* 视口高度 */
+  height: 100%; /* 视口高度 */
 }
 
 </style>

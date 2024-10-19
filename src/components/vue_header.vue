@@ -1,12 +1,12 @@
 <template>
     <div class="header">
     <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal">
-        <el-menu-item @click="GoToPage('Homepage')" class="el-menu-item" index="1">首页</el-menu-item>
+      <el-menu-item @click="GoToPage('homepage')" class="el-menu-item" index="1">首页</el-menu-item>
         <el-menu-item @click="GoToPage('Cloud_platform')" class="el-menu-item" index="2">云平台</el-menu-item>
         <el-menu-item @click="GoToPage('Help')" style="width: 100px" index="3">使用教程</el-menu-item>
         <el-menu-item @click="GoToPage('Applied')" style="width: 100px" index="4">应用统计</el-menu-item>
       <div style="margin-left: 20px;margin-right: 20px">
-        <userinfo></userinfo>
+        <userinfo @ChangePage="GoToPage('Personal_center')"></userinfo>
       </div>
     </el-menu>
          
@@ -23,21 +23,40 @@ import userinfo from "@/components/userinfo.vue";
 Vue.component(ElementUI);
 
 export default{
-  components:{
-    userinfo
-  },
+    components:{
+      userinfo,
+    },
+    watch: {
+      '$route' (to, from) {
+        this.setActiveIndex(to);
+      },
+    },
     data() {
       return {
         //默认
-        activeIndex: '1'
+        activeIndex: '',
+        page: ''
       };
     },
     methods: {
     //点击事件，通过emit告知父组件要跳转的界面
       GoToPage(page)  {
-        this.$emit('navigate',page);
+        this.$router.push(page).catch(err => err);
+      },
+      setActiveIndex(route){
+        const routes = {
+          'homepage': '1',
+          'Cloud_platform': '2',
+          'Help': '3',
+          'Applied': '4',
+          'Personal_center': '5',
+        };
+        this.activeIndex = routes[route.name] || '1';
       }
-    }
+    },
+  created() {
+    this.setActiveIndex(this.$route);
+  },
 
 }
 </script>
@@ -69,8 +88,11 @@ export default{
   background-color: rgb(255, 255, 255);
 }
 .header{
-    width: 100%;
-    background-color: #66FFFF;
+  width: 100%;
+  background-color: #66FFFF;
+  height: 6vh;
+  position: fixed;
+  z-index: 1000;
 }
 .el-menu.el-menu--horizontal {
   height: 100%; /* 或者与 header 相同的高度 */

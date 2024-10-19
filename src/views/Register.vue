@@ -2,8 +2,6 @@
     <div id="app" class="back">
       <el-container>
         <el-header>
-            <el-button @click="handleClick" class="el-icon-arrow-left" style="font-size: 40px;float: left">
-            </el-button>
         </el-header>
       <div class="form">
         <div style="margin: 10px 115px; font-size: 44px;letter-spacing: 15px;"><a>注册</a></div>

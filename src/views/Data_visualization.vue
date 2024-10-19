@@ -5,10 +5,21 @@
       <div class="horizontal-line"></div>
     </div>
   </div>
-
 </template>
 
 <script>
+import vue_header from "@/components/vue_header.vue";
+import Vue from "vue";
+import Component from "vue-class-component";
+import Vue_header from "@/components/vue_header.vue";
+
+@Component({
+  components: {
+    Vue_header
+  }
+})
+export default class DataVisualization extends Vue {
+}
 
 
 </script>
