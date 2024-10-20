@@ -6,8 +6,7 @@
         <span class="username">{{ userName }}</span>
       </div>
       <div v-else class="login-link">
-        <i class="el-icon-user"></i>
-        <router-link to="/login">登录</router-link>
+        <router-link to="/login"><i class="el-icon-user"></i>登录</router-link>
       </div>
   </div>
 </template>

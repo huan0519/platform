@@ -117,6 +117,8 @@
   }
   .custom-button{
   width: 100px;
+    font-weight: bold;
+    border-radius: 10px;
   }
   .button-group {
     display: flex; /* 启用 Flexbox */
