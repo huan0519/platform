@@ -1,39 +1,83 @@
 <template>
-  <div>
-    <a style="margin-left: 8vw;font-size: 20px;font-style: italic">数据可视化</a>
-    <div class="line-container">
-      <div class="horizontal-line"></div>
+  <div style="height: 100%">
+    <header style="margin-top: 1em">
+      <a style="margin: 10em;font-size: 20px;font-style: italic">数据可视化</a>
+    </header>
+    <el-divider></el-divider>
+    <div class="ant-row" style="margin-left: -15px;margin-right: -15px">
+      <div class="ant-row-line">
+        <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px;background: rgb(239,241,245)">
+          <a id="chart1"></a>
+          <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
+            <div class="ant-body" style="padding: 0;height: 100%">
+              <img src="../../public/image/2.png" style="height: 100%;width: 100%;object-fit: contain">
+            </div>
+          </div>
+          <p style="text-align: center">核密度图 </p>
+        </main>
+      </div>
+      <div class="ant-row-line">
+        <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px;background: rgb(239,241,245)">
+          <a id="chart1"></a>
+          <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
+            <div class="ant-body" style="padding: 0;height: 100%">
+              <img src="../../public/image/1.png" style="height: 100%;width: 100%;object-fit: contain">
+            </div>
+          </div>
+          <p style="text-align: center">折线图</p>
+        </main>
+      </div>
+      <div class="ant-row-line">
+        <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px;background: rgb(239,241,245)">
+          <a id="chart1"></a>
+          <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
+            <div class="ant-body" style="padding: 0;height: 100%">
+              <img src="../../public/image/2.png" style="height: 100%;width: 100%;object-fit: contain">
+            </div>
+          </div>
+          <p style="text-align: center">核密度图 </p>
+        </main>
+      </div>
+      <div class="ant-row-line">
+        <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px;background: rgb(239,241,245)">
+          <a id="chart1"></a>
+          <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
+            <div class="ant-body" style="padding: 0;height: 100%">
+              <img src="../../public/image/2.png" style="height: 100%;width: 100%;object-fit: contain">
+            </div>
+          </div>
+          <p style="text-align: center">核密度图 </p>
+        </main>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import vue_header from "@/components/vue_header.vue";
-import Vue from "vue";
-import Component from "vue-class-component";
-import Vue_header from "@/components/vue_header.vue";
 
-@Component({
-  components: {
-    Vue_header,
-  }
-})
-export default class DataVisualization extends Vue {
+export default{
+
 }
 
 
 </script>
 
 <style>
-.horizontal-line{
-  width: 90vw;
-  height: 2px;
-  background-color: #E9EEF3;
+body{
+  min-width: 100vw;
 }
-.line-container{
-  align-items: center;
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
+.ant-row{
+  display: block flex;
+  zoom: 1;
+  position: relative;
+  overflow-x: hidden;
+}
+.ant-row-line{
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 25%;
+}
+.ant-card-hover{
+  cursor: pointer;
 }
 </style>
