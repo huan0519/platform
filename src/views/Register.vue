@@ -1,6 +1,5 @@
 <template>
     <div id="app" class="back">
-      <el-container>
         <el-header>
         </el-header>
       <div class="form">
@@ -24,7 +23,6 @@
           </el-form-item>
         </el-form>
       </div>
-      </el-container>
     </div>
   </template>
   
@@ -85,10 +83,13 @@
     line-height: 60px;
   }
   .back {
-    height: 100vh;
+    max-height: 100vh;
     background-image: linear-gradient(to bottom right, #efeced, #3F5EFB);
     overflow: hidden;
     cursor: url('../../public/image/kl1.png'), auto !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .custom-button {
     width: 100px;
@@ -100,8 +101,7 @@
     justify-content: space-between; /* 按钮之间的空间均匀分布 */
   }
   .form {
-    margin-top: 17%;
-    margin-left: 34%;
+
   }
   .link{
     color: #3F5EFB;

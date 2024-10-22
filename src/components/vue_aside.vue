@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  <div style="display: flex;">
+  <div style="display: inline-flex;">
       <el-aside :width="sidewidth + 'px'" :collapse="isDrawerOpen" class="el-aside">
         <el-menu default-active="1-4-1">
           <el-menu-item index="1">
@@ -20,7 +20,7 @@
         </el-menu>
       </el-aside>
     <div>
-      <button :label="false" @click="toggleDrawer" style="height:5vh;width: 3vw;;border: none;padding: 0;border-bottom-right-radius: 30%;position: fixed"><i :class="iconClass" style="font-size: 25px"></i></button>
+      <button :label="false" @click="toggleDrawer" class="button"><i :class="iconClass" style="font-size: 25px"></i></button>
     </div>
   </div>
   </div>
@@ -70,14 +70,19 @@ export default {
 
 <style>
 body{
-  height: 100vh;
+  height: 1400px;
   position: fixed;
   margin-top: -1px;
   padding-top: -1px;
 }
 
 .button{
-  height: 5vh;
+  height: 50px;
+  padding: 0;
+  position: fixed;
+  width: 40px;
+  border: none;
+  border-bottom-right-radius: 30%;
 }
 .el-aside{
   width: 199px;

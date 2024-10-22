@@ -4,7 +4,7 @@
 
 <style>
 .header-border{
-  height: 6vh;
+  height: 60px;
 }
 </style>
 

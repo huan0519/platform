@@ -1,5 +1,5 @@
 <template>
-  <div id="app" style="height: 100%">
+  <div id="app" style="height: 100vh">
     <header style="margin-top: 1em">
       <a style="margin: 10em;font-size: 20px;font-style: italic">数据前处理</a>
     </header>

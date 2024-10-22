@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Vue_header></Vue_header>
+    <Vue_header style="position: fixed;"></Vue_header>
     <router-view :key="$route.path"></router-view>
   </div>
 </template>

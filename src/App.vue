@@ -15,7 +15,7 @@ export default{
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  overflow-y: auto;
+  padding: 0;
   width: 100vw;
 }
 </style>

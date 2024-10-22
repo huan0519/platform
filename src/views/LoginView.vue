@@ -2,7 +2,7 @@
   <div id="app" class="back">
     <el-header>
     </el-header>
-    <el-container class="el-container">
+    <el-container style="max-height: 100vh">
         <div class="form">
           <div style="margin: 10px 115px; font-size: 44px;letter-spacing: 15px;"><a>欢迎使用</a></div>
           <div style="margin: 20px 115px; font-size: 14px;letter-spacing: 3px;font-style: italic;"><a>welcome</a></div>
@@ -112,20 +112,14 @@
     background-image: linear-gradient(to bottom right,#efeced,#3F5EFB);
     overflow: hidden;
     cursor: url('../../public/image/kl.png'), auto !important;
-    display: flex;
-    justify-content: center;
   }
   .custom-button{
-  width: 100px;
+    width: 100px;
     font-weight: bold;
     border-radius: 10px;
   }
   .button-group {
     display: flex; /* 启用 Flexbox */
     justify-content: space-between; /* 按钮之间的空间均匀分布 */
-  }
-  .form{
-    justify-content: center;
-    align-items: center;
   }
   </style>

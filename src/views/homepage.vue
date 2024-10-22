@@ -1,6 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" style="align-items: center">
     <border></border>
+    <h class="home_title">欢迎使用云平台</h>
     <div>
       <el-carousel :interval="4000" type="card" height="400px" class="el-carousel">
       <el-carousel-item v-for="item in 6" :key="item">
@@ -24,14 +25,19 @@ export default {
 </script>
 
 <style scoped>
+.home_title{
+  font-weight: bold;
+  font-size: 40px;
+  margin-top: 50px;
+}
 .el-carousel{
-  margin: 5em;
+  width: 1200px;
 }
 .el-carousel__item h3 {
   color: #475669;
   font-size: 14px;
   opacity: 0.75;
-  line-height: 200px;
+  line-height: 400px;
   margin: 0;
   text-align: center;
 }
@@ -43,4 +49,5 @@ export default {
 .el-carousel__item:nth-child(2n+1) {
   background-color: #d3dce6;
 }
+
 </style>

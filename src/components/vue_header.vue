@@ -19,8 +19,7 @@ import ElementUI from 'element-ui';
 import Vue from 'vue';
 import userinfo from "@/components/userinfo.vue";
 
-
-Vue.component(ElementUI);
+Vue.use(ElementUI);
 
 export default{
     components:{
@@ -68,7 +67,7 @@ export default{
 }
 .el-menu{
     float: right;
-    height: 100%;
+    height: 60px;
     display: flex;
     align-items: center; /* 垂直居中子元素 */
     justify-content: space-between;
@@ -77,21 +76,10 @@ export default{
 .el-menu-item.is-active {
   position: relative; /* 为底部边框定位 */
 }
-.el-menu-item.is-active::after {
-  content: ''; /* 伪元素内容 */
-  display: block; /* 使其占据空间 */
-  position: absolute; /* 绝对定位 */
-  bottom: 0; /* 底部对齐 */
-  left: 0; /* 左侧对齐 */
-  width: 100%; /* 宽度100% */
-  height: 1px; /* 蓝线高度 */
-  background-color: rgb(255, 255, 255);
-}
+
 .header{
   width: 100%;
   background-color: #66FFFF;
-  height: 6vh;
-  position: fixed;
   z-index: 1000;
 }
 .el-menu.el-menu--horizontal {
@@ -105,7 +93,7 @@ export default{
     
 }
 .el-menu-item{
-    width: 90px;
+    min-width: 90px; /* Use min-width instead of width */
     margin-bottom: 0;
     font-size: medium;
     text-align: center;
