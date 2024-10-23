@@ -1,6 +1,5 @@
 <template>
   <div id="app" style="align-items: center">
-    <border></border>
     <h class="home_title">欢迎使用云平台</h>
     <div>
       <el-carousel :interval="4000" type="card" height="400px" class="el-carousel">
@@ -14,12 +13,10 @@
 
 <script>
 import vue_header from "@/components/vue_header.vue";
-import border from "@/components/header-border.vue"
 
 export default {
   components:{
     vue_header,
-    border
   }
 }
 </script>

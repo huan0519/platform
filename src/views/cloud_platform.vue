@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <border></border>
     <!--    设置监听事件实现页面跳转-->
       <div class="cloud_pf">
         <div>
@@ -15,14 +14,12 @@
 import Vue_header from "@/components/vue_header.vue";
 import Vue_aside from "@/components/vue_aside.vue";
 import Cloud_main from "@/components/cloud_main.vue";
-import border from "@/components/header-border.vue"
 
 export default{
   components:{
     Vue_aside,
     Cloud_main,
     Vue_header,
-    border
   },
   data(){
     return{
