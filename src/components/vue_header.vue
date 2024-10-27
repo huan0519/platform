@@ -1,10 +1,10 @@
 <template>
     <div class="header">
     <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal">
-      <el-menu-item @click="GoToPage('homepage')" class="el-menu-item" index="1">首页</el-menu-item>
-        <el-menu-item @click="GoToPage('Cloud_platform')" class="el-menu-item" index="2">云平台</el-menu-item>
-        <el-menu-item @click="GoToPage('Help')" style="width: 100px" index="3">使用教程</el-menu-item>
-        <el-menu-item @click="GoToPage('Applied')" style="width: 100px" index="4">应用统计</el-menu-item>
+        <el-menu-item class="el-menu-item" index="homepage" @click="GoToPage('homepage')">首页</el-menu-item>
+        <el-menu-item class="el-menu-item" index="cloud_platform" @click="GoToPage('cloud_platform')">云平台</el-menu-item>
+        <el-menu-item style="width: 100px" index="help" @click="GoToPage('help')">使用教程</el-menu-item>
+        <el-menu-item style="width: 100px" index="applied" @click="GoToPage('applied')">应用统计</el-menu-item>
       <div style="margin-left: 20px;margin-right: 20px">
         <userinfo @ChangePage="GoToPage('Personal_center')"></userinfo>
       </div>
@@ -38,17 +38,16 @@ export default{
       };
     },
     methods: {
-    //点击事件，通过emit告知父组件要跳转的界面
       GoToPage(page)  {
-        this.$router.push(page).catch(err => err);
+        this.$router.push('/'+page).catch(err => err);
       },
       setActiveIndex(route){
         const routes = {
-          'homepage': '1',
-          'Cloud_platform': '2',
-          'Help': '3',
-          'Applied': '4',
-          'Personal_center': '5',
+          '/homepage': '1',
+          '/Cloud_platform': '2',
+          '/Help': '3',
+          '/Applied': '4',
+          '/Personal_center': '5',
         };
         this.activeIndex = routes[route.name] || '1';
       }

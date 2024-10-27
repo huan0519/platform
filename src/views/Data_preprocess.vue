@@ -10,7 +10,7 @@
           <a id="chart1"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%">
-              <img src="../../public/image/a.png" style="height: 100%;width: 100%;box-sizing: border-box">
+              <img src="../../public/image/a.png" @click="GoToPage('chart1')" style="height: 100%;width: 100%;box-sizing: border-box">
             </div>
           </div>
           <p style="text-align: center">数据归一化</p>
@@ -18,7 +18,7 @@
       </div>
       <div class="ant-row-line">
         <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px;background: darkgrey">
-          <a id="chart1"></a>
+          <a id="chart2"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%">
               <img src="../../public/image/b.png" style="height: 100%;width: 100%;box-sizing: border-box">
@@ -29,7 +29,7 @@
       </div>
       <div class="ant-row-line">
         <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px;background: darkgrey">
-          <a id="chart1"></a>
+          <a id="chart3"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%">
               <img src="../../public/image/b.png" style="height: 100%;width: 100%;box-sizing: border-box">
@@ -40,7 +40,7 @@
       </div>
       <div class="ant-row-line">
         <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px;background: darkgrey">
-          <a id="chart1"></a>
+          <a id="chart4"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%">
               <img src="../../public/image/b.png" style="height: 100%;width: 100%;box-sizing: border-box">
@@ -55,7 +55,15 @@
 </template>
 
 <script>
+export default {
 
+
+  methods:{
+    GoToPage(page) {
+      this.$router.push(page)
+    }
+  }
+}
 </script>
 
 <style>

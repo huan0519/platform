@@ -4,7 +4,7 @@
     <el-card class="card">
       <div class="above">
         <img :src="cardimage" class="card_img"/>
-        <h class="name_style">maxia</h>
+        <h class="name_style">{{$store.state.user.username}}</h>
           <el-button class="button_f">退出登录</el-button>
       </div>
 

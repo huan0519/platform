@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Vue_header style="position: sticky;top: 0;min-width: 80%"></Vue_header>
-    <router-view :key="$route.path"></router-view>
+    <transition>
+      <keep-alive>
+        <router-view :key="$route.path"></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
@@ -9,18 +13,12 @@
 // @ is an alias to /src
 import Vue_header from '@/components/vue_header.vue';
 import Vue_main from '@/components/vue_main.vue';
-import ElementUI from 'element-ui';
-import Vue from 'vue';
 
-Vue.component(ElementUI)
 
 export default {
-  name:"App",
-
-
   components: {
     Vue_header,
-    Vue_main,
+    Vue_main
   },
   data(){
     return{

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  <div style="display: inline-flex;">
+    <div style="display: inline-flex;">
       <el-aside :width="sidewidth + 'px'" :collapse="isDrawerOpen" class="el-aside">
         <el-menu default-active="1-4-1">
           <el-menu-item index="1">
@@ -8,21 +8,21 @@
               <i class="el-icon-document"></i>图表分类
             </div>
           </el-menu-item>
-          <el-menu-item index="2" @click="goToPart('Data_visualization')">
+          <el-menu-item index="2" @click="goToPart('data_visualization')">
             <span slot="title">数据可视化</span>
           </el-menu-item>
-          <el-menu-item index="3" @click="goToPart('Data_preprocess')">
+          <el-menu-item index="3" @click="goToPart('data_preprocess')">
             <span slot="title">数据前处理</span>
           </el-menu-item>
-          <el-menu-item index="4" @click="goToPart('AI_analysis')">
+          <el-menu-item index="4" @click="goToPart('ai_analysis')">
             <span slot="title">AI辅助分析</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
-    <div>
-      <button :label="false" @click="toggleDrawer" class="button"><i :class="iconClass" style="font-size: 25px"></i></button>
+      <div>
+        <button :label="false" @click="toggleDrawer" class="button"><i :class="iconClass" style="font-size: 25px"></i></button>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -33,38 +33,39 @@ import Vue from 'vue';
 Vue.component(ElementUI)
 
 export default {
-    data() {
-      return {
-        isDrawerOpen: false,
-        iconOpen:'el-icon-s-unfold',
-        iconClose:'el-icon-s-fold',
-        sidewidth:200
-      };
-    },
-    computed:{
-      //改变图标方法
-      iconClass() {
+  data() {
+    return {
+      isDrawerOpen: false,
+      iconOpen:'el-icon-s-unfold',
+      iconClose:'el-icon-s-fold',
+      sidewidth:200
+    };
+  },
+  computed:{
+    //改变图标方法
+    iconClass() {
       return this.isDrawerOpen ? this.iconOpen : this.iconClose;
-      },
     },
+  },
 
-    methods: {
-      //aside栏完全收回方法
-      toggleDrawer() {
+  methods: {
+    //aside栏完全收回方法
+    toggleDrawer() {
       this.isDrawerOpen = !this.isDrawerOpen
       if (this.isDrawerOpen){
         this.sidewidth=0
       }else {
         this.sidewidth=200
-        }
-      },
-      //页面跳转方法
-      goToPart(page){
-        this.$emit('navigate1', page);
-        console.log(page);
       }
+    },
+    //页面跳转方法
+    goToPart(page){
+      // this.$emit('navigate1', page);
+      // console.log(page);
+      this.$router.push('/cloud_platform/'+page).catch(err => err);
     }
   }
+}
 
 </script>
 

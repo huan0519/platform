@@ -1,7 +1,5 @@
 <template>
     <div id="app" class="back">
-        <el-header>
-        </el-header>
       <div class="form">
         <div style="margin: 10px 115px; font-size: 44px;letter-spacing: 15px;"><a>注册</a></div>
         <div style="margin: 20px 115px; font-size: 14px;letter-spacing: 3px;font-style: italic;"><a>Sign Up</a></div>
@@ -74,19 +72,10 @@
   </script>
   
   <style scoped>
-
-  .el-header {
-    background-color: #B3C0D1;
-    opacity: 0.2;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
   .back {
     max-height: 100vh;
     background-image: linear-gradient(to bottom right, #efeced, #3F5EFB);
     overflow: hidden;
-    cursor: url('../../public/image/kl1.png'), auto !important;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,13 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import Home from '@/views/Home.vue'
 import Login from '@/views/LoginView.vue'
 import Register from '@/views/Register.vue'
-import Personal_center from "@/views/Personal_center.vue";
-import Cloud_platform from "@/views/Cloud_Platform.vue";
-import Homepage from '@/views/homepage.vue';
-import Help from '@/views/Help.vue';
-import Applied from '@/views/Applied.vue';
+import Personal_center from "@/views/Personal_center.vue"
+import Cloud_platform from "@/views/Cloud_Platform.vue"
+import Homepage from '@/views/homepage.vue'
+import Help from '@/views/Help.vue'
+import Applied from '@/views/Applied.vue'
+import chart1 from '@/views/Chart1.vue'
+import Data_preprocess from '@/views/Data_preprocess.vue'
+import Data_visualization from "@/views/Data_visualization.vue"
+import ai_analysis from '@/views/AI-analysis.vue'
+import data_visualization from "@/views/Data_visualization.vue";
 
 Vue.use(VueRouter)
 
@@ -31,9 +37,32 @@ const router = new VueRouter({
           component: Personal_center
         },
         {
-          path: '/cloud_platform',
+          path: '/cloud_platform/',
           name: 'Cloud_platform',
-          component: Cloud_platform
+          component: Cloud_platform,
+          redirect: 'cloud_platform/data_visualization',
+          children:[
+            {
+              path:'chart1',
+              name:'chart1',
+              component: chart1
+            },
+            {
+              path:'data_preprocess',
+              name:'data_preprocess',
+              component: Data_preprocess
+            },
+            {
+              path:'data_visualization',
+              name:'data_visualization',
+              component: Data_visualization
+            },
+            {
+              path:'ai_analysis',
+              name:'ai_analysis',
+              component: ai_analysis
+            }
+          ]
         },
         {
           path:'/help',

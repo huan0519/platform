@@ -1,6 +1,6 @@
 <template>
   <div id="app" style="align-items: center">
-    <h class="home_title">欢迎使用云平台</h>
+    <span class="home_title">欢迎使用云平台</span>
     <div>
       <el-carousel :interval="4000" type="card" height="400px" class="el-carousel">
       <el-carousel-item v-for="item in 6" :key="item">
@@ -12,11 +12,9 @@
 </template>
 
 <script>
-import vue_header from "@/components/vue_header.vue";
 
 export default {
   components:{
-    vue_header,
   }
 }
 </script>

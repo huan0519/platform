@@ -1,7 +1,5 @@
 <template>
   <div id="app" class="back">
-    <el-header>
-    </el-header>
     <el-container style="max-height: 100vh">
         <div class="form">
           <div style="margin: 10px 115px; font-size: 44px;letter-spacing: 15px;"><a>欢迎使用</a></div>
@@ -24,7 +22,7 @@
   </template>
 
   <script>
-  import axios from 'axios';
+
 
   export default {
 
@@ -33,7 +31,8 @@
         user: {
           username: '',
           password: '',
-          img_path: '',
+          avatar_url: '',
+          token: '',
         },
         rules: {
         username: [
@@ -45,23 +44,10 @@
           {min: 8, max: 20, message: '长度在 8 到 20 个字符', trigger: 'blur'}
         ],
       },
-        mockUsers: [
-          { username: 'admin', password: '123456' ,img_path: '../../public/image/HT.jpg'}
-        ]
       };
     },
     methods: {
       handleLogin() {
-        // // 登录逻辑
-        // const user = this.mockUsers.find(u => u.username === this.userform.username);
-        // if (user && user.password === this.userform.password) {
-        //   this.$message.success("登录成功");
-        //   // 这里可以跳转到主页或其他页面
-        //   this.$router.push('/');
-        // } else {
-        //   this.$message.error("登陆失败");
-        //   // 这里可以显示登录失败的提示信息
-        // }
         console.log('Logging in with:', this.user);
         this.$refs['user'].validate((valid) => {
           if (valid) {
@@ -90,8 +76,9 @@
     },
     created() {
       axios.get('http://localhost:8080').then(function (res){
-        this.user=res.data.data;
-      })
+        let that=this;
+        that.user = res.data;
+      }).catch(err => err)
     }
   };
   </script>
@@ -105,18 +92,10 @@
   .button_back{
     width: 320px;
   }
-  .el-header{
-    background-color: #B3C0D1;
-    opacity: 0.33;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
   .back{
     height: 100vh;
     background-image: linear-gradient(to bottom right,#efeced,#3F5EFB);
     overflow: hidden;
-    cursor: url('../../public/image/kl.png'), auto !important;
   }
   .custom-button{
     width: 100px;
