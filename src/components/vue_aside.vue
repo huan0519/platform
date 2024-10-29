@@ -1,20 +1,20 @@
 <template>
   <div id="app">
     <div style="display: inline-flex;">
-      <el-aside :width="sidewidth + 'px'" :collapse="isDrawerOpen" class="el-aside">
-        <el-menu default-active="1-4-1">
-          <el-menu-item index="1">
+      <el-aside :width="side_width + 'px'" :collapse="isDrawerOpen" class="el-aside">
+        <el-menu :default-active="$route.path">
+          <el-menu-item class="disabled">
             <div slot="title">
               <i class="el-icon-document"></i>图表分类
             </div>
           </el-menu-item>
-          <el-menu-item index="2" @click="goToPart('data_visualization')">
+          <el-menu-item index="/cloud_platform/data_visualization" @click="goToPart('data_visualization')">
             <span slot="title">数据可视化</span>
           </el-menu-item>
-          <el-menu-item index="3" @click="goToPart('data_preprocess')">
+          <el-menu-item index="/cloud_platform/data_preprocess" @click="goToPart('data_preprocess')">
             <span slot="title">数据前处理</span>
           </el-menu-item>
-          <el-menu-item index="4" @click="goToPart('ai_analysis')">
+          <el-menu-item index="/cloud_platform/ai_analysis" @click="goToPart('ai_analysis')">
             <span slot="title">AI辅助分析</span>
           </el-menu-item>
         </el-menu>
@@ -38,7 +38,7 @@ export default {
       isDrawerOpen: false,
       iconOpen:'el-icon-s-unfold',
       iconClose:'el-icon-s-fold',
-      sidewidth:200
+      side_width:200,
     };
   },
   computed:{
@@ -53,9 +53,9 @@ export default {
     toggleDrawer() {
       this.isDrawerOpen = !this.isDrawerOpen
       if (this.isDrawerOpen){
-        this.sidewidth=0
+        this.side_width=0
       }else {
-        this.sidewidth=200
+        this.side_width=200
       }
     },
     //页面跳转方法
@@ -89,5 +89,12 @@ body{
   width: 199px;
   height: 94vh;
   padding: 0;
+}
+.disabled{
+  pointer-events: none; /* 禁止鼠标事件 */
+  cursor: default; /* 改变鼠标样式 */
+}
+.disabled:hover{
+  background-color: transparent; /* 移除背景色变化 */
 }
 </style>

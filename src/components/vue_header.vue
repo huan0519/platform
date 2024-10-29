@@ -1,10 +1,11 @@
 <template>
     <div class="header">
     <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal">
-        <el-menu-item class="el-menu-item" index="homepage" @click="GoToPage('homepage')">首页</el-menu-item>
-        <el-menu-item class="el-menu-item" index="cloud_platform" @click="GoToPage('cloud_platform')">云平台</el-menu-item>
-        <el-menu-item style="width: 100px" index="help" @click="GoToPage('help')">使用教程</el-menu-item>
-        <el-menu-item style="width: 100px" index="applied" @click="GoToPage('applied')">应用统计</el-menu-item>
+      <p class="header_line"></p>
+        <el-menu-item class="el-menu-item" index="homepage" @click="GoToPage('homepage')">首页</el-menu-item><p class="header_line"></p>
+        <el-menu-item class="el-menu-item" index="cloud_platform" @click="GoToPage('cloud_platform')">云平台</el-menu-item><p class="header_line"></p>
+        <el-menu-item style="width: 130px" index="help" @click="GoToPage('help')">使用教程</el-menu-item><p class="header_line"></p>
+        <el-menu-item style="" index="applied" @click="GoToPage('applied')">应用统计</el-menu-item>
       <div style="margin-left: 20px;margin-right: 20px">
         <userinfo @ChangePage="GoToPage('Personal_center')"></userinfo>
       </div>
@@ -94,9 +95,16 @@ export default{
 .el-menu-item{
     min-width: 90px; /* Use min-width instead of width */
     margin-bottom: 0;
-    font-size: medium;
+    font-size: large;
     text-align: center;
-}
+    font-weight: bold;
+    width: 130px;
 
+}
+.header_line{
+  height: 30px;
+  width: 1px;
+  background-color: #77DDFF;
+}
 
 </style>

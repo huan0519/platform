@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <el-container>
       <el-main class="main">
         <div class="table-container">
@@ -21,15 +21,19 @@
           </table>
         </div>
         <el-pagination
-            style="float: right"
-            background
-            layout="prev, pager, next"
-            :total="1000">
+            style="float: right;margin: 5px;"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page.sync="currentPage2"
+            :page-sizes="[10, 20, 30, 300]"
+            :page-size="10"
+            layout="sizes, prev, pager, next"
+            :total="length">
         </el-pagination>
-        <div ref="boxPlotChart" style="width: 100%; height: 600px;margin-top: 30px"></div>
+        <div ref="boxPlotChart" style="width: 1200px; height: 600px;margin-top: 30px"></div>
       </el-main>
       <el-aside width="400px" class="aside">
-        <p style="margin: 10px">控制台</p>
+        <p style="margin: 20px;line-height: 40px;font-weight: bolder">控制台</p>
         <el-button class="chart-button" @click="handleUpload">提交</el-button>
         <el-upload
             class="upload-demo"
@@ -37,9 +41,11 @@
             action="https://jsonplaceholder.typicode.com/posts/"
             :auto-upload="false"
             :on-change="handleFileChange"
-            :file-list="fileList">
-          <el-button size="small" type="primary">点击上传</el-button>
-          <div slot="tip" class="el-upload__tip">仅能上传txt,csv,xls,xlsx格式</div>
+            :file-list="fileList"><div style="display: flex">
+          <button class="sel_button">选择</button>
+          <button style="border: none;height: 40px;font-weight: normal;width: 300px;text-align: center;opacity: 0.5;">仅能上传txt,csv,xls,xlsx格式
+        </button>
+        </div>
         </el-upload>
       </el-aside>
     </el-container>
@@ -53,23 +59,36 @@ import dataTool from 'echarts/extension/dataTool'; // 引入数据工具
 export default {
   data() {
     return {
+      masses:'',
+      ms_length: 10,
+      currentPage1: 5,
+      currentPage2: 5,
+      currentPage3: 5,
+      currentPage4: 4,
       chartInstance: null,
       numberOfSamples: 9, // 可以根据需要调整样本数量
-      masses: Array.from({ length: 30 }, (_, index) => 61 + index), // 61到90的递增自然数
       testSamples: [
-        // 硬编码的测试数据
-        { mass: 61, intensity: 100 },
-        { mass: 62, intensity: 120 },
-        { mass: 63, intensity: 120 },
-        // ... 其他数据
+
       ],
       fileList: []
     };
   },
+  created() {
+    this.masses = Array.from({ length: this.ms_length }, (_, index) => 61 + index);
+  },
   mounted() {
     this.initChart();
+
   },
   methods: {
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.ms_length = val;
+      this.masses = Array.from({ length: this.ms_length }, (_, index) => 61 + index);
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+    },
     handleFileChange(file, fileList) {
       this.fileList = fileList;
       if (file.raw) {
@@ -154,8 +173,8 @@ export default {
 
 <style>
 .table-container {
-  height: 800px; /* 可以根据需要调整最大高度 */
-  overflow-y: auto; /* 垂直方向滚动条 */
+  height: auto; /* 可以根据需要调整最大高度 */
+  overflow-y: hidden; /* 垂直方向滚动条 */
   display: block; /* 防止默认的inline行为导致水平滚动条不出现 */
   overflow-x: auto;
   margin-right: 10px;
@@ -179,11 +198,15 @@ th, td {
 .aside {
   background-color: #D3DCE6;
   color: #333;
+  width: 100vw;
 }
 
 .chart-button {
-  width: 340px;
+  width: 400px;
   height: 40px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 30px;
 }
 
 .main {
@@ -195,8 +218,20 @@ th, td {
 }
 
 .upload-demo {
-  margin-top: 20px;
-  margin-right: 20px;
+  margin-top: 40px;
+  margin-left: 3px;
 }
 
+.sel_button{
+  color: #475669;
+  font-weight: bold;
+  width: 90px;
+  border: none;
+  border-radius: 5%;
+}
+.sel_button:hover{
+  cursor: pointer;
+  background-color: #CCEEFF;
+  color: #00BBFF;
+}
 </style>
