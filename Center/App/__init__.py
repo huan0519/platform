@@ -6,6 +6,6 @@ def create_app():
 
     app.register_blueprint(dataProcess)
     # 配置数据库
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123456@localhost:3306/center'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123456@localhost:3306/platform'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     return app
