@@ -5,7 +5,7 @@
         <el-menu-item class="el-menu-item" index="homepage" @click="GoToPage('homepage')">首页</el-menu-item><p class="header_line"></p>
         <el-menu-item class="el-menu-item" index="cloud_platform" @click="GoToPage('cloud_platform')">云平台</el-menu-item><p class="header_line"></p>
         <el-menu-item style="width: 130px" index="help" @click="GoToPage('help')">使用教程</el-menu-item><p class="header_line"></p>
-        <el-menu-item style="" index="applied" @click="GoToPage('applied')">应用统计</el-menu-item>
+        <el-menu-item style="" index="applied" @click="GoToPage('applied')">应用统计</el-menu-item><p class="header_line"></p>
       <div style="margin-left: 20px;margin-right: 20px">
         <userinfo @ChangePage="GoToPage('Personal_center')"></userinfo>
       </div>
@@ -71,7 +71,7 @@ export default{
     display: flex;
     align-items: center; /* 垂直居中子元素 */
     justify-content: space-between;
-    background-color: #66FFFF;
+    background-color: 	#0F172A;
 }
 .el-menu-item.is-active {
   position: relative; /* 为底部边框定位 */
@@ -79,7 +79,7 @@ export default{
 
 .header{
   width: 100%;
-  background-color: #66FFFF;
+  background-color: 	#0F172A;
   z-index: 1000;
 }
 .el-menu.el-menu--horizontal {

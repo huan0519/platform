@@ -14,6 +14,8 @@ import Data_preprocess from '@/views/Data_preprocess.vue'
 import Data_visualization from "@/views/Data_visualization.vue"
 import ai_analysis from '@/views/AI-analysis.vue'
 import data_visualization from "@/views/Data_visualization.vue";
+import demo from "@/views/demo.vue";
+import Prediction from "@/views/prediction.vue";
 
 Vue.use(VueRouter)
 
@@ -58,6 +60,11 @@ const router = new VueRouter({
               component: Data_visualization
             },
             {
+              path:'prediction',
+              name:'prediction',
+              component: Prediction
+            },
+            {
               path:'ai_analysis',
               name:'ai_analysis',
               component: ai_analysis
@@ -89,6 +96,11 @@ const router = new VueRouter({
       component: Register
     },
 
+    {
+      path:'/demo',
+      name:'demo',
+      component:demo
+    }
   ]
 })
 

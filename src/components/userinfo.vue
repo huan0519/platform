@@ -3,10 +3,10 @@
     <div class="user-info">
       <div v-if="isLoggedIn" class="af_login">
         <img :src="userAvatar" class="avatar" @click="Send_Page" />
-        <span class="username">{{ userName }}</span>
+        <span class="username" style="color: #E9EEF3">{{ userName }}</span>
       </div>
       <div v-else class="login-link">
-        <router-link to="/login"><i class="el-icon-user"></i>登录</router-link>
+        <router-link to="/login" style="color: #475669"><i class="el-icon-user" style="color: #475669"></i>    登录</router-link>
       </div>
   </div>
 </template>

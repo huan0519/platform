@@ -3,7 +3,7 @@
     <Vue_header style="position: sticky;top: 0;min-width: 80%"></Vue_header>
     <transition>
       <keep-alive>
-        <router-view :key="$route.path"></router-view>
+        <router-view :key="$route.path" style="background-color: #E0F2FE;"></router-view>
       </keep-alive>
     </transition>
   </div>

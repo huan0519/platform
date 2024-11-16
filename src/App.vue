@@ -17,6 +17,7 @@ body {
   font-family: Arial, sans-serif;
   padding: 0;
   width: 100vw;
+  height: 100vh;
 }
 
 </style>

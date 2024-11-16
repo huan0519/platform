@@ -6,7 +6,7 @@
         <Vue_aside class="cloud-aside"></Vue_aside>
       </div>
 <!--      <Cloud_main :current-part="currentPart"></Cloud_main>-->
-      <Cloud_main/>
+      <Cloud_main style="background-color: #E0F2FE;"/>
     </div>
   </div>
 </template>
@@ -42,12 +42,12 @@ export default {
   display: flex;
 }
 .cloud_body{
-  background-color: darkgrey;
+  background-color: #E0F2FE;
   width: 100vw;
   overflow-y: auto;
-  height: 100vh;
+  height: 1000px;
 }
 .cloud-aside{
-  position: sticky
+  position: sticky;
 }
 </style>

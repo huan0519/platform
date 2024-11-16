@@ -2,21 +2,24 @@
   <div id="app">
     <div style="display: inline-flex;">
       <el-aside :width="side_width + 'px'" :collapse="isDrawerOpen" class="el-aside">
-        <el-menu :default-active="$route.path">
+        <el-menu :default-active="$route.path" style="height: 100%;overflow: hidden;background-color: #334155;">
           <el-menu-item class="disabled">
             <div slot="title">
-              <i class="el-icon-document"></i>图表分类
+              <i class="el-icon-document"></i><span style="font-weight: bolder;font-family: '微软雅黑 Light',serif;font-size: 15px;color: #93C5FD;margin-left: 4px">图表分类</span>
             </div>
-          </el-menu-item>
+          </el-menu-item><p class="aside_line"></p>
           <el-menu-item index="/cloud_platform/data_visualization" @click="goToPart('data_visualization')">
             <span slot="title">数据可视化</span>
-          </el-menu-item>
+          </el-menu-item><p class="aside_line"></p>
           <el-menu-item index="/cloud_platform/data_preprocess" @click="goToPart('data_preprocess')">
             <span slot="title">数据前处理</span>
-          </el-menu-item>
+          </el-menu-item><p class="aside_line"></p>
+          <el-menu-item index="/cloud_platform/prediction" @click="goToPart('prediction')">
+            <span slot="title">疾病预测</span>
+          </el-menu-item><p class="aside_line"></p>
           <el-menu-item index="/cloud_platform/ai_analysis" @click="goToPart('ai_analysis')">
-            <span slot="title">AI辅助分析</span>
-          </el-menu-item>
+            <span slot="title" >AI辅助分析</span>
+          </el-menu-item><p class="aside_line"></p>
         </el-menu>
       </el-aside>
       <div>
@@ -69,14 +72,20 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 body{
-  height: 1400px;
+  height: 100vh;
   position: fixed;
   margin-top: -1px;
   padding-top: -1px;
 }
-
+.aside_line{
+  margin: 1px;
+  height: 1px;
+  width: 9vw;
+  background-color: #67E8F9;
+  align-self: center;
+}
 .button{
   height: 50px;
   padding: 0;
@@ -93,8 +102,16 @@ body{
 .disabled{
   pointer-events: none; /* 禁止鼠标事件 */
   cursor: default; /* 改变鼠标样式 */
+
 }
 .disabled:hover{
   background-color: transparent; /* 移除背景色变化 */
 }
+.el-menu-item{
+  color: #00BBFF;
+}
+::v-deep(.el-menu-item.is-active)  {
+  color: #FB923C !important;
+}
+
 </style>
