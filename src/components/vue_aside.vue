@@ -83,7 +83,7 @@ body{
   margin: 1px;
   height: 1px;
   width: 9vw;
-  background-color: #67E8F9;
+  background-color: #666666;
   align-self: center;
 }
 .button{
@@ -112,6 +112,8 @@ body{
 }
 ::v-deep(.el-menu-item.is-active)  {
   color: #FB923C !important;
+  background-color: #E9EEF3;
+  border-right-style: groove;
 }
 
 </style>

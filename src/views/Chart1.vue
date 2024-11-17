@@ -20,25 +20,30 @@
             </el-button>
           </el-button-group>
         </el-row>
-
+        <div>
         <el-container v-if="activePage === 'before'" class="table-container">
-          <el-table :data="tableData" border>
-            <el-table-column v-for="(value, key) in tableData[0]" :key="key" :prop="key" :label="key"></el-table-column>
+          <el-table :data="paginatedTableData" border>
+            <el-table-column
+                v-for="(value, key) in tableData[0] || {}"
+                :key="key"
+                :prop="key"
+                :label="key">
+            </el-table-column>
           </el-table>
           <div style="flex-basis: 100%">
             <el-pagination
-                style="float: right;margin: 5px;"
+                style="float: right; margin: 5px;"
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
-                :current-page.sync="currentPage2"
-                :page-sizes="[10, 20, 30, 300]"
-                :page-size="10"
+                :current-page.sync="currentPage"
+                :page-sizes="[10, 20, 30, 50]"
+                :page-size="pageSize"
                 layout="sizes, prev, pager, next"
-                :total="length">
+                :total="total">
             </el-pagination>
           </div>
         </el-container>
-
+        </div>
         <el-container v-if="activePage === 'after'" >
           <el-main class="main">
             <!--           显示文件内容 -->
@@ -69,19 +74,19 @@
             ref="upload"
             action="http://localhost:8000/get_data"
             :auto-upload="false"
-            :on-change="handleFileChange"
+            :on-change="handleFileUpload"
             :before-upload="beforeUpload"
             :on-success="handleUploadSuccess"
             :on-error="handleUploadError"
             :file-list="fileList"
             accept=".txt,.csv,.xls,.xlsx">
-          <div style="display: flex">
-            <input class="chart-input" type="file" @change="handleFileUpload" accept=".xlsx, .xls" />
+          <div>
+            <el-button class="sel_button">选择文件</el-button>
+            <button
+                style="border: none; height: 40px; font-weight: normal; width: 300px; text-align: center; opacity: 0.5;">
+              仅能上传txt, csv, xls, xlsx格式
+            </button>
           </div>
-          <button
-              style="border: none; height: 40px; font-weight: normal; width: 300px; text-align: center; opacity: 0.5;">
-            仅能上传txt, csv, xls, xlsx格式
-          </button>
         </el-upload>
       </el-aside>
     </el-container>
@@ -91,7 +96,7 @@
 <script type="module">
 import * as XLSX from 'xlsx';
 import * as echarts from 'echarts'; // 引入ECharts
-import dataTool from 'echarts/extension/dataTool'; // 引入数据工具
+// import dataTool from 'echarts/extension/dataTool'; // 引入数据工具
 import { VueGoodTable } from 'vue-good-table';
 import 'vue-good-table/dist/vue-good-table.css';
 
@@ -101,19 +106,16 @@ export default {
   },
   data() {
     return {
+      paginatedTableData: [], // 当前页显示的数据
+      pageSize: 10, // 每页条数
+      total: 0, // 数据总量
+      currentPage: 1,
+      length:'',
       activePage: "before",
-      tableData: [],
-      masses:'',
-      ms_length: 10,
+      tableData:[],
+      selectedFile: null,  // 当前选中文件
       paginatedData: [],
       columns: [],
-      perPage: 10, // 每页条数
-      totalRows: 0, // 数据总条数，用于分页
-      currentPage: 1, // 当前页码
-      currentPage1: 5,
-      currentPage2: 5,
-      currentPage3: 5,
-      currentPage4: 4,
       chartInstance: null,
       numberOfSamples: 299, // 可以根据需要调整样本数量
       testSamples: [
@@ -122,42 +124,46 @@ export default {
       fileList: []
     };
   },
-  created() {
-    this.masses = Array.from({ length: this.ms_length }, (_, index) => 61 + index);
-  },
   mounted() {
     this.initChart();
-
+    // this.initializeTableData(); // 初始化数据
+    this.updatePaginatedData();
   },
   methods: {
-    handlePageChange(newPage) {
-      this.currentPage = newPage;
-      this.loadPaginatedData();
-    },
+    // initializeTableData() {
+    //   // 假设 tableData 默认有数据，如果是动态获取，可以从后端拉取数据后调用此方法
+    //   if (this.tableData.length > 0) {
+    //     this.total = this.tableData.length; // 计算总数据行数
+    //     this.updatePaginatedData(); // 加载第一页数据
+    //   }
+    // },
     loadPaginatedData() {
       // 根据 currentPage 和 perPage 获取当前页的数据
       const start = (this.currentPage - 1) * this.perPage;
       const end = start + this.perPage;
       this.paginatedData = this.tableData.slice(start, end);
     },
-    handleSizeChange(val) {
-      this.ms_length = val;
-      this.masses = Array.from({ length: this.ms_length }, (_, index) => 61 + index);
+    updatePaginatedData() {
+      // 根据当前页和每页行数计算显示数据的范围
+      const start = (this.currentPage - 1) * this.pageSize;
+      const end = start + this.pageSize;
+
+      // 更新当前页数据
+      this.paginatedTableData = this.tableData.slice(start, end);
+
+      // 更新总行数
+      this.total = this.tableData.length;
     },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+    handleSizeChange(newSize) {
+      // 每页行数改变时，更新当前页码和显示数据
+      this.pageSize = newSize;
+      this.currentPage = 1; // 每页行数调整后从第一页重新开始
+      this.updatePaginatedData();
     },
-    submitUpload() {
-      console.log('File list:', this.fileList);
-      this.$refs.upload.submit();
-    },
-    beforeUpload(file) {
-      const isAcceptedFormat = /\.(txt|csv|xls|xlsx)$/i.test(file.name);
-      if (!isAcceptedFormat) {
-        this.$message.error('仅支持上传 txt, csv, xls, xlsx 格式的文件');
-        return false;
-      }
-      return true;
+    handleCurrentChange(newPage) {
+      // 页码改变时，更新当前页数据
+      this.currentPage = newPage;
+      this.updatePaginatedData();
     },
     handleUploadSuccess(response) {
       this.$message.success('文件上传成功');
@@ -172,22 +178,29 @@ export default {
       // 加载第一页数据
       this.loadPaginatedData();
     },
+    submitUpload() {
+      console.log('File list:', this.fileList);
+      this.$refs.upload.submit();
+    },
+    beforeUpload(file) {
+      const isAcceptedFormat = /\.(txt|csv|xls|xlsx)$/i.test(file.name);
+      if (!isAcceptedFormat) {
+        this.$message.error('仅支持上传 txt, csv, xls, xlsx 格式的文件');
+        return false;
+      }
+      return true;
+    },
     handleUploadError(err) {
       this.$message.error('文件上传失败');
       console.error('上传失败:', err);
     },
-    handleFileUpload(event) {
-      const file = event.target.files[0]; // 获取上传的文件
-      if (!file) return;
-
+    handleFileUpload(file) {
       const reader = new FileReader();
-
       // 文件加载完成事件
       reader.onload = (e) => {
         try {
           const fileData = new Uint8Array(e.target.result); // 读取文件内容
           const workbook = XLSX.read(fileData, { type: "array" }); // 使用 SheetJS 解析 Excel 数据
-
           // 确保存在工作表
           if (!workbook.SheetNames || workbook.SheetNames.length === 0) {
             throw new Error("Excel 文件中没有可用的工作表！");
@@ -207,7 +220,7 @@ export default {
 
           // 修改列名：保留第一列原始名称，从第二列开始简化
           const headers = jsonData[0].map((col, index) => {
-            return index === 0 ? col : `Col_${index + 1}`;
+            return index === 0 ? col : `Sample_${index + 0}`;
           });
 
           // 构建表格数据
@@ -217,6 +230,7 @@ export default {
 
           // 更新表格数据
           this.tableData = tableData;
+          console.log(this.tableData)
         } catch (error) {
           console.error("文件处理出错:", error.message);
           alert("文件处理失败，请检查文件内容是否正确！");
@@ -228,40 +242,7 @@ export default {
         alert("文件读取失败，请重试！");
       };
 
-      reader.readAsArrayBuffer(file); // 以二进制数组格式读取
-    },
-
-
-
-    handleFileChange(event) {
-      // let file = ev.raw;
-      // if (!file) return;
-      //
-      // this.readFile(file).then(data => {
-      //   let workbook = xlsx.read(data, { type: "binary" });
-      //   console.log(workbook);
-      // });
-
-    },
-    getIntensity(mass) {
-      // 根据mass值来计算intensity，这里只是一个示例，实际逻辑需要根据具体需求来实现
-      const sample = this.testSamples.find(sample => sample.mass === mass);
-      return sample ? sample.intensity : 0; // 如果找到对应的mass值，返回intensity，否则返回0
-    },
-    readFile(file) {
-      return new Promise((resolve, reject) => {
-        let reader = new FileReader();
-        reader.readAsBinaryString(file);
-        reader.onload = ev => {
-          resolve(ev.target.result);
-        };
-        reader.onerror = err => {
-          reject(err);
-        };
-      });
-    },
-    handleUpload() {
-      this.$refs.upload.submit();
+      reader.readAsArrayBuffer(file.raw); // 以二进制数组格式读取
     },
     initChart() {
       // 基于准备好的dom，初始化echarts实例
@@ -313,7 +294,11 @@ export default {
       // 使用刚指定的配置项和数据显示图表。
       this.chartInstance.setOption(option);
     }
-  }
+  },
+  created() {
+    // 初始化表格分页数据
+    this.updatePaginatedData();
+  },
 };
 </script>
 
@@ -389,4 +374,6 @@ input {
   width: 200px;
   font-size: 15px;
 }
+
+
 </style>

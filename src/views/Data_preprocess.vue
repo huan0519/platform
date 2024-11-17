@@ -91,5 +91,6 @@ body{
 }
 .ant-card-hover:hover{
   box-shadow: 0 8px 8px rgba(0, 0, 0, 1);
+  border-top: 1mm double #334155;
 }
 </style>

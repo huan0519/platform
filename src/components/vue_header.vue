@@ -75,6 +75,8 @@ export default{
 }
 .el-menu-item.is-active {
   position: relative; /* 为底部边框定位 */
+  background-color: #E9EEF3;
+  border-radius: 5%;
 }
 
 .header{
