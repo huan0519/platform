@@ -9,11 +9,10 @@ import Cloud_platform from "@/views/Cloud_Platform.vue"
 import Homepage from '@/views/homepage.vue'
 import Help from '@/views/Help.vue'
 import Applied from '@/views/Applied.vue'
-import chart1 from '@/views/Chart1.vue'
+import Data_normalization from '@/views/Data_normalization.vue'
 import Data_preprocess from '@/views/Data_preprocess.vue'
 import Data_visualization from "@/views/Data_visualization.vue"
 import ai_analysis from '@/views/AI-analysis.vue'
-import data_visualization from "@/views/Data_visualization.vue";
 import demo from "@/views/demo.vue";
 import Prediction from "@/views/prediction.vue";
 
@@ -45,14 +44,14 @@ const router = new VueRouter({
           redirect: 'cloud_platform/data_visualization',
           children:[
             {
-              path:'chart1',
-              name:'chart1',
-              component: chart1
+              path:'data_normalization',
+              name:'data_normalization',
+              component: Data_normalization
             },
             {
               path:'data_preprocess',
               name:'data_preprocess',
-              component: Data_preprocess
+              component: Data_preprocess,
             },
             {
               path:'data_visualization',

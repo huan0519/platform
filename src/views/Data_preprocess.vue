@@ -10,7 +10,7 @@
           <a id="chart1"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%;">
-              <img src="../../public/image/a.png" @click="GoToPage('chart1')" style="height: 100%;width: 100%;box-sizing: border-box;">
+              <img src="../../public/image/a.png" @click="GoToPage('data_normalization')" style="height: 100%;width: 100%;box-sizing: border-box;">
             </div>
           </div>
           <p style="text-align: center;color: #E9EEF3">数据归一化</p>
