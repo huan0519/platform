@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="back">
+  <div id="app" class="back" @click="createSplash($event)">
     <el-container style="max-height: 100vh">
         <div class="form">
           <div style="margin: 10px 115px; font-size: 44px;letter-spacing: 15px;"><a>欢迎使用</a></div>
@@ -24,6 +24,8 @@
   <script>
 
 
+  import anime from "animejs";
+
   export default {
 
     data() {
@@ -47,6 +49,35 @@
       };
     },
     methods: {
+      createSplash(event) {
+        const { clientX, clientY } = event;
+
+        // 创建一个新的水花 DOM 元素
+        const splash = document.createElement("div");
+        splash.classList.add("splash");
+
+        // 设置初始位置并考虑宽高居中
+        const size = 70; // 水花大小
+        splash.style.width = `${size}px`;
+        splash.style.height = `${size}px`;
+        splash.style.left = `${clientX - size / 2}px`;
+        splash.style.top = `${clientY - size / 2}px`;
+
+        document.body.appendChild(splash);
+
+        // 动画效果
+        anime({
+          targets: splash,
+          scale: [0, 1],
+          opacity: [1, 0],
+          easing: "easeOutQuad",
+          duration: 800,
+          complete: () => {
+            // 动画完成后移除 DOM 元素
+            splash.remove();
+          },
+        });
+      },
       handleLogin() {
         console.log('Logging in with:', this.user);
         this.$refs['user'].validate((valid) => {
@@ -105,5 +136,12 @@
   .button-group {
     display: flex; /* 启用 Flexbox */
     justify-content: space-between; /* 按钮之间的空间均匀分布 */
+  }
+  .splash {
+    position: absolute;
+    background-color: rgba(0, 150, 255, 0.6);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* 防止水花干扰点击事件 */
   }
   </style>

@@ -2,7 +2,7 @@
   <div id="app">
     <el-container class="el-container">
       <el-main class="main">
-        <el-row>
+        <el-row style="height: 150px;margin-left: 30px">
           <el-button-group>
             <el-button
                 type="primary"
@@ -22,7 +22,18 @@
         </el-row>
         <div>
         <el-container v-if="activePage === 'before'" class="table-container">
-          <el-table :data="paginatedTableData" border>
+            <el-pagination
+                style="float: left;flex-basis: 100%;padding: 0;margin-bottom: 10px;height: 20px"
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page.sync="currentPage"
+                :page-sizes="[10, 20, 30, 50]"
+                :page-size="pageSize"
+                :hide-on-single-page="true"
+                layout=" sizes"
+                :total="total">
+            </el-pagination>
+          <el-table :data="paginatedTableData" border style="flex-basis: 100%;margin-top: 1px;">
             <el-table-column
                 v-for="(value, key) in tableData[0] || {}"
                 :key="key"
@@ -32,13 +43,14 @@
           </el-table>
           <div style="flex-basis: 100%">
             <el-pagination
-                style="float: right; margin: 5px;"
+                style="float: right;padding: 4px;margin-top: 15px"
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page.sync="currentPage"
                 :page-sizes="[10, 20, 30, 50]"
                 :page-size="pageSize"
-                layout="sizes, prev, pager, next"
+                :hide-on-single-page="true"
+                layout="total ,prev, pager, next"
                 :total="total">
             </el-pagination>
           </div>
@@ -116,6 +128,8 @@ export default {
       selectedFile: null,  // 当前选中文件
       paginatedData: [],
       columns: [],
+      perPage: 10,
+      totalRows: 0,
       chartInstance: null,
       numberOfSamples: 299, // 可以根据需要调整样本数量
       testSamples: [
@@ -126,17 +140,12 @@ export default {
   },
   mounted() {
     this.initChart();
-    // this.initializeTableData(); // 初始化数据
-    this.updatePaginatedData();
   },
   methods: {
-    // initializeTableData() {
-    //   // 假设 tableData 默认有数据，如果是动态获取，可以从后端拉取数据后调用此方法
-    //   if (this.tableData.length > 0) {
-    //     this.total = this.tableData.length; // 计算总数据行数
-    //     this.updatePaginatedData(); // 加载第一页数据
-    //   }
-    // },
+    handlePageChange(newPage) {
+      this.currentPage = newPage;
+      this.loadPaginatedData();
+    },
     loadPaginatedData() {
       // 根据 currentPage 和 perPage 获取当前页的数据
       const start = (this.currentPage - 1) * this.perPage;
@@ -147,7 +156,7 @@ export default {
       // 根据当前页和每页行数计算显示数据的范围
       const start = (this.currentPage - 1) * this.pageSize;
       const end = start + this.pageSize;
-
+      console.log("111");
       // 更新当前页数据
       this.paginatedTableData = this.tableData.slice(start, end);
 
@@ -230,7 +239,7 @@ export default {
 
           // 更新表格数据
           this.tableData = tableData;
-          console.log(this.tableData)
+          this.updatePaginatedData();
         } catch (error) {
           console.error("文件处理出错:", error.message);
           alert("文件处理失败，请检查文件内容是否正确！");
@@ -294,10 +303,6 @@ export default {
       // 使用刚指定的配置项和数据显示图表。
       this.chartInstance.setOption(option);
     }
-  },
-  created() {
-    // 初始化表格分页数据
-    this.updatePaginatedData();
   },
 };
 </script>

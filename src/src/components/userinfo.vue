@@ -6,7 +6,7 @@
         <span class="username" style="color: #E9EEF3">{{ userName }}</span>
       </div>
       <div v-else class="login-link">
-        <router-link to="/login" style="color: #475669"><i class="el-icon-user" style="color: #475669"></i>    登录</router-link>
+        <router-link to="/login" style="color: #475669;font-weight: bolder"><i class="el-icon-user" style="color: #475669"></i>    登录</router-link>
       </div>
   </div>
 </template>

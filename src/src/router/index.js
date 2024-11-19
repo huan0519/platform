@@ -15,6 +15,7 @@ import Data_visualization from "@/views/Data_visualization.vue"
 import ai_analysis from '@/views/AI-analysis.vue'
 import demo from "@/views/demo.vue";
 import Prediction from "@/views/prediction.vue";
+import Demo1 from "@/views/demo1.vue";
 
 Vue.use(VueRouter)
 
@@ -99,6 +100,12 @@ const router = new VueRouter({
       path:'/demo',
       name:'demo',
       component:demo
+    },
+
+    {
+      path:'/demo1',
+      name:'demo1',
+      component:Demo1
     }
   ]
 })

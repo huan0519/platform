@@ -1,5 +1,6 @@
 <template>
     <div class="header">
+      <img src="../../public/image/logo.png" style="height: 60px;float: left">
     <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal">
       <p class="header_line"></p>
         <el-menu-item class="el-menu-item" index="homepage" @click="GoToPage('homepage')">首页</el-menu-item><p class="header_line"></p>
