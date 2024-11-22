@@ -10,10 +10,10 @@
           <a id="chart1"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
-              <img src="../../public/image/2.png" style="height: 100%;width: 100%;box-sizing: border-box">
+              <img src="../../public/image/Stacked-Line.png" @click="GoToPage('stacked_line')" style="height: 100%;width: 100%;box-sizing: border-box">
             </div>
           </div>
-          <p style="text-align: center;color: #E9EEF3">核密度图</p>
+          <p style="text-align: center;color: #E9EEF3">堆叠折线图</p>
         </main>
       </div>
       <div class="ant-row-line">
@@ -21,10 +21,10 @@
           <a id="chart2"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
-              <img src="../../public/image/1.png" style="height: 100%;width: 100%;box-sizing: border-box">
+              <img src="../../public/image/Stacked-Bar-Chart.png" @click="GoToPage('stacked_barchart')" style="height: 100%;width: 100%;box-sizing: border-box">
             </div>
           </div>
-          <p style="text-align: center;color: #E9EEF3">折线图</p>
+          <p style="text-align: center;color: #E9EEF3">堆叠柱状图</p>
         </main>
       </div>
       <div class="ant-row-line">
@@ -32,10 +32,10 @@
           <a id="chart3"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
-              <img src="../../public/image/2.png" style="height: 100%;width: 100%;box-sizing: border-box">
+              <img src="../../public/image/Rose.png" @click="GoToPage('rose')" style="height: 100%;width: 100%;box-sizing: border-box">
             </div>
           </div>
-          <p style="text-align: center;color: #E9EEF3">核密度图 </p>
+          <p style="text-align: center;color: #E9EEF3">玫瑰图 </p>
         </main>
       </div>
       <div class="ant-row-line">
@@ -43,10 +43,76 @@
           <a id="chart4"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
-              <img src="../../public/image/2.png" style="height: 100%;width: 100%;box-sizing: border-box">
+              <img src="../../public/image/Scatter-Diagram.png" @click="GoToPage('scatter_diagram')" style="height: 100%;width: 100%;box-sizing: border-box">
             </div>
           </div>
-          <p style="text-align: center;color: #E9EEF3">核密度图 </p>
+          <p style="text-align: center;color: #E9EEF3">散点图</p>
+        </main>
+      </div>
+      <div class="ant-row-line">
+        <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px; min-width: 248px;background: #334155;border-radius: 20px">
+          <a id="chart1"></a>
+          <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
+            <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
+              <img src="../../public/image/Michelson-Morley-Experiment.png" @click="GoToPage('michelson')" style="height: 100%;width: 100%;box-sizing: border-box">
+            </div>
+          </div>
+          <p style="text-align: center;color: #E9EEF3">箱线图</p>
+        </main>
+      </div>
+      <div class="ant-row-line">
+        <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px; min-width: 248px;background: #334155;border-radius: 20px">
+          <a id="chart1"></a>
+          <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
+            <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
+              <img src="../../public/image/Large-Area-Chart.png" @click="GoToPage('large-area-chart')" style="height: 100%;width: 100%;box-sizing: border-box">
+            </div>
+          </div>
+          <p style="text-align: center;color: #E9EEF3">大数据折线图</p>
+        </main>
+      </div>
+      <div class="ant-row-line">
+        <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px; min-width: 248px;background: #334155;border-radius: 20px">
+          <a id="chart1"></a>
+          <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
+            <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
+              <img src="../../public/image/H-Michelson-Morley-Experiment.png" @click="GoToPage('H_michelson')" style="height: 100%;width: 100%;box-sizing: border-box">
+            </div>
+          </div>
+          <p style="text-align: center;color: #E9EEF3">大数据量箱线图</p>
+        </main>
+      </div>
+      <div class="ant-row-line">
+        <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px; min-width: 248px;background: #334155;border-radius: 20px">
+          <a id="chart1"></a>
+          <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
+            <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
+              <img src="../../public/image/Thermodynamic-Diagram.png" @click="GoToPage('thermodynamic')" style="height: 100%;width: 100%;box-sizing: border-box">
+            </div>
+          </div>
+          <p style="text-align: center;color: #E9EEF3">热力图</p>
+        </main>
+      </div>
+      <div class="ant-row-line">
+        <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px; min-width: 248px;background: #334155;border-radius: 20px">
+          <a id="chart1"></a>
+          <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
+            <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
+              <img src="../../public/image/Dashed-Bar-Chart.png" @click="GoToPage('dashed-bar-chart')" style="height: 100%;width: 100%;box-sizing: border-box">
+            </div>
+          </div>
+          <p style="text-align: center;color: #E9EEF3">虚线柱状图</p>
+        </main>
+      </div>
+      <div class="ant-row-line">
+        <main style="padding: 24px 0 0 0;margin: 0;min-height: 248px; min-width: 248px;background: #334155;border-radius: 20px">
+          <a id="chart1"></a>
+          <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
+            <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
+              <img src="../../public/image/3D.png" @click="GoToPage('3D')" style="height: 100%;width: 100%;box-sizing: border-box">
+            </div>
+          </div>
+          <p style="text-align: center;color: #E9EEF3">3D柱状图</p>
         </main>
       </div>
     </div>
@@ -57,7 +123,11 @@
 <script>
 
 export default{
-
+  methods:{
+    GoToPage(page) {
+      this.$router.push(page)
+    }
+  }
 }
 
 

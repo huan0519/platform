@@ -43,7 +43,7 @@
           </el-table>
           <div style="flex-basis: 100%">
             <el-pagination
-                style="float: right;padding: 4px;margin-top: 15px"
+                style="float: right;padding: 4px;margin-top: 15px;flex-basis: 100%;"
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page.sync="currentPage"
@@ -131,10 +131,6 @@ export default {
       perPage: 10,
       totalRows: 0,
       chartInstance: null,
-      numberOfSamples: 299, // 可以根据需要调整样本数量
-      testSamples: [
-
-      ],
       fileList: []
     };
   },
@@ -308,7 +304,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .table-container {
   height: auto; /* 可以根据需要调整最大高度 */
   overflow-y: hidden; /* 垂直方向滚动条 */
@@ -322,17 +318,17 @@ table {
   width: 1400px;
   border-collapse: collapse;
 }
-
 th, td {
   line-height: 40px;
+  max-height: 11px;
   box-sizing: content-box;
   border: 1px solid #ddd;
   padding: 12px;
   text-align: left;
   white-space: nowrap;
   font-size: 14px;
+  text-overflow: ellipsis; /* 超出部分显示省略号 */
 }
-
 .aside {
   background-color: #D3DCE6;
   color: #333;

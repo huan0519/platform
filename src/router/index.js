@@ -15,6 +15,18 @@ import Data_visualization from "@/views/Data_visualization.vue"
 import ai_analysis from '@/views/AI-analysis.vue'
 import demo from "@/views/demo.vue";
 import Prediction from "@/views/prediction.vue";
+import Demo1 from "@/views/demo1.vue";
+import StackedBarChart from "@/views/Stacked-Bar-Chart.vue";
+import StackedLine from "@/views/Stacked-Line.vue";
+import Rose from "@/views/Rose.vue";
+import ScatterDiagram from "@/views/Scatter-Diagram.vue";
+import MichelsonMorleyExperiment from "@/views/Michelson-Morley-Experiment.vue";
+import HMichelsonMorleyExperiment from "@/views/H-Michelson-Morley-Experiment.vue";
+import LargeAreaChart from "@/views/Large-Area-Chart.vue";
+import DashedBarChart from "@/views/Dashed-Bar-Chart.vue";
+import three_D from "@/views/3D.vue";
+import ThermodynamicDiagram from "@/views/Thermodynamic-Diagram.vue";
+
 
 Vue.use(VueRouter)
 
@@ -47,6 +59,56 @@ const router = new VueRouter({
               path:'data_normalization',
               name:'data_normalization',
               component: Data_normalization
+            },
+            {
+              path:'stacked_line',
+              name:'stacked_line',
+              component: StackedLine
+            },
+            {
+              path:'stacked_barchart',
+              name:'stacked_barchart',
+              component: StackedBarChart
+            },
+            {
+              path:'rose',
+              name:'rose',
+              component: Rose
+            },
+            {
+              path:'scatter_diagram',
+              name:'scatter_diagram',
+              component: ScatterDiagram
+            },
+            {
+              path:'michelson',
+              name:'michelson',
+              component: MichelsonMorleyExperiment
+            },
+            {
+              path:'H_michelson',
+              name:'H_michelson',
+              component: HMichelsonMorleyExperiment
+            },
+            {
+              path:'large-area-chart',
+              name:'large-area-chart',
+              component: LargeAreaChart
+            },
+            {
+              path:'thermodynamic',
+              name:'thermodynamic',
+              component: ThermodynamicDiagram
+            },
+            {
+              path:'dashed-bar-chart',
+              name:'dashed-bar-chart',
+              component: DashedBarChart
+            },
+            {
+              path:'3D',
+              name:'3D',
+              component: three_D
             },
             {
               path:'data_preprocess',
@@ -99,6 +161,12 @@ const router = new VueRouter({
       path:'/demo',
       name:'demo',
       component:demo
+    },
+
+    {
+      path:'/demo1',
+      name:'demo1',
+      component:Demo1
     }
   ]
 })

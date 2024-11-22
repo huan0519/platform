@@ -106,31 +106,31 @@ export default {
 </script>
 
 <style scoped>
-body {
-  height: 100vh;
-  position: fixed;
-  margin-top: -1px;
-  padding-top: -1px;
+.el-menu{
+  height: 100%;
+  overflow: hidden;
 }
 .aside_line {
   margin: 1px;
   height: 1px;
-  width: 9vw;
+  width: calc(100% - 10px);
   background-color: #666666;
   align-self: center;
 }
 .button {
   height: 50px;
   padding: 0;
-  position: fixed;
+  position: sticky;
   width: 40px;
   border: none;
   border-bottom-right-radius: 30%;
 }
 .el-aside {
-  width: 199px;
-  height: 94vh;
-  padding: 0;
+  width: 200px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
 }
 .disabled {
   pointer-events: none; /* 禁止鼠标事件 */

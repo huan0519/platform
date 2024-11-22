@@ -5,9 +5,9 @@ import router from './router'
 import VueRouter from 'vue-router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import VueParticles from '@tsparticles/vue2'
 import store from "@/store";
 import echarts from 'echarts'
+import VueParticles from "vue2-particles";
 
 Vue.prototype.$echarts = echarts;
 

@@ -1,12 +1,11 @@
 <template>
-  <div id="app">
+  <div id="app" class="cloud_body">
     <!--    设置监听事件实现页面跳转-->
     <div class="cloud_pf">
-      <div>
-        <Vue_aside class="cloud-aside"></Vue_aside>
+      <div class="cloud-aside">
+        <Vue_aside></Vue_aside>
       </div>
-<!--      <Cloud_main :current-part="currentPart"></Cloud_main>-->
-      <Cloud_main style="background-color: #E0F2FE;"/>
+      <Cloud_main style="background-color: #E0F2FE;" class="cloud-main"/>
     </div>
   </div>
 </template>
@@ -44,10 +43,17 @@ export default {
 .cloud_body{
   background-color: #E0F2FE;
   width: 100vw;
-  overflow-y: auto;
-  height: 1000px;
+  overflow-y: hidden;
+  height: 100px;
 }
 .cloud-aside{
   position: sticky;
+  height: 100vh;
+}
+.cloud-main{
+  min-height: 100vh;
+  overflow: auto;
+  padding: 20px;
+  height: calc(100vh - 20px);
 }
 </style>

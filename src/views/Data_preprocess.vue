@@ -70,6 +70,7 @@ export default {
 body{
   min-width: 100vw;
   overflow: hidden;
+  min-height: 100vh;
 }
 .ant-row{
   box-sizing: border-box;
@@ -77,6 +78,7 @@ body{
   position: relative;
   overflow-x: hidden;
   flex-wrap: wrap;
+  align-content: flex-start; /* 确保多行内容正常显示 */
 }
 
 .ant-row-line{
@@ -90,7 +92,6 @@ body{
   transition: box-shadow 0.25s ease-in-out;
 }
 .ant-card-hover:hover{
-  box-shadow: 0 8px 8px rgba(0, 0, 0, 1);
-  border-top: 1mm double #334155;
+  box-shadow: 1px 10px 10px rgba(0, 0, 0, 1);
 }
 </style>
