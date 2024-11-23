@@ -4,10 +4,12 @@ import uuid
 from flask import Blueprint, request, send_file, jsonify
 import os
 
+from flask_cors import CORS
+
 from App.services.data_processing import *
 
 dataProcess = Blueprint('dataProcess', __name__)
-
+CORS(dataProcess, resources={r"/*": {"origins": "*"}})
 @dataProcess.route('/normalizeData', methods=['POST'])
 def normalize_data_route():
     if 'file' not in request.files:

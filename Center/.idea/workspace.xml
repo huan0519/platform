@@ -5,18 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5eed8c4-0003-4ff2-8f89-324ada3a84fe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/Center.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/download_file/1.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/download_file/2.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/download_file/3.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/download_file/4.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/download_file/5.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/Large_Area_Chart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/_3DChart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/boxplot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/download_file.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/getdata_json.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/hot_chart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/lineChart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/line_bar.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/pca_url.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/point_chart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/predict_url.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/rose_chart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/routes/stack_bar.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/services/PCA.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/services/predict.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/uploads/数据.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/routes/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
     <envs>
@@ -55,23 +80,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.__init__.executor": "Run",
-    "Python.app.executor": "Run",
-    "Python.urls.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/PycharmProjects/platform/Center",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.urls.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;flask&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/PycharmProjects/platform/Center/App/upload_file&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PycharmProjects\platform\Center\App\upload_file" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.app">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Center" />
@@ -147,7 +178,21 @@
       <workItem from="1730721903941" duration="3399000" />
       <workItem from="1731046538642" duration="210000" />
       <workItem from="1731485976697" duration="220000" />
-      <workItem from="1731560029974" duration="486000" />
+      <workItem from="1731560029974" duration="1147000" />
+      <workItem from="1731561400783" duration="366000" />
+      <workItem from="1731563983388" duration="24615000" />
+      <workItem from="1731644923866" duration="147000" />
+      <workItem from="1731645257052" duration="638000" />
+      <workItem from="1731651206385" duration="1628000" />
+      <workItem from="1731671018221" duration="15816000" />
+      <workItem from="1731734460376" duration="694000" />
+      <workItem from="1731858020052" duration="908000" />
+      <workItem from="1731906293270" duration="10246000" />
+      <workItem from="1732010553542" duration="10141000" />
+      <workItem from="1732090142978" duration="4537000" />
+      <workItem from="1732109804474" duration="4765000" />
+      <workItem from="1732178520360" duration="9206000" />
+      <workItem from="1732364234915" duration="4232000" />
     </task>
     <servers />
   </component>
@@ -158,6 +203,6 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Center$app.coverage" NAME="app Coverage Results" MODIFIED="1730721965012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Center$app.coverage" NAME="app Coverage Results" MODIFIED="1732372617262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
