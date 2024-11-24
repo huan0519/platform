@@ -26,7 +26,9 @@ import LargeAreaChart from "@/views/Large-Area-Chart.vue";
 import DashedBarChart from "@/views/Dashed-Bar-Chart.vue";
 import three_D from "@/views/3D.vue";
 import ThermodynamicDiagram from "@/views/Thermodynamic-Diagram.vue";
-
+import Reinforce from "@/views/reinforce.vue";
+import Alignment from "@/views/alignment.vue";
+import Data_enhancement from "@/views/Data_enhancement.vue";
 
 Vue.use(VueRouter)
 
@@ -59,6 +61,21 @@ const router = new VueRouter({
               path:'data_normalization',
               name:'data_normalization',
               component: Data_normalization
+            },
+            {
+              path:'reinforce',
+              name:'reinforce',
+              component: Reinforce
+            },
+            {
+              path:'alignment',
+              name:'alignment',
+              component: Alignment
+            },
+            {
+              path:'data_enhancement',
+              name:'data_enhancement',
+              component: Data_enhancement
             },
             {
               path:'stacked_line',

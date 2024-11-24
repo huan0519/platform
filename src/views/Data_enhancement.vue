@@ -21,7 +21,7 @@
           </el-button-group>
         </el-row>
         <div>
-        <el-container v-if="activePage === 'before'" class="table-container">
+          <el-container v-if="activePage === 'before'" class="table-container">
             <el-pagination
                 style="float: left;flex-basis: 100%;padding: 0;margin-bottom: 10px;height: 20px"
                 @size-change="handleSizeChange"
@@ -33,28 +33,28 @@
                 layout=" sizes"
                 :total="total">
             </el-pagination>
-          <el-table :data="paginatedTableData" border style="flex-basis: 100%;margin-top: 1px;">
-            <el-table-column
-                v-for="(value, key) in tableData[0] || {}"
-                :key="key"
-                :prop="key"
-                :label="key">
-            </el-table-column>
-          </el-table>
-          <div style="flex-basis: 100%">
-            <el-pagination
-                style="float: right;padding: 4px;margin-top: 15px;flex-basis: 100%;"
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page.sync="currentPage"
-                :page-sizes="[10, 20, 30, 50]"
-                :page-size="pageSize"
-                :hide-on-single-page="true"
-                layout="total ,prev, pager, next"
-                :total="total">
-            </el-pagination>
-          </div>
-        </el-container>
+            <el-table :data="paginatedTableData" border style="flex-basis: 100%;margin-top: 1px;">
+              <el-table-column
+                  v-for="(value, key) in tableData[0] || {}"
+                  :key="key"
+                  :prop="key"
+                  :label="key">
+              </el-table-column>
+            </el-table>
+            <div style="flex-basis: 100%">
+              <el-pagination
+                  style="float: right;padding: 4px;margin-top: 15px;flex-basis: 100%;"
+                  @size-change="handleSizeChange"
+                  @current-change="handleCurrentChange"
+                  :current-page.sync="currentPage"
+                  :page-sizes="[10, 20, 30, 50]"
+                  :page-size="pageSize"
+                  :hide-on-single-page="true"
+                  layout="total ,prev, pager, next"
+                  :total="total">
+              </el-pagination>
+            </div>
+          </el-container>
         </div>
         <el-container v-if="activePage === 'after'" >
           <el-main class="main">

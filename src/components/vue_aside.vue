@@ -4,8 +4,7 @@
       <el-aside :width="side_width + 'px'" :collapse="isDrawerOpen" class="el-aside">
         <el-menu
             :default-active="currentActive"
-            style="height: 100%; overflow: hidden; background-color: #334155;"
-        >
+            style="height: 100%; overflow: hidden; background-color: #334155;">
           <el-menu-item class="disabled">
             <div slot="title">
               <i class="el-icon-document"></i
@@ -120,7 +119,7 @@ export default {
 .button {
   height: 50px;
   padding: 0;
-  position: sticky;
+  position: fixed;
   width: 40px;
   border: none;
   border-bottom-right-radius: 30%;
@@ -128,9 +127,7 @@ export default {
 .el-aside {
   width: 200px;
   height: 100vh;
-  position: sticky;
-  top: 0;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 .disabled {
   pointer-events: none; /* 禁止鼠标事件 */

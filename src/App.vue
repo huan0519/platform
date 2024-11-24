@@ -51,8 +51,6 @@ export default{
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  padding: 0;
-  width: 100vw;
   height: 100vh;
 }
 .splash {
