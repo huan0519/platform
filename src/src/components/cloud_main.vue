@@ -1,6 +1,5 @@
 <template>
   <div id="app" class="cloud_body">
-<!--    <component :is="currentPartComponent1"></component>-->
     <router-view :key="$route.fullPath"></router-view>
   </div>
 </template>
@@ -41,5 +40,6 @@ export default {
   width: 100vw;
   overflow-y: auto;
   height: 100vh;
+  box-sizing: border-box;
 }
 </style>

@@ -4,8 +4,7 @@
       <el-aside :width="side_width + 'px'" :collapse="isDrawerOpen" class="el-aside">
         <el-menu
             :default-active="currentActive"
-            style="height: 100%; overflow: hidden; background-color: #334155;"
-        >
+            style="height: 100%; overflow: hidden; background-color: #334155;">
           <el-menu-item class="disabled">
             <div slot="title">
               <i class="el-icon-document"></i
@@ -106,16 +105,14 @@ export default {
 </script>
 
 <style scoped>
-body {
-  height: 100vh;
-  position: fixed;
-  margin-top: -1px;
-  padding-top: -1px;
+.el-menu{
+  height: 100%;
+  overflow: hidden;
 }
 .aside_line {
   margin: 1px;
   height: 1px;
-  width: 9vw;
+  width: calc(100% - 10px);
   background-color: #666666;
   align-self: center;
 }
@@ -128,9 +125,9 @@ body {
   border-bottom-right-radius: 30%;
 }
 .el-aside {
-  width: 199px;
-  height: 94vh;
-  padding: 0;
+  width: 200px;
+  height: 100vh;
+  overflow-y: hidden;
 }
 .disabled {
   pointer-events: none; /* 禁止鼠标事件 */

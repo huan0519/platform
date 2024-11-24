@@ -1,11 +1,7 @@
 <template>
-  <div id="app">
-    <Vue_header style="position: sticky;top: 0;min-width: 80%"></Vue_header>
-    <transition>
-      <keep-alive>
-        <router-view :key="$route.path" style="background-color: #E0F2FE;"></router-view>
-      </keep-alive>
-    </transition>
+  <div id="app" style="display: flex">
+    <Vue_header style="position: sticky;min-width: 80%;flex-shrink: 0;height: 60px"></Vue_header>
+    <router-view :key="$route.path" style="background-color: #E0F2FE;height: calc(100vh - 60px)"></router-view>
   </div>
 </template>
 

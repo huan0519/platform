@@ -1,23 +1,25 @@
 <template>
     <div class="header">
       <img src="../../public/image/logo.png" style="height: 60px;float: left">
+
     <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal">
       <p class="header_line"></p>
-        <el-menu-item class="el-menu-item" index="homepage" @click="GoToPage('homepage')">首页</el-menu-item><p class="header_line"></p>
-        <el-menu-item class="el-menu-item" index="cloud_platform" @click="GoToPage('cloud_platform')">云平台</el-menu-item><p class="header_line"></p>
-        <el-menu-item style="width: 130px" index="help" @click="GoToPage('help')">使用教程</el-menu-item><p class="header_line"></p>
-        <el-menu-item style="" index="applied" @click="GoToPage('applied')">应用统计</el-menu-item><p class="header_line"></p>
+        <el-menu-item class="el-menu-item" index="homepage" @click="navigate('homepage','1')">首页</el-menu-item><p class="header_line"></p>
+        <el-menu-item class="el-menu-item" index="cloud_platform" @click="navigate('cloud_platform')">云平台</el-menu-item><p class="header_line"></p>
+        <el-menu-item style="width: 130px" index="help" @click="navigate('help')">使用教程</el-menu-item><p class="header_line"></p>
+        <el-menu-item style="" index="applied" @click="navigate('applied')">应用统计</el-menu-item><p class="header_line"></p>
       <div style="margin-left: 20px;margin-right: 20px">
         <userinfo @ChangePage="GoToPage('Personal_center')"></userinfo>
       </div>
     </el-menu>
-         
+
     </div>
 
 </template>
 
 <script>
 import ElementUI from 'element-ui';
+import {mapState,mapActions} from "vuex";
 import Vue from 'vue';
 import userinfo from "@/components/userinfo.vue";
 
@@ -27,9 +29,12 @@ export default{
     components:{
       userinfo,
     },
+  computed:{
+    ...mapState(['activeIndex']),
+  },
     watch: {
-      '$route' (to, from) {
-        this.setActiveIndex(to);
+      $route(to) {
+        this.syncActiveIndex(to); // 路由变化时同步导航状态
       },
     },
     data() {
@@ -40,22 +45,25 @@ export default{
       };
     },
     methods: {
-      GoToPage(page)  {
-        this.$router.push('/'+page).catch(err => err);
+      ...mapActions(['updateActiveIndex']), // 调用 Vuex 的 actions
+      navigate(page, index) {
+        this.updateActiveIndex(index); // 更新激活状态
+        this.$router.push('/' + page).catch((err) => err); // 跳转路由
       },
-      setActiveIndex(route){
+      syncActiveIndex(route) {
         const routes = {
           '/homepage': '1',
-          '/Cloud_platform': '2',
-          '/Help': '3',
-          '/Applied': '4',
-          '/Personal_center': '5',
+          '/cloud_platform': '2',
+          '/help': '3',
+          '/applied': '4',
+          '/personal_center': '5',
         };
-        this.activeIndex = routes[route.name] || '1';
-      }
+        const index = routes[route.path] || '1';
+        this.updateActiveIndex(index);
+      },
     },
   created() {
-    this.setActiveIndex(this.$route);
+    this.syncActiveIndex(this.$route);
   },
 
 }
@@ -86,7 +94,7 @@ export default{
   z-index: 1000;
 }
 .el-menu.el-menu--horizontal {
-  height: 100%; /* 或者与 header 相同的高度 */
+  height: 60px; /* 或者与 header 相同的高度 */
 }
 .link{
     font-size: large;
