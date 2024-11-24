@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="overflow-y: hidden">
     <el-container class="el-container">
       <el-main class="main">
         <el-row style="height: 150px;margin-left: 30px">
