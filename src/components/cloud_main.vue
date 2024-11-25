@@ -1,3 +1,4 @@
+<!--云平台主显示-->
 <template>
   <div id="app" class="cloud_body">
     <router-view :key="$route.fullPath"></router-view>

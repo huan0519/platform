@@ -1,3 +1,4 @@
+<!--应用统计-->
 <template>
   <div id="app">
     应用统计

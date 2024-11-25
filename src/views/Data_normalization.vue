@@ -1,3 +1,4 @@
+<!--数据归一化-->
 <template>
   <div id="app" style="overflow-y: hidden">
     <el-container class="el-container">
