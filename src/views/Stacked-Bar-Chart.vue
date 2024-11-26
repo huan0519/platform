@@ -1,8 +1,8 @@
 <template>
-  <el-container>
+  <el-container style="overflow: hidden">
     <el-main class="main">
-      <p style="line-height: 20px;margin-left: 20px; font-weight: bolder">堆叠柱状图</p>
-      <div ref="stack_bar" style="width: 800px; height: 600px"></div>
+      <p style="line-height: 20px;justify-self: center; font-weight: bolder" class="glass-text">堆叠柱状图</p>
+      <div ref="stack_bar" style="width: 800px; height: 600px;justify-self: center" class="glass-container"></div>
     </el-main>
     <el-aside width="400px" class="aside">
       <p style="margin: 20px;line-height: 40px;font-weight: bolder">控制台</p>
@@ -25,9 +25,7 @@
           </button>
         </div>
       </el-upload>
-      <div>
-        <button @click="downloadFile">下载示例</button>
-      </div>
+      <el-divider></el-divider>
       <div class="input-container">
         <p style="line-height: 20px;font-weight: bolder">图表样式</p>
         <div class="input-row">
@@ -38,6 +36,10 @@
           <label for="chart_title2">副标题名称:</label>
           <el-input id="chart_title2" style="width: 350px" type="text" v-model="chart_title2"></el-input>
         </div>
+      </div>
+      <el-divider></el-divider>
+      <div>
+        <button @click="downloadFile" class="dl_button">下载示例</button>
       </div>
     </el-aside>
   </el-container>
@@ -179,6 +181,7 @@ export default {
   background-color: #D3DCE6;
   color: #333;
   width: 100vw;
+  overflow: hidden;
 }
 .input-container {
   margin: 20px;
@@ -198,5 +201,63 @@ export default {
 .input-row el-input {
   flex: 1; /* 使输入框占用剩余空间 */
 }
-
+.chart-button{
+  width: 400px;
+  height: 40px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 30px;
+}
+.sel_button{
+  color: #475669;
+  font-weight: bold;
+  width: 90px;
+  border: none;
+  border-radius: 5%;
+}
+.upload-demo {
+  margin-top: 40px;
+  margin-left: 3px;
+}
+.sel_button:hover{
+  cursor: pointer;
+  background-color: #CCEEFF;
+  color: #00BBFF;
+}
+.dl_button{
+  background: linear-gradient(45deg, #ff007f, #007fff, #7fff00);
+  background-size: 200% 200%;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  animation: gradient-move 2s infinite;
+  transition: transform 0.2s ease-in-out;
+  float: right;
+  margin-right: 20px;
+}
+.dl_button:hover{
+  transform: scale(1.1);
+}
+@keyframes dl_button-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.glass-text {
+  font-size: 48px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 10px rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+}
+.glass-container{
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
 </style>

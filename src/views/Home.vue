@@ -1,7 +1,7 @@
 <!--页面框架-->
 <template>
   <div id="app" style="display: flex">
-    <Vue_header style="position: sticky;min-width: 80%;flex-shrink: 0;height: 60px"></Vue_header>
+    <Vue_header style="position: sticky;min-width: 80%;flex-shrink: 0;height: 60px;overflow: hidden"></Vue_header>
     <router-view :key="$route.path" style="background-color: #E0F2FE;height: calc(100vh - 60px)"></router-view>
   </div>
 </template>
