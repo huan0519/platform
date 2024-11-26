@@ -1,6 +1,7 @@
+<!--数据增强-->
 <template>
   <div id="app">
-    <el-container class="el-container">
+    <el-container class="el-container" style="overflow-y: hidden">
       <el-main class="main">
         <el-row style="height: 150px;margin-left: 30px">
           <el-button-group>

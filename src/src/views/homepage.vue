@@ -1,3 +1,4 @@
+<!--主页-->
 <template>
   <div id="app">
     <div class="image-card">
@@ -6,9 +7,9 @@
         <span class="home_font">欢迎使用云平台</span>
         <div style="margin-top: 200px">
           <!-- 跳转到云平台并高亮 -->
-          <el-button type="primary"@click="navigate('/help', '3')" >快速入门</el-button>
+          <el-button style="height: 48px;width: 148px" type="primary" @click="navigate('/help', '3')" >快速入门</el-button>
           <!-- 跳转到使用教程并高亮 -->
-          <el-button type="success" @click="navigate('/cloud_platform', '2')">一键做图</el-button>
+          <el-button style="margin-left: 80px;border-radius: 15px;height: 48px;width: 148px" @click="navigate('/cloud_platform', '2')">一键做图</el-button>
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+<!--疾病预测-->
 <template>
   <div id="app">
     <el-container>

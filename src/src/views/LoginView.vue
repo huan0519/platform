@@ -1,3 +1,4 @@
+<!--登录-->
 <template>
   <div id="app" class="back" @click="createSplash($event)">
     <el-container style="max-height: 100vh">

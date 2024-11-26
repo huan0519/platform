@@ -1,58 +1,54 @@
 <template>
-  <div id="splash-container" @click="createSplash($event)">
-    <!-- 动画容器，点击触发水花效果 -->
+  <div>
+    <nav>
+      <a
+          :class="{ active: activeMenu === 'home' }"
+          @click="setActiveMenu('home', '/')"
+      >
+        Home
+      </a>
+      <a
+          :class="{ active: activeMenu === 'about' }"
+          @click="setActiveMenu('about', '/about')"
+      >
+        About
+      </a>
+      <a
+          :class="{ active: activeMenu === 'contact' }"
+          @click="setActiveMenu('contact', '/contact')"
+      >
+        Contact
+      </a>
+    </nav>
+    <router-view />
   </div>
 </template>
 
 <script>
-import anime from "animejs";
+import { mapState, mapMutations } from 'vuex';
 
 export default {
+  computed: {
+    ...mapState(['activeMenu']), // 从 Vuex 中获取状态
+  },
   methods: {
-    createSplash(event) {
-      const { clientX, clientY } = event;
-
-      // 创建一个新的水花 DOM 元素
-      const splash = document.createElement("div");
-      splash.classList.add("splash");
-      splash.style.left = `${clientX}px`;
-      splash.style.top = `${clientY}px`;
-      document.body.appendChild(splash);
-
-      // 动画效果
-      anime({
-        targets: splash,
-        scale: [0, 1],
-        opacity: [1, 0],
-        easing: "easeOutQuad",
-        duration: 800,
-        complete: () => {
-          // 动画完成后移除 DOM 元素
-          splash.remove();
-        },
-      });
+    ...mapMutations(['setActiveMenu']),
+    navigate(menu, path) {
+      this.setActiveMenu(menu);
+      this.$router.push(path);
     },
   },
 };
 </script>
 
-<style>
-#splash-container {
-  width: 100%;
-  height: 100vh;
-  background-color: #282c34;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
+<style scoped>
+a {
+  text-decoration: none;
+  color: black;
 }
 
-.splash {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  background-color: rgba(0, 150, 255, 0.6);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none; /* 防止水花干扰点击事件 */
+a.active {
+  color: red; /* 高亮样式 */
+  font-weight: bold;
 }
 </style>

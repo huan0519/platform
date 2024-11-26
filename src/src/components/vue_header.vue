@@ -1,17 +1,18 @@
+<!--全页面顶部导航-->
 <template>
-    <div class="header">
+    <div class="scanline-header">
       <img src="../../public/image/logo.png" style="height: 60px;float: left">
 
-    <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal">
-      <p class="header_line"></p>
-        <el-menu-item class="el-menu-item" index="homepage" @click="navigate('homepage','1')">首页</el-menu-item><p class="header_line"></p>
-        <el-menu-item class="el-menu-item" index="cloud_platform" @click="navigate('cloud_platform')">云平台</el-menu-item><p class="header_line"></p>
-        <el-menu-item style="width: 130px" index="help" @click="navigate('help')">使用教程</el-menu-item><p class="header_line"></p>
-        <el-menu-item style="" index="applied" @click="navigate('applied')">应用统计</el-menu-item><p class="header_line"></p>
-      <div style="margin-left: 20px;margin-right: 20px">
-        <userinfo @ChangePage="GoToPage('Personal_center')"></userinfo>
-      </div>
-    </el-menu>
+      <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal">
+        <p class="header_line"></p>
+          <el-menu-item class="el-menu-item" index="homepage" @click="navigate('homepage','1')">首页</el-menu-item><p class="header_line"></p>
+          <el-menu-item class="el-menu-item" index="cloud_platform" @click="navigate('cloud_platform','2')">云平台</el-menu-item><p class="header_line"></p>
+          <el-menu-item style="width: 130px" index="help" @click="navigate('help','3')">使用教程</el-menu-item><p class="header_line"></p>
+          <el-menu-item style="" index="applied" @click="navigate('applied','4')">应用统计</el-menu-item><p class="header_line"></p>
+        <div style="margin-left: 20px;margin-right: 20px">
+          <userinfo @ChangePage="navigate('Personal_center','5')"></userinfo>
+        </div>
+      </el-menu>
 
     </div>
 
@@ -29,6 +30,12 @@ export default{
     components:{
       userinfo,
     },
+    data() {
+    return {
+      //默认
+      activeIndex: '',
+    };
+  },
   computed:{
     ...mapState(['activeIndex']),
   },
@@ -37,12 +44,8 @@ export default{
         this.syncActiveIndex(to); // 路由变化时同步导航状态
       },
     },
-    data() {
-      return {
-        //默认
-        activeIndex: '',
-        page: ''
-      };
+    created(){
+      this.syncActiveIndex(this.$route);
     },
     methods: {
       ...mapActions(['updateActiveIndex']), // 调用 Vuex 的 actions
@@ -62,9 +65,6 @@ export default{
         this.updateActiveIndex(index);
       },
     },
-  created() {
-    this.syncActiveIndex(this.$route);
-  },
 
 }
 </script>
@@ -88,20 +88,40 @@ export default{
   border-radius: 5%;
 }
 
-.header{
+.scanline-header{
   width: 100%;
   background-color: 	#0F172A;
   z-index: 1000;
 }
+.scanline-header:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(125, 215, 255, 0.2), transparent);
+  animation: scanline 5s linear infinite;
+}
+@keyframes scanline {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .el-menu.el-menu--horizontal {
   height: 60px; /* 或者与 header 相同的高度 */
+  background-color: rgba(0, 255, 0, 0);
 }
+
 .link{
     font-size: large;
     float: right;
     margin-top: 10px;
     color: rgb(141, 166, 158);
-    
 }
 .el-menu-item{
     min-width: 90px; /* Use min-width instead of width */

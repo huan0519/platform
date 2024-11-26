@@ -1,3 +1,4 @@
+<!--注册-->
 <template>
     <div id="app" class="back">
       <div class="form">
