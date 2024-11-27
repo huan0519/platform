@@ -24,11 +24,10 @@
           <button style="border: none;height: 40px;font-weight: normal;width: 300px;text-align: center;opacity: 0.5;">仅能上传txt,csv,xls,xlsx格式
           </button>
         </div>
-        <div>
-          <button @click="downloadFile" class="dl_button">下载示例</button>
-        </div>
       </el-upload>
-      <el-divider></el-divider>
+      <div>
+        <button @click="downloadFile" class="dl_button"><i class="el-icon-download"></i> 下载示例</button>
+      </div>
       <div style="margin: 20px">
         <p style="line-height: 20px;font-weight: bolder">选择计算相关性的方法</p>
         <el-select style="width: 350px" v-model="value" placeholder="请选择">

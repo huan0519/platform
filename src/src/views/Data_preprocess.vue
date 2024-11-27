@@ -1,6 +1,6 @@
 <!--数据预处理-->
 <template>
-  <div style="height: 100vh">
+  <div style="height: 100vh;margin-left: 18px">
     <header style="margin-top: 1em">
       <a style="margin: 55px;font-size: 28px;font-style: italic;font-weight: bolder">数据前处理</a>
     </header>
