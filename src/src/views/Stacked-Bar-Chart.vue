@@ -2,7 +2,7 @@
   <el-container style="overflow: hidden">
     <el-main class="main">
       <p style="line-height: 20px;justify-self: center; font-weight: bolder" class="glass-text">堆叠柱状图</p>
-      <div ref="stack_bar" style="width: 800px; height: 600px;justify-self: center" class="glass-container"></div>
+      <div ref="stack_bar" style="justify-self: center" class="glass-container"></div>
     </el-main>
     <el-aside width="400px" class="aside">
       <p style="margin: 20px;line-height: 40px;font-weight: bolder">控制台</p>
@@ -24,6 +24,9 @@
           <button style="border: none;height: 40px;font-weight: normal;width: 300px;text-align: center;opacity: 0.5;">仅能上传txt,csv,xls,xlsx格式
           </button>
         </div>
+        <div>
+          <button @click="downloadFile" class="dl_button">下载示例</button>
+        </div>
       </el-upload>
       <el-divider></el-divider>
       <div class="input-container">
@@ -38,9 +41,6 @@
         </div>
       </div>
       <el-divider></el-divider>
-      <div>
-        <button @click="downloadFile" class="dl_button">下载示例</button>
-      </div>
     </el-aside>
   </el-container>
 </template>
@@ -237,6 +237,7 @@ export default {
   transition: transform 0.2s ease-in-out;
   float: right;
   margin-right: 20px;
+  margin-top: 20px;
 }
 .dl_button:hover{
   transform: scale(1.1);
@@ -259,5 +260,7 @@ export default {
   border-radius: 12px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  width: 1000px;
+  height: 600px;
 }
 </style>
