@@ -4,7 +4,7 @@
     <el-container>
       <el-main class="pre-main">
         <span style="font-size: 40px;font-weight: bolder">分析报告</span>
-        <el-card style="height: 400px"></el-card>
+        <el-card style="height: 600px"></el-card>
       </el-main>
       <el-aside class="pre-aside">
         <el-upload
