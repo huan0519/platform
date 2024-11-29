@@ -25,7 +25,7 @@
           </button>
         </div>
       </el-upload>
-      <div>
+      <div style="padding: 20px">
         <button @click="downloadFile" class="dl_button"><i class="el-icon-download"></i> 下载示例</button>
       </div>
       <div style="margin: 20px">
