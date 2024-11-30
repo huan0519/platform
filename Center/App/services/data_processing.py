@@ -1,5 +1,9 @@
+import os
+
 import pandas as pd
 import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 
 # 预处理函数：提取样品名称并清理非数值数据
@@ -96,30 +100,84 @@ def Zscore(aligned_data):
 
 
 # 数据对齐：处理数据并添加样品名称
+def process_data(file_path, output_path, standardize=False):
+    try:
+        # Step 1: 预处理数据
+        data, sample_names = preprocess_data(file_path)
+
+        # Step 2: 清洗数据
+        data = load_and_clean_data(data)
+
+        # Step 3: 筛选有效列并获取目标质量数
+        mass_columns, intensity_columns = get_valid_columns(data)
+        target_masses = get_target_masses(data, mass_columns)
+
+        # Step 4: 对齐质量数并填充强度
+        aligned_data = align_masses(data, mass_columns, intensity_columns, target_masses)
+
+        # Step 5: 填充缺失值
+        aligned_data = aligned_data.fillna(method='ffill').fillna(method='bfill')
+
+        if standardize:
+            # Step 6: 标准化
+            aligned_data = Zscore(aligned_data)
+
+        # Step 7: 添加样品名称
+        aligned_data.columns = ['Aligned_Mass'] + [f"Sample_{i}_Intensity ({sample_names[i - 1]})" for i in
+                                                    range(1, len(aligned_data.columns))]
+
+        # 保存结果
+        aligned_data.to_excel(output_path, index=False)
+        print(f"数据处理完成，结果已保存为 '{output_path}'")
+    except FileNotFoundError:
+        print(f"文件 '{file_path}' 未找到，请检查路径是否正确。")
+    except Exception as e:
+        print(f"数据处理过程中发生错误: {e}")
+
+
+# 归一化
 def standardize_data(file_path, output_path):
-    # Step 1: 预处理数据
-    data, sample_names = preprocess_data(file_path)
-
-    # Step 2: 清洗数据
-    data = load_and_clean_data(data)
-
-    # Step 3: 筛选有效列并获取目标质量数
-    mass_columns, intensity_columns = get_valid_columns(data)
-    target_masses = get_target_masses(data, mass_columns)
-
-    # Step 4: 对齐质量数并填充强度
-    aligned_data = align_masses(data, mass_columns, intensity_columns, target_masses)
-
-    # Step 5: 填充缺失值并标准化
-    aligned_data = fill_missing_values(aligned_data)
-    standardized_data = Zscore(aligned_data)
-
-    # Step 6: 添加样品名称
-    standardized_data.columns = ['Aligned_Mass'] + [f"Sample_{i}_Intensity ({sample_names[i - 1]})" for i in
-                                                    range(1, len(standardized_data.columns))]
-
-    # 保存结果
-    standardized_data.to_excel(output_path, index=False)
-    print(f"数据处理完成，结果已保存为 '{output_path}'")
+    process_data(file_path, output_path, standardize=True)
 
 
+# 数据对齐
+def alignment_data(file_path, output_path):
+    process_data(file_path, output_path, standardize=False)
+
+# 缺失值填充
+def fill_missing(file_path, output_path):
+    # 读取数据文件
+    df_original = pd.read_excel(file_path, header=None)
+
+    # 分离前7行元数据（包括列名在内的所有元数据）
+    metadata = df_original.iloc[:7, :]
+    # 获取列名（第8行作为列名）
+    columns = df_original.iloc[7, :].values
+
+    # 提取有效数据部分（从第9行开始的数据），并设置列名
+    df_valid = pd.read_excel(file_path, skiprows=8, header=None, names=columns)
+
+    metadata.columns = df_valid.columns
+
+    # 缺失值填充
+    for i in range(len(df_valid.columns) // 2):
+        mass_col = f'Mass{"" if i == 0 else "." + str(i)}'
+        intensity_col = f'Intensity{"" if i == 0 else "." + str(i)}'
+
+        # 检查列是否存在
+        if mass_col in df_valid.columns and intensity_col in df_valid.columns:
+            # 仅在mass和intensity各自列上进行插值和填充
+            df_valid[mass_col] = df_valid[mass_col].interpolate(method='linear')
+            df_valid[mass_col].fillna(method='ffill', inplace=True)
+            df_valid[mass_col].fillna(method='bfill', inplace=True)
+
+            df_valid[intensity_col] = df_valid[intensity_col].interpolate(method='linear')
+            df_valid[intensity_col].fillna(method='ffill', inplace=True)
+            df_valid[intensity_col].fillna(method='bfill', inplace=True)
+
+    # 将元数据和处理后的有效数据合并
+    df_final = pd.concat([metadata, df_valid], ignore_index=True)
+
+    # 保存清洗和填充后的完整数据
+    df_final.to_excel(output_path, index=False, header=False)
+    print(f"清洗并填充后的数据已保存至 {output_path}")
