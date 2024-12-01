@@ -1,7 +1,7 @@
 <template>
   <el-container style="overflow: hidden;">
     <el-main class="main">
-      <p style="line-height: 20px;justify-self: center; font-weight: bolder" class="glass-text">堆叠折线图</p>
+      <p style="line-height: 10px;justify-self: center; font-weight: bolder" class="glass-text">堆叠折线图</p>
       <div ref="lineChart" style="justify-self: center" class="glass-container"></div>
     </el-main>
     <el-aside width="400px" class="aside">
@@ -253,7 +253,7 @@ export default {
   100% { background-position: 0% 50%; }
 }
 .glass-text {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: bold;
   color: rgba(255, 255, 255,1);
   text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 10px rgba(255, 255, 255, 0.5);
@@ -265,7 +265,7 @@ export default {
   border-radius: 12px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  width: 1000px;
+  width: 800px;
   height: 600px;
 }
 </style>
