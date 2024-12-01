@@ -1,37 +1,37 @@
 <!--右上角个人头像和用户名显示组件-->
 <template>
-    <div class="user-info">
-      <div v-if="isLoggedIn" class="af_login">
-        <img :src="userAvatar" class="avatar" @click="Send_Page" />
-        <span class="username" style="color: #E9EEF3">{{ userName }}</span>
-      </div>
-      <div v-else class="login-link">
-        <router-link to="/login" style="color: #475669;font-weight: bolder"><i class="el-icon-user" style="color: #475669"></i>    登录</router-link>
-      </div>
+  <div class="user-info">
+    <div v-if="isLoggedIn" class="af_login">
+      <img :src="userAvatar" class="avatar" @click="Send_Page" />
+      <span class="username" style="color: #E9EEF3">{{ userName }}</span>
+
+    </div>
+    <div v-else class="login-link">
+      <router-link to="/login" style="color: #475669;font-weight: bolder">
+        <i class="el-icon-user" style="color: #475669"></i> 登录
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
-import avetar from '../assets/logo.png';
-import vue_header from "@/components/vue_header.vue";
-
 export default {
-  components:{
-    vue_header
-  },
-
-  name: 'UserInfo',
-  data() {
-    return {
-      isLoggedIn: false, // 这里需要根据实际情况来设置
-      userName: 'maxia', // 实际用户名
-      userAvatar: avetar, // 实际用户头像路径
-    };
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.isLoggedIn;
+    },
+    userName() {
+      return this.$store.state.userName;
+    },
+    userAvatar() {
+      return this.$store.state.userAvatar || require('../assets/logo.png');
+    },
   },
   methods: {
-    Send_Page() {
-      this.$emit('ChangePage');
-    },
+
+    Send_Page(){
+      this.$router.push('/personal_center').catch(err=>err);
+    }
   },
 };
 </script>
