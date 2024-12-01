@@ -21,7 +21,7 @@
       >
         <div style="display: flex">
           <button class="sel_button">选择</button>
-          <button style="border: none;height: 40px;font-weight: normal;width: 300px;text-align: center;opacity: 0.5;">仅能上传txt,csv,xls,xlsx格式
+          <button style="border: none;height: 40px;font-weight: normal;width: 280px;text-align: center;opacity: 0.5;">仅能上传txt,csv,xls,xlsx格式
           </button>
         </div>
       </el-upload>
@@ -153,7 +153,7 @@ export default {
   background-color: #E9EEF3;
   color: #333;
   overflow: auto;
-  height: calc(100vh - 40px); /* 动态计算高度 */
+  height: calc(100vh - 60px); /* 动态计算高度 */
 }
 .aside {
   background-color: #D3DCE6;
@@ -180,7 +180,8 @@ export default {
   flex: 1; /* 使输入框占用剩余空间 */
 }
 .chart-button{
-  width: 400px;
+  width: 380px;
+  margin-left: 10px;
   height: 40px;
   text-align: center;
   font-weight: bold;
@@ -190,6 +191,7 @@ export default {
   color: #475669;
   font-weight: bold;
   width: 90px;
+  margin-left: 10px;
   border: none;
   border-radius: 5%;
 }
