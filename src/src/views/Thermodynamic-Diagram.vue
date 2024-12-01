@@ -21,11 +21,11 @@
       >
         <div style="display: flex">
           <button class="sel_button">选择</button>
-          <button style="border: none;height: 40px;font-weight: normal;width: 290px;text-align: center;opacity: 0.5;">仅能上传txt,csv,xls,xlsx格式
+          <button style="border: none;height: 40px;font-weight: normal;width: 300px;text-align: center;opacity: 0.5;">仅能上传txt,csv,xls,xlsx格式
           </button>
         </div>
       </el-upload>
-      <div style="padding: 20px">
+      <div>
         <button @click="downloadFile" class="dl_button"><i class="el-icon-download"></i> 下载示例</button>
       </div>
       <div style="margin: 20px">
@@ -242,17 +242,15 @@ export default {
   flex: 1; /* 使输入框占用剩余空间 */
 }
 .chart-button{
-  width: 380px;
+  width: 400px;
   height: 40px;
   text-align: center;
-  margin-left: 10px;
   font-weight: bold;
   border-radius: 30px;
 }
 .sel_button{
   color: #475669;
   font-weight: bold;
-  margin-left: 10px;
   width: 90px;
   border: none;
   border-radius: 5%;

@@ -85,10 +85,6 @@
           if (valid) {
             axios.post("http://localhost:8085/user/login", this.user).then(res => {
               if (res.data.code === '200') {
-                const { username, avatar_url } = res.data.data;
-
-                // 使用 Vuex 更新全局状态
-                this.$store.dispatch('login', { username, avatar_url });
                 localStorage.setItem("user", JSON.stringify(res.data.data))
                 this.$router.push("/")
                 this.$message.success("登录成功")
