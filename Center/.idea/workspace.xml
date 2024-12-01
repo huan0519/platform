@@ -5,31 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5eed8c4-0003-4ff2-8f89-324ada3a84fe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/App/download_file/1.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/download_file/2.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/download_file/3.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/download_file/4.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/download_file/5.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/Large_Area_Chart.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/_3DChart.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/boxplot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/download_file.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/getdata_json.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/hot_chart.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/lineChart.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/line_bar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/pca_url.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/point_chart.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/predict_url.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/rose_chart.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/routes/stack_bar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/services/PCA.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/services/predict.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/uploads/数据.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/download_file/6.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/download_file/7.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/download_file/pca.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/download_file/训练数据.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/download_file/预测数据.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/routes/boxplot.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes/boxplot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/routes/pca_url.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes/pca_url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/routes/predict_url.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes/predict_url.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/routes/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/services/PCA.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/services/PCA.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/services/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/services/predict.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/测试.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/预测2.xlsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +79,7 @@
     &quot;Python.urls.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;flask&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PycharmProjects/platform/Center/App/upload_file&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/PycharmProjects/platform/Center/App/download_file&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -100,6 +91,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PycharmProjects\platform\Center\App\download_file" />
       <recent name="D:\PycharmProjects\platform\Center\App\upload_file" />
     </key>
   </component>
@@ -193,6 +185,14 @@
       <workItem from="1732109804474" duration="4765000" />
       <workItem from="1732178520360" duration="9206000" />
       <workItem from="1732364234915" duration="4232000" />
+      <workItem from="1732437262682" duration="649000" />
+      <workItem from="1732446963125" duration="11000" />
+      <workItem from="1732514002516" duration="1431000" />
+      <workItem from="1732630036179" duration="2730000" />
+      <workItem from="1732718957651" duration="1096000" />
+      <workItem from="1732892962453" duration="15158000" />
+      <workItem from="1732975716183" duration="5055000" />
+      <workItem from="1733020576071" duration="20158000" />
     </task>
     <servers />
   </component>
@@ -203,6 +203,6 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Center$app.coverage" NAME="app Coverage Results" MODIFIED="1732372617262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Center$app.coverage" NAME="app Coverage Results" MODIFIED="1733042707892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

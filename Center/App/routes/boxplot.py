@@ -49,6 +49,7 @@ def boxplot_chart():
         return jsonify({"error": "No file part"}), 400
 
     file = request.files['file']
+    box_updata = int(request.args.get('box_update', 0))
     if file:
         # 将文件保存到临时路径
         current_dir = os.getcwd()
@@ -71,13 +72,20 @@ def boxplot_chart():
             df = df.dropna(axis=1, how='all')
 
             # 将数据框转为列表并计算箱线图数据
-            boxplot_data = calculate_boxplot_data(df.values.T.tolist())  # 转置后逐列计算
+            if(box_updata):
+                # 获取第一列（去掉表头的数据）
+                columns = df.iloc[:, 0].tolist()  # 获取第一列并转为列表
+                df=df.iloc[:,1:]
+                boxplot_data = calculate_boxplot_data(df.values.tolist())  # 逐行计算
+            else:
+                columns = df.columns.tolist()
+                boxplot_data = calculate_boxplot_data(df.values.T.tolist())  # 转置后逐列计算
 
             # 删除临时文件
             os.remove(file_path)
 
             return jsonify({
-                "columns": df.columns.tolist(),  # 列名
+                "columns": columns,  # 列名
                 "boxplot_data": boxplot_data  # 箱线图数据
             })
 

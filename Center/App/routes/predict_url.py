@@ -37,8 +37,22 @@ def disease_predict():
 
     try:
         # 执行PCA降维并训练模型
-        accuracy, predictions = perform_pca_and_train_models(file1_path, file2_path)
-        return jsonify({"accuracy": accuracy, "predictions": predictions})
+        accuracy, predictions, cm, classification_report, roc_auc, feature_importance = perform_pca_and_train_models(
+            file1_path, file2_path)
+
+        # 删除临时文件
+        os.remove(file1_path)
+        os.remove(file2_path)
+
+        # 将所有信息打包成字典返回
+        return jsonify({
+            "accuracy": accuracy,
+            "predictions": predictions,
+            "confusion_matrix": cm,
+            "classification_report": classification_report,
+            "roc_auc": roc_auc,
+            "feature_importance": feature_importance
+        })
 
     except Exception as e:
         return jsonify({"error": f"处理过程中出错: {str(e)}"}), 500
