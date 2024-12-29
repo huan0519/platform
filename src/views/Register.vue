@@ -6,13 +6,13 @@
         <div style="margin: 20px 115px; font-size: 14px;letter-spacing: 3px;font-style: italic;"><a>Sign Up</a></div>
         <el-form ref="user" :model="user" :rules="rules" label-width="100px">
           <el-form-item label="用户名" prop="username">
-            <el-input style="width: 320px;" v-model="user.username" placeholder="请输入用户名" prefix-icon="el-icon-user" clearable></el-input>
+            <input class="button-back" style="width: 320px;" v-model="user.username" placeholder="请输入用户名" prefix-icon="el-icon-user" clearable></input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input style="width: 320px;" type="password" v-model="user.password" prefix-icon="el-icon-lock" placeholder="请输入密码" clearable show-password></el-input>
+            <input class="button-back" style="width: 320px;" type="password" v-model="user.password" prefix-icon="el-icon-lock" placeholder="请输入密码" clearable show-password></input>
           </el-form-item>
           <el-form-item label="确认密码" prop="confirmPassword">
-            <el-input style="width: 320px;" type="password" v-model="user.confirmPassword" prefix-icon="el-icon-lock" placeholder="请再次输入密码" clearable show-password></el-input>
+            <input class="button-back" style="width: 320px;" type="password" v-model="user.confirmPassword" prefix-icon="el-icon-lock" placeholder="请再次输入密码" clearable show-password></input>
           </el-form-item>
           <el-form-item class="button_group">
             <el-button type="primary" style="width: 200px;" @click="handleRegister" class="custom-button">注册</el-button>
@@ -90,10 +90,19 @@
     display: flex; /* 启用 Flexbox */
     justify-content: space-between; /* 按钮之间的空间均匀分布 */
   }
-  .form {
-
+  .button-back{
+    width: 260px;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 9999px;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+    color: #fff;
   }
   .link{
+    margin-left: 20px;
     color: #3F5EFB;
     padding: 4px;
     text-decoration: none;

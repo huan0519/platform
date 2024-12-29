@@ -7,10 +7,10 @@
           <div style="margin: 20px 115px; font-size: 14px;letter-spacing: 3px;font-style: italic;"><a>welcome</a></div>
             <el-form ref="user" :model="user" :rules="rules" label-width="100px">
               <el-form-item label="账号" prop="username">
-                <el-input class="button_back" v-model="user.username" placeholder="请输入账号" prefix-icon="el-icon-user" clearable ></el-input>
+                <input type="text" class="button_back" v-model="user.username" placeholder="请输入账号"/>
               </el-form-item>
               <el-form-item label="密码" prop="password">
-                <el-input class="button_back" type="password" v-model="user.password" prefix-icon="el-icon-lock" placeholder="请输入密码" clearable show-password ></el-input>
+                <input class="button_back" type="password" v-model="user.password" placeholder="请输入密码"/>
               </el-form-item>
               <el-form-item class="button_group">
                 <el-button type="primary" style="width: 200px;" @click="handleLogin" class="custom-button">登录</el-button>
@@ -85,6 +85,10 @@
           if (valid) {
             axios.post("http://localhost:8085/user/login", this.user).then(res => {
               if (res.data.code === '200') {
+                const { username, avatar_url } = res.data.data;
+
+                // 使用 Vuex 更新全局状态
+                this.$store.dispatch('login', { username, avatar_url });
                 localStorage.setItem("user", JSON.stringify(res.data.data))
                 this.$router.push("/")
                 this.$message.success("登录成功")
@@ -121,13 +125,21 @@
     justify-content: center;
     align-items: center;
   }
-  .button_back{
-    width: 320px;
-  }
   .back{
     height: 100vh;
     background-image: linear-gradient(to bottom right,#efeced,#3F5EFB);
     overflow: hidden;
+  }
+  .button_back {
+    width: 270px;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 9999px;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+    color: #fff;
   }
   .custom-button{
     width: 100px;

@@ -8,12 +8,9 @@
 </template>
 
 <script>
-import ParticlesEffect from "@/components/demo.vue";
 
 export default {
-  components: {
-    ParticlesEffect,
-  },
+
 };
 </script>
 

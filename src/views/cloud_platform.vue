@@ -35,7 +35,6 @@ export default {
   background-color: #E0F2FE;
   width: 100vw;
   overflow-y: hidden;
-  height: 100px;
   display: flex;
 }
 .cloud-aside{

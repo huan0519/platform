@@ -2,7 +2,7 @@
   <div id="app">
     <el-container>
       <el-main class="pre-main">
-        <div style="font-size: 30px; font-weight: bolder; text-align: center">分析报告</div>
+        <p style="line-height: 20px;justify-self: center; font-weight: bolder" class="glass-text">分析报告</p>
         <el-card style="height: 1200px" v-if="report && Object.keys(report).length > 0">
           <div style="font-size: 14px;">
             <!-- 准确率 -->
@@ -79,7 +79,7 @@
         >
           <div style="display: flex">
             <button class="sel_button">选择</button>
-            <button style="border: none;height: 40px;font-weight: normal;width: 300px;text-align: center;opacity: 0.5;">仅能上传txt,csv,xls,xlsx格式
+            <button style="border: none;height: 40px;font-weight: normal;width: 280px;text-align: center;opacity: 0.5;">仅能上传txt,csv,xls,xlsx格式
             </button>
           </div>
         </el-upload>
@@ -127,12 +127,12 @@ export default {
     renderChart(data, chartId) {
       this.chartInstance = echarts.init(this.$refs[chartId]);
       const featureNames = data.map((_, index) => `Feature ${index + 1}`);  // 假设特征名是 Feature 1, Feature 2, ...
-      this.options.xAxis.data=featureNames
-      this.options.series[0].data=data;
+      this.options.xAxis.data = featureNames
+      this.options.series[0].data = data;
       this.chartInstance.setOption(this.options)
     },
     beforeRemove(file, fileList) {
-      return this.$confirm(`确定移除 ${ file.name }？`);
+      return this.$confirm(`确定移除 ${file.name}？`);
     },
     handleUploadSuccess(response) {
       // 上传成功后，处理返回的报告数据
@@ -269,7 +269,8 @@ export default {
 }
 
 .chart-button {
-  width: 400px;
+  width: 380px;
+  margin-left: 10px;
   height: 40px;
   text-align: center;
   font-weight: bold;
@@ -295,20 +296,32 @@ export default {
 .dl_button:hover {
   transform: scale(1.1);
 }
-.sel_button{
+
+.sel_button {
   color: #475669;
   font-weight: bold;
   width: 90px;
+  margin-left: 10px;
   border: none;
   border-radius: 5%;
 }
+
 .upload-demo {
   margin-top: 40px;
   margin-left: 3px;
 }
-.sel_button:hover{
+
+.sel_button:hover {
   cursor: pointer;
   background-color: #CCEEFF;
   color: #00BBFF;
 }
+.glass-text {
+  font-size: 48px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 10px rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+}
+
 </style>

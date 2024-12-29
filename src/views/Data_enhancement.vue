@@ -1,9 +1,8 @@
 <!--数据加强-->
 <template>
-  <div id="app" style="overflow-y: hidden">
-    <el-container class="el-container">
+    <el-container class="el-container" style="display: flex">
       <el-main class="main">
-        <el-row style="height: 150px;margin-left: 30px">
+        <el-row style="height: 150px;margin-left: 30px;width: 100%;">
           <el-button-group>
             <el-button
                 type="primary"
@@ -21,7 +20,7 @@
             </el-button>
           </el-button-group>
         </el-row>
-        <div>
+        <div style="width: 100%">
           <el-container v-if="activePage === 'before'" class="table-container">
             <el-pagination
                 style="float: left;flex-basis: 100%;padding: 0;margin-bottom: 10px;height: 20px"
@@ -30,7 +29,6 @@
                 :current-page.sync="currentPage1"
                 :page-sizes="[10, 20, 50, 100]"
                 :page-size="pageSize1"
-                :hide-on-single-page="true"
                 layout=" sizes"
                 :total="total1">
             </el-pagination>
@@ -53,7 +51,6 @@
                   :current-page.sync="currentPage1"
                   :page-sizes="[10, 20, 50, 100]"
                   :page-size="pageSize1"
-                  :hide-on-single-page="true"
                   layout="total, prev, pager, next, jumper"
                   :total="total1">
               </el-pagination>
@@ -61,9 +58,12 @@
           </el-container>
         </div>
         <div v-show="activePage==='before'">
-          <div ref="box_chart" style="width: 900px; height: 600px;margin-top: 20px"></div>
+          <span style="font-style: oblique;font-size: large">XX图</span>
+          <div class="glass-container">
+            <div ref="box_chart" style="width: 1000px; height: 600px;"></div>
+          </div>
         </div>
-        <div>
+        <div style="width: 100%">
           <el-container v-if="activePage === 'after'" class="table-container">
             <el-pagination
                 background
@@ -105,7 +105,10 @@
           </el-container>
         </div>
         <div v-show="activePage==='after'">
-          <div ref="hot_chart" style="width: 900px; height: 600px;margin-top: 20px"></div>
+          <span style="font-style: oblique;font-size: large">XX图</span>
+          <div class="glass-container">
+           <div ref="hot_chart" style="width: 1000px; height: 600px"></div>
+          </div>
         </div>
       </el-main>
       <el-aside width="400px" class="aside">
@@ -123,7 +126,7 @@
           <div>
             <el-button class="sel_button">选择文件</el-button>
             <button
-                style="border: none; height: 40px; font-weight: normal; width: 300px; text-align: center; opacity: 0.5;">
+                style="border: none; height: 40px; font-weight: normal; width: 280px; text-align: center; opacity: 0.5;">
               仅能上传txt, csv, xls, xlsx格式
             </button>
           </div>
@@ -133,7 +136,6 @@
         </div>
       </el-aside>
     </el-container>
-  </div>
 </template>
 
 <script type="module">
@@ -560,7 +562,8 @@ th, td {
   transform: scale(1.1);
 }
 .chart-button {
-  width: 400px;
+  width: 380px;
+  margin-left: 10px;
   height: 40px;
   text-align: center;
   font-weight: bold;
@@ -571,8 +574,13 @@ th, td {
   background-color: #E9EEF3;
   color: #333;
   line-height: 160px;
-  overflow: auto;
-  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 60px); /* 假设顶部按钮占150px */
+  align-items: center;
+  justify-items: center;
+  padding: 20px;
+  flex: 1;
 }
 
 .upload-demo {
@@ -584,6 +592,7 @@ th, td {
   color: #475669;
   font-weight: bold;
   width: 90px;
+  margin-left: 10px;
   border: none;
   border-radius: 5%;
 }
@@ -599,6 +608,17 @@ input {
   width: 200px;
   font-size: 15px;
 }
-
+.glass-container{
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  width: 1000px;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
 
 </style>
