@@ -33,7 +33,7 @@
           <a id="chart3"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
-              <img src="../../public/image/b.png" @click="GoToPage('alignment')" style="height: 100%;width: 100%;box-sizing: border-box">
+              <img src="public/image/c.png" @click="GoToPage('alignment')" style="height: 100%;width: 100%;box-sizing: border-box">
             </div>
           </div>
           <p style="text-align: center;color: #E9EEF3">数据对齐</p>
@@ -44,7 +44,7 @@
           <a id="chart4"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
-              <img src="../../public/image/b.png" @click="GoToPage('data_enhancement')" style="height: 100%;width: 100%;box-sizing: border-box">
+              <img src="public/image/d.png" @click="GoToPage('data_enhancement')" style="height: 100%;width: 100%;box-sizing: border-box">
             </div>
           </div>
           <p style="text-align: center;color: #E9EEF3">数据增强（PCA）</p>

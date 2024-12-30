@@ -1,7 +1,7 @@
 <template>
   <el-container style="overflow: hidden">
     <el-main class="main">
-      <p style="line-height: 20px;justify-self: center; font-weight: bolder" class="glass-text">热力图</p>
+      <p style="line-height: 10px;justify-self: center; font-weight: bolder" class="glass-text">热力图</p>
       <div ref="hot_chart" style="justify-self: center" class="glass-container"></div>
     </el-main>
     <el-aside width="400px" class="aside">
@@ -289,19 +289,19 @@ export default {
   100% { background-position: 0% 50%; }
 }
 .glass-text {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: bold;
   color: rgba(255, 255, 255, 1);
   text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 10px rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
 }
 .glass-container{
-  padding: 20px;
+  padding: 15px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  width: 1000px;
-  height: 600px;
+  width: 900px;
+  height: 550px;
 }
 </style>
