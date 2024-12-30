@@ -18,17 +18,22 @@
             <p v-if="report.confusion_matrix && report.confusion_matrix.length > 0">
               <strong>混淆矩阵:</strong>
             </p>
-            <el-table v-if="report.confusion_matrix && report.confusion_matrix.length > 0" :data="formatConfusionMatrixData(report.confusion_matrix)" border>
-              <el-table-column label="预测\\真实" width="120"></el-table-column>
+            <el-table v-if="report.confusion_matrix && report.confusion_matrix.length > 0" :data="formatConfusionMatrixData(report.confusion_matrix, report.class_labels)" border>
+              <!-- 第一列：显示真实类别的名称 -->
+              <el-table-column prop="类别" label="预测 \ 真实" width="150"></el-table-column>
+
+              <!-- 其余列：显示预测类别的数据 -->
               <el-table-column
-                  v-for="(col, colIndex) in report.confusion_matrix[0]"
+                  v-for="(colLabel, colIndex) in report.class_labels"
                   :key="'col-' + colIndex"
-                  :label="'类别 ' + colIndex">
+                  :label="colLabel">
                 <template slot-scope="scope">
-                  {{ scope.row[`类别 ${colIndex}`] }}
+                  {{ scope.row[colLabel] }}
                 </template>
               </el-table-column>
             </el-table>
+
+
 
             <!-- 分类报告 -->
             <p v-if="report.classification_report && report.classification_report.length > 0">
@@ -50,7 +55,7 @@
 
             <!-- 特征重要性 -->
             <div v-if="report.feature_importance.GradientBoosting">
-              <strong>GradientBoosting 特征重要性:</strong>
+              <strong>XGBboost 特征重要性:</strong>
             </div>
             <div ref="gradientBoostingChart" style="width: 100%; height: 300px;"></div>
 
@@ -225,16 +230,17 @@ export default {
     },
 
     // 格式化混淆矩阵数据为适合表格显示的格式
-    formatConfusionMatrixData(matrix) {
+    formatConfusionMatrixData(matrix, classLabels) {
       return matrix.map((row, rowIndex) => {
         let rowData = {};
-        rowData["类别"] = `类别 ${rowIndex}`;
+        rowData["类别"] = classLabels[rowIndex]; // 使用真实类别名称作为行名称
         row.forEach((value, colIndex) => {
-          rowData[`类别 ${colIndex}`] = value;
+          rowData[classLabels[colIndex]] = value; // 使用真实类别名称作为列名称
         });
         return rowData;
       });
     },
+
 
     // 格式化分类报告为适合表格显示的格式
     formatClassificationReportData(report) {

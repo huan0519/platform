@@ -2,7 +2,7 @@
 <template>
   <div style="height: 100vh;margin-left: 18px">
     <header style="margin-top: 1em">
-      <a style="margin: 55px;font-size: 28px;font-style: italic;font-weight: bolder">数据前处理</a>
+      <a style="margin: 55px;font-size: 28px;font-style: italic;font-weight: bolder">数据预处理</a>
     </header>
     <el-divider></el-divider>
     <div class="ant-row">
@@ -33,7 +33,11 @@
           <a id="chart3"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
+<<<<<<< HEAD
               <img src="../../public/image/c.jpg" @click="GoToPage('alignment')" style="height: 100%;width: 100%;box-sizing: border-box">
+=======
+              <img src="../../public/image/c.png" @click="GoToPage('alignment')" style="height: 100%;width: 100%;box-sizing: border-box">
+>>>>>>> a94f2e1859c3be89a9cd9854f8be4232ddf7ffd1
             </div>
           </div>
           <p style="text-align: center;color: #E9EEF3">数据对齐</p>
@@ -44,7 +48,11 @@
           <a id="chart4"></a>
           <div class="ant-card-hover" style="width: 100%;height: 220px;overflow: hidden">
             <div class="ant-body" style="padding: 0;height: 100%;width: 98%;margin-left: 1%">
+<<<<<<< HEAD
               <img src="../../public/image/d.jpg" @click="GoToPage('data_enhancement')" style="height: 100%;width: 100%;box-sizing: border-box">
+=======
+              <img src="../../public/image/d.png" @click="GoToPage('data_enhancement')" style="height: 100%;width: 100%;box-sizing: border-box">
+>>>>>>> a94f2e1859c3be89a9cd9854f8be4232ddf7ffd1
             </div>
           </div>
           <p style="text-align: center;color: #E9EEF3">数据增强（PCA）</p>

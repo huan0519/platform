@@ -261,12 +261,17 @@ export default {
   backdrop-filter: blur(5px);
 }
 .glass-container{
-  padding: 20px;
+  padding: 15px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+<<<<<<< HEAD
   width: 1000px;
   height: 600px;
+=======
+  width: 800px;
+  height: 550px;
+>>>>>>> a94f2e1859c3be89a9cd9854f8be4232ddf7ffd1
 }
 </style>
