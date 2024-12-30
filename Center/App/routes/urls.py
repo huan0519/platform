@@ -99,9 +99,7 @@ def fillmiss_data_route():
 
     # 处理数据
     try:
-        fill_missing(input_path, output_path)
+        fill_missing_values(input_path, output_path)
     except Exception as e:
         return jsonify({"error": f"数据处理失败: {str(e)}"}), 500
 
-    # 返回处理后的文件
-    return send_file(output_path, as_attachment=True)

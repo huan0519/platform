@@ -6,6 +6,7 @@ from sklearn.metrics import accuracy_score, roc_auc_score, classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import scale, LabelEncoder
 import tensorflow as tf
+import xgboost as xgb
 
 
 def perform_pca_and_train_models(file1, file2):
@@ -40,7 +41,8 @@ def perform_pca_and_train_models(file1, file2):
 
     # 基础模型训练
     base_model1 = RandomForestClassifier(n_estimators=50, random_state=42)
-    base_model2 = GradientBoostingClassifier(n_estimators=50, random_state=42)
+    # base_model2 = GradientBoostingClassifier(n_estimators=50, random_state=42)
+    base_model2 = xgb.XGBClassifier(n_estimators=50, random_state=42)
 
     base_model1.fit(X_train, y_train)
     base_model2.fit(X_train, y_train)
@@ -77,9 +79,10 @@ def perform_pca_and_train_models(file1, file2):
 
     # 混淆矩阵
     cm = confusion_matrix(y_test, stacked_predictions)
-
+    cm_df = pd.DataFrame(cm, index=label_encoder.classes_, columns=label_encoder.classes_)
+    print(cm_df)
     # 获取分类报告的数值
-    classification_report_dict = classification_report(y_test, stacked_predictions, output_dict=True, zero_division=0)
+    classification_report_dict = classification_report(y_test, stacked_predictions, target_names=label_encoder.classes_, output_dict=True, zero_division=0)
 
     # 转换分类报告为数组格式
     classification_report_array = []
@@ -93,6 +96,7 @@ def perform_pca_and_train_models(file1, file2):
                 metrics['support']
             ])
 
+    print(classification_report_dict)
     # 使用 predict_proba 计算 ROC AUC
     roc_auc = roc_auc_score(y_test, stacked_probabilities, multi_class='ovr')
 
@@ -103,4 +107,4 @@ def perform_pca_and_train_models(file1, file2):
     }
 
     # 返回所有结果
-    return accuracy, predicted_labels.tolist(), cm.tolist(), classification_report_array, roc_auc, feature_importance
+    return accuracy, predicted_labels.tolist(), cm.tolist(),label_encoder.classes_.tolist(), classification_report_array, roc_auc, feature_importance

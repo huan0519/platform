@@ -40,4 +40,3 @@ try:
             print("响应内容:", response.text)
 except IOError as e:
     print(f"无法打开文件 {file_path}: {e}")
-

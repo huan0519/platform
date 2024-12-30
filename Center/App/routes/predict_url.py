@@ -37,7 +37,7 @@ def disease_predict():
 
     try:
         # 执行PCA降维并训练模型
-        accuracy, predictions, cm, classification_report, roc_auc, feature_importance = perform_pca_and_train_models(
+        accuracy, predictions, cm, class_labels, classification_report, roc_auc, feature_importance = perform_pca_and_train_models(
             file1_path, file2_path)
 
         # 删除临时文件
@@ -49,6 +49,7 @@ def disease_predict():
             "accuracy": accuracy,
             "predictions": predictions,
             "confusion_matrix": cm,
+            "class_labels":  class_labels,
             "classification_report": classification_report,
             "roc_auc": roc_auc,
             "feature_importance": feature_importance
