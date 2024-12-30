@@ -4,7 +4,6 @@
       <img src="../../public/image/home_show.jpg" class="image" />
       <div class="overlay">
         <span class="home_font">欢迎使用云平台</span>
-<<<<<<< HEAD
         <div style="margin-top: 66px; color: whitesmoke; font-size: large; font-style: oblique">
           助力科学探索，精彩研究成果
         </div>
@@ -28,13 +27,6 @@
 
           <el-button class="left-button" style="margin-left: 50px;height: 55px; width: 148px" type="primary" @click="navigate('/help', '3')">快速入门</el-button>
 
-=======
-        <div style="margin-top: 100px">
-          <!-- 跳转到云平台并高亮 -->
-          <el-button style="height: 48px;width: 148px; border-radius: 15px" type="primary" @click="navigate('/help', '3')" >快速入门</el-button>
-          <!-- 跳转到使用教程并高亮 -->
-          <el-button style="margin-left: 80px;border-radius: 15px;height: 48px;width: 148px" @click="navigate('/cloud_platform', '2')">一键做图</el-button>
->>>>>>> a94f2e1859c3be89a9cd9854f8be4232ddf7ffd1
         </div>
       </div>
     </div>
@@ -74,11 +66,7 @@ export default {
 
 .overlay {
   position: absolute;
-<<<<<<< HEAD
   top: 220px;
-=======
-  top: 250px;
->>>>>>> a94f2e1859c3be89a9cd9854f8be4232ddf7ffd1
   left: 100px;
 }
 
