@@ -2,7 +2,7 @@
 <template>
     <el-container class="el-container" style="display: flex">
       <el-main class="main" style="flex-grow: 1">
-        <el-row style="height: 150px;margin-left: 30px;width: 100%">
+        <el-row style="height: 130px;margin-left: 30px;width: 100%;">
           <el-button-group>
             <el-button
                 type="primary"
@@ -59,7 +59,7 @@
         </div>
 
         <div  v-show="activePage==='before'">
-            <span style="font-style: oblique;font-size: large">XX图</span>
+            <span style="font-style: oblique;font-size: large">箱线图</span>
           <div class="glass-container">
             <div ref="box_chart" style="width: 1000px; height: 600px;margin-top: 20px"></div>
           </div>
@@ -106,7 +106,7 @@
           </el-container>
         </div>
         <div v-show="activePage==='after'">
-          <span style="font-style: oblique;font-size: large">XX图</span>
+          <span style="font-style: oblique;font-size: large">热力图</span>
           <div class="glass-container">
             <div ref="hot_chart" style="width: 1000px; height: 600px;margin-top: 20px"></div>
           </div>

@@ -1,88 +1,78 @@
 <template>
-  <button
-      :class="['interactive-button', { 'is-loading': loading }]"
-      :disabled="loading || disabled"
-      @click="handleClick"
-  >
-    <span v-if="!loading">{{ label }}</span>
-    <span v-else class="loading-spinner"></span>
-  </button>
+  <div class="tutorial-page">
+    <el-container>
+      <!-- 侧边栏部分 -->
+      <el-aside width="300px" class="aside">
+        <el-input
+            v-model="searchQuery"
+            placeholder="搜索词条"
+            clearable
+        />
+        <el-menu @select="handleSelect">
+          <el-menu-item
+              v-for="item in filteredTutorials"
+              :key="item.id"
+              :index="String(item.id)"
+          >
+            {{ item.title }}
+          </el-menu-item>
+        </el-menu>
+      </el-aside>
+
+      <!-- 主内容部分 -->
+      <el-main class="main">
+        <div v-if="selectedTutorial">
+          <h1>{{ selectedTutorial.title }}</h1>
+          <p v-html="selectedTutorial.content"></p>
+        </div>
+        <div v-else>
+          <h1>请选择一个教程词条</h1>
+        </div>
+      </el-main>
+    </el-container>
+  </div>
 </template>
 
 <script>
 export default {
-  props: {
-    label: {
-      type: String,
-      default: 'Click Me',
-    },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
+  data() {
+    return {
+      searchQuery: '',
+      selectedTutorial: null,
+      tutorials: [
+        { id: 1, title: 'Vue基础', content: 'Vue是一个渐进式JavaScript框架...<br><img src="/images/vue-intro.png" alt="Vue介绍">' },
+        { id: 2, title: 'Element UI使用', content: 'Element UI是一个基于Vue的组件库...<br><img src="/images/element-ui.png" alt="Element UI">' },
+        { id: 3, title: 'Vue路由', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' }
+      ]
+    };
+  },
+  computed: {
+    filteredTutorials() {
+      return this.tutorials
+          .filter(tutorial => tutorial.title.includes(this.searchQuery))
+          .sort((a, b) => a.title.localeCompare(b.title));
+    }
   },
   methods: {
-    handleClick() {
-      this.$emit('click');
-    },
-  },
+    handleSelect(index) {
+      const tutorial = this.tutorials.find(t => t.id == index);
+      this.selectedTutorial = tutorial;
+    }
+  }
 };
 </script>
 
 <style scoped>
-.interactive-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75em 1.5em;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  background-color: #2563eb;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+.tutorial-page {
+  height: 100vh;
 }
 
-.interactive-button:hover {
-  background-color: #1d4ed8;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
+.aside {
+  background-color: #f5f5f5;
+  padding: 10px;
 }
 
-.interactive-button:active {
-  background-color: #1e40af;
-  transform: translateY(0);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-}
-
-.interactive-button.is-loading {
-  cursor: not-allowed;
-}
-
-.interactive-button .loading-spinner {
-  width: 20px;
-  height: 20px;
-  border: 3px solid transparent;
-  border-top: 3px solid #fff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.main {
+  padding: 20px;
 }
 </style>

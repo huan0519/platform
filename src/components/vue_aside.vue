@@ -125,6 +125,9 @@ export default {
   border: none;
   border-bottom-right-radius: 30%;
 }
+.button :hover{
+  cursor: pointer;
+}
 .el-aside {
   width: 200px;
   height: 100vh;
