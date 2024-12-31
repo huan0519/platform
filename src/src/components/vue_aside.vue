@@ -27,7 +27,7 @@
               index="/cloud_platform/data_preprocess"
               @click="goToPart('data_preprocess')"
           >
-            <span slot="title">数据前处理</span>
+            <span slot="title">数据预处理</span>
           </el-menu-item>
           <p class="aside_line"></p>
           <el-menu-item
@@ -124,6 +124,9 @@ export default {
   width: 40px;
   border: none;
   border-bottom-right-radius: 30%;
+}
+.button :hover{
+  cursor: pointer;
 }
 .el-aside {
   width: 200px;

@@ -58,7 +58,7 @@
           </el-container>
         </div>
         <div v-show="activePage==='before'">
-          <span style="font-style: oblique;font-size: large">XX图</span>
+          <span style="font-style: oblique;font-size: large">箱线图</span>
           <div class="glass-container">
             <div ref="box_chart" style="width: 1000px; height: 600px;"></div>
           </div>
@@ -105,7 +105,7 @@
           </el-container>
         </div>
         <div v-show="activePage==='after'">
-          <span style="font-style: oblique;font-size: large">XX图</span>
+          <span style="font-style: oblique;font-size: large">热力图</span>
           <div class="glass-container">
            <div ref="hot_chart" style="width: 1000px; height: 600px"></div>
           </div>
