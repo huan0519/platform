@@ -3,7 +3,7 @@
   <div class="chatbox">
     <!-- 标题栏 -->
     <div class="header">
-      <h3>医疗数据分析AI助手</h3>
+      <h3>医疗数据分析AI小助手</h3>
     </div>
 
     <!-- 聊天记录窗口 -->
@@ -321,6 +321,8 @@ export default {
 .container{
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
   /* Add your background pattern here */
   background: lightblue;
   background-image: radial-gradient(

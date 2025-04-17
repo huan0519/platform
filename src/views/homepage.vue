@@ -82,7 +82,6 @@ export default {
   color: white;
   border: none;
   border-radius: 8px;
-  background: linear-gradient(90deg, #4ade80, #2563eb);
   background-size: 300% 100%;
   transition: background-position 0.5s ease, transform 0.3s ease;
 }
@@ -102,8 +101,8 @@ export default {
   font-weight: 700;
   transition: all 0.2s;
   padding: 10px 20px;
+  background: white;
   border-radius: 100px;
-  background: linear-gradient(50deg, #2563eb,#4ade80 );
   border: 1px solid transparent;
   display: flex;
   align-items: center;
@@ -111,7 +110,7 @@ export default {
 }
 
 .home-button:hover {
-  background: linear-gradient(20deg, #2563eb,#4ade80 );
+  background: whitesmoke;
 }
 
 .home-button > svg {

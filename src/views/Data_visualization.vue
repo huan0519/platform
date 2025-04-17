@@ -2,7 +2,7 @@
 <template>
   <div style="height: 100vh;margin-left: 18px">
     <header style="margin-top: 1em">
-      <a style="margin: 55px;font-size: 28px;font-style: italic;font-weight: bolder">数据可视化</a>
+      <a style="margin: 55px;font-size: 28px;font-style: italic;font-weight: bolder;">数据可视化</a>
     </header>
     <el-divider></el-divider>
     <div class="ant-row" style="">
@@ -138,7 +138,7 @@ body{
 .ant-row-line{
   padding-left: 10px;
   padding-right: 10px;
-  width: calc(25% - 20px);
+  width: 24rem;
 }
 .shadow{
   cursor: pointer;

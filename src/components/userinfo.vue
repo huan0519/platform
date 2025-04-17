@@ -7,8 +7,8 @@
 
     </div>
     <div v-else class="login-link">
-      <router-link to="/login" style="color: #475669;font-weight: bolder">
-        <i class="el-icon-user" style="color: #475669"></i> 登录
+      <router-link to="/login" style="color: #475669;font-weight: bolder;font-size: 24px">
+        <i class="el-icon-user" style="color: #475669"></i>
       </router-link>
     </div>
   </div>
@@ -16,6 +16,12 @@
 
 <script>
 export default {
+  data(){
+    return{
+      //默认页面：主页
+      isLoggedIn:false
+    };
+  },
   computed: {
     isLoggedIn() {
       return this.$store.state.isLoggedIn;
@@ -68,6 +74,6 @@ a {
 .af_login{
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 24px;
 }
 </style>

@@ -5,45 +5,34 @@
       <el-aside :width="side_width + 'px'" :collapse="isDrawerOpen" class="el-aside">
         <el-menu
             :default-active="currentActive"
-            style="height: 100%; overflow: hidden; background-color: #334155;">
+            style="height: 100%; overflow: hidden; background-color: #FFFFFF;">
           <el-menu-item class="disabled">
             <div slot="title">
               <i class="el-icon-document"></i
               ><span
                 style="font-weight: bolder; font-family: '微软雅黑 Light', serif; font-size: 15px; color: #93C5FD; margin-left: 4px"
-            >图表分类</span
+            >模块分类</span
             >
             </div>
           </el-menu-item>
-          <p class="aside_line"></p>
           <el-menu-item
               index="/cloud_platform/data_visualization"
               @click="goToPart('data_visualization')"
           >
             <span slot="title">数据可视化</span>
           </el-menu-item>
-          <p class="aside_line"></p>
           <el-menu-item
               index="/cloud_platform/data_preprocess"
               @click="goToPart('data_preprocess')"
           >
             <span slot="title">数据预处理</span>
           </el-menu-item>
-          <p class="aside_line"></p>
           <el-menu-item
               index="/cloud_platform/prediction"
               @click="goToPart('prediction')"
           >
             <span slot="title">疾病预测</span>
           </el-menu-item>
-          <p class="aside_line"></p>
-          <el-menu-item
-              index="/cloud_platform/ai_analysis"
-              @click="goToPart('ai_analysis')"
-          >
-            <span slot="title">AI辅助分析</span>
-          </el-menu-item>
-          <p class="aside_line"></p>
         </el-menu>
       </el-aside>
       <div>
@@ -73,7 +62,6 @@ export default {
         "/cloud_platform/data_visualization",
         "/cloud_platform/data_preprocess",
         "/cloud_platform/prediction",
-        "/cloud_platform/ai_analysis",
       ], // 合法路径列表
     };
   },

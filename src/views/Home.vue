@@ -1,8 +1,9 @@
 <!--页面框架-->
 <template>
   <div id="app" style="display: flex">
-    <Vue_header style="position: sticky;min-width: 80%;flex-shrink: 0;height: 60px;overflow: hidden"></Vue_header>
-    <router-view :key="$route.path" style="background-color: #E0F2FE;height: calc(100vh - 60px)"></router-view>
+    <Vue_header style="position: relative;min-width: 80%;flex-shrink: 0;height: 6.25rem"></Vue_header>
+    <router-view :key="$route.path" style="height: calc(100vh - 9vh)"></router-view>
+    <div style="height: 1.25rem;background: #0f172a"></div>
   </div>
 </template>
 
@@ -33,5 +34,4 @@ export default {
   flex-direction: column;
   height: 100%; /* 视口高度 */
 }
-
 </style>

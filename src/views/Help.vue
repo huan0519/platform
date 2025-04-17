@@ -49,7 +49,11 @@ export default {
       searchQuery: '',
       selectedTutorial: null,
       tutorials: [
-        { id: 1, title: '云平台介绍', content: 'Vue是一个渐进式JavaScript框架...<br><img src="/image/3D.png" alt="Vue介绍">' },
+        { id: 1, title: '云平台介绍', content: '在生物医学研究与药物开发领域，质谱技术是测定分子质量的关键手段，凭借其精准测定分子质量的卓越能力，始终扮演着举足轻重的角色，源源不断地为前沿研究提供关键信息。随着蛋白质组学、代谢组学等前沿研究的推进，质谱数据量激增，这些数据维度高，既蕴含海量生物信息，又充斥冗余与噪声，如何从中提炼有价值的内容，成了科研与医疗诊断的难题。\n' +
+              '<br>为应对这一挑战，我们团队全力打造创新的智能质谱数据分析平台。平台基于 Flask 框架，在数据存储方面，引入了 MySQL 数据库作为核心的数据存储解决方案。MySQL 以其高可靠性、高性能和广泛的适用性，为平台的数据持久化提供了坚实保障。平台选择采用先进的前后端分离架构。前端用 Vue 框架结合 ECharts，构建直观交互的可视化界面，方便用户洞悉数据细节；后端依托 Flask，集成 TensorFlow 和 Scikit-learn 环境，为机器学习模型的开发与推理提供有力支持。<br><img src="/image/help-cloud.png" alt="Vue介绍" style="width: 50vw;margin:40px;border: 1px solid">\n' +
+              '<br>平台功能模块特色鲜明。数据采集模块可高效上传、精准解析各类数据文件，大幅提升数据录入效率。数据预处理模块功能齐全，涵盖缺失值填补、异常值检测、标准化和特征选择等，为后续分析夯实基础。数据可视化模块支持多种图表，能展示原始及处理后的数据，助力用户多维度洞察数据特征。疾病预测模块借助机器学习模型，精准预测患者疾病症型，并自动生成专业报告，为医疗诊断提供关键参考。AI 辅助分析模块是作品的一大创新点，利用自然语言处理技术实现智能交互，还能根据用户需求动态生成图表，降低使用门槛，零基础用户也能轻松操作。\n' +
+              '<br>在医疗诊断场景中，平台优势明显。临床医护人员多不熟悉信息技术，而该平台凭借高度的用户友好性，能帮助他们快速从复杂质谱数据中提取关键生物信息，提前预判患者患病风险，以便精准实施救治措施，帮助有效遏制疾病蔓延。同时，平台提供客观的数据分析结果，避免医生主观意识干扰，为医疗诊断提供可靠的决策依据。经多次实验验证，平台在质谱数据分析各环节都展现出良好的效率与准确性，尤其在智能化和可视化方面实现了重大技术突破。\n' +
+              '<br>本研究为质谱数据的分析与应用开拓了新思路，也为智能数据分析平台的设计与开发提供了有价值的参考。同时能够减少人工干预，为生命科学和医学领域的科研人员及医护工作者提供有效的数据分析支持。' },
         { id: 2, title: '常见问题', content: 'Element UI是一个基于Vue的组件库...<br><img style="margin-left: 25vw" src="/images/element-ui.png" alt="Element UI">' },
         { id: 3, title: '数据归一化', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' },
         { id: 4, title: '补值', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' },
@@ -65,6 +69,7 @@ export default {
         { id: 14, title: '虚线柱状图', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' },
         { id: 15, title: '数据对齐', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' },
         { id: 16, title: '数据增强（PCA）', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' },
+        { id: 17, title: 'AI数据分析助手', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' },
       ]
     };
   },
@@ -91,7 +96,7 @@ export default {
   display: flex;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  overflow: auto;
 }
 .tutorial-page {
   height: 100vh;
@@ -99,11 +104,13 @@ export default {
 .aside {
   background-color: #f5f5f5;
   padding: 10px;
-  height: 100vh;
+  height: auto;
+  overflow: hidden;
+  position: sticky;
 }
 .main {
-  width: 100vw;
-  padding: 20px;
+  overflow: auto;
+  padding: 80px;
   display: flex;
   justify-content: center;
   align-items: flex-start;

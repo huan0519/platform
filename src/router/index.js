@@ -5,7 +5,7 @@ import Home from '@/views/Home.vue'
 import Login from '@/views/LoginView.vue'
 import Register from '@/views/Register.vue'
 import Personal_center from "@/views/Personal_center.vue"
-import Cloud_platform from "@/views/Cloud_Platform.vue"
+import Cloud_platform from "@/views/Cloud_platform.vue"
 import Homepage from "@/views/homepage.vue"
 import Help from "@/views/Help.vue"
 import Applied from "@/views/Applied.vue"
@@ -142,11 +142,6 @@ const router = new VueRouter({
               name:'prediction',
               component: Prediction
             },
-            {
-              path:'ai_analysis',
-              name:'ai_analysis',
-              component: ai_analysis
-            }
           ]
         },
         {
@@ -155,9 +150,9 @@ const router = new VueRouter({
           component: Help
         },
         {
-          path:'/applied',
-          name:'Applied',
-          component: Applied
+          path:'/ai_analysis',
+          name:'ai_analysis',
+          component: ai_analysis
         }
       ]
     },
