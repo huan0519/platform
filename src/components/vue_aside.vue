@@ -59,9 +59,9 @@ export default {
       side_width: 200,
       currentActive: this.$route.path, // 当前激活的菜单路径
       validPaths: [
-        "/cloud_platform/data_visualization",
-        "/cloud_platform/data_preprocess",
-        "/cloud_platform/prediction",
+        "/cloud_platform/data_visualization/",
+        "/cloud_platform/data_preprocess/",
+        "/cloud_platform/prediction/",
       ], // 合法路径列表
     };
   },
@@ -117,6 +117,7 @@ export default {
   cursor: pointer;
 }
 .el-aside {
+  transition: width 0.3s ease-in-out;
   width: 200px;
   height: 100vh;
   overflow-y: hidden;

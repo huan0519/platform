@@ -1,6 +1,6 @@
 <template>
-  <div class="scanline-header">
-
+<!--  <div class="scanline-header">-->
+  <div>
     <el-menu :default-active="activeIndex" class="h-el-menu" mode="horizontal">
       <p class="header_line"></p>
       <el-menu-item class="h-el-menu-item" index="homepage" @click="navigate('homepage')">
@@ -98,24 +98,23 @@ export default {
 
 <style scoped>
 .h-el-menu {
+
   float: right;
   display: flex;
   align-items: center; /* 垂直居中子元素 */
 }
 .h-el-menu-item.is-active {
-  background-color: #e9eef3;
   border-radius: 5%;
   height: 100%;
 }
 .scanline-header {
-  background-image: url("../../public/image/header1.jpg");
   background-repeat: no-repeat;
   background-position: 70%;
   background-size: cover;
   color: black;
   flex: none;
   width: 100%;
-  background-color: whitesmoke;
+  background-color: #f6f5f5;
   z-index: 20;
 }
 .scanline-header::after{
@@ -138,8 +137,14 @@ export default {
   height: 100%; /* 或者与 header 相同的高度 */
   background-color: rgba(0, 255, 0, 0);
 }
+.el-menu--horizontal .el-menu-item:hover {
+  border-bottom: 3px solid #77ddff !important; /* 自定义颜色 */
+  background-color: transparent !important;
+  border-radius: 5%;
+}
 .el-menu--horizontal > .el-menu-item.is-active {
-  border-bottom: 2px solid #ff6a00; /* 自定义激活状态横条颜色 */
+  border-bottom: 3px solid 	#77ddff; /* 自定义激活状态横条颜色 */
+  background-color: transparent !important;
 }
 .el-menu--horizontal > .el-menu-item{
   height: 100%;
@@ -150,6 +155,7 @@ export default {
   min-width: 90px; /* Use min-width instead of width */
   font-weight: bold;
   width: 150px;
+  transition: border-color 0.3s; /* 添加过渡动画 */
 }
 .header_line {
   height: 30px;
@@ -157,7 +163,7 @@ export default {
   background-color: #77ddff;
 }
 .h-item-group1{
-  color: #000000;
+  color: whitesmoke;
   font-size: 19px;
   padding: 0;
   height: 40%;
