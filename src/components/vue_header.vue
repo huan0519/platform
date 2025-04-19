@@ -144,12 +144,12 @@ export default {
   background-color: rgba(0, 255, 0, 0);
 }
 .el-menu--horizontal .el-menu-item:hover {
-  border-bottom: 3px solid #77ddff !important; /* 自定义颜色 */
+  border-bottom: 3px solid #fb923c !important; /* 自定义颜色 */
   background-color: transparent !important;
   border-radius: 5%;
 }
 .el-menu--horizontal > .el-menu-item.is-active {
-  border-bottom: 3px solid 	#77ddff; /* 自定义激活状态横条颜色 */
+  border-bottom: 3px solid 	#fb923c; /* 自定义激活状态横条颜色 */
   background-color: transparent !important;
 }
 .el-menu--horizontal > .el-menu-item{

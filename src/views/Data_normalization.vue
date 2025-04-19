@@ -58,10 +58,10 @@
           </el-container>
         </div>
 
-        <div  v-show="activePage==='before'">
+        <div style="width: 80%;" v-show="activePage==='before'">
             <span style="font-style: oblique;font-size: large">箱线图</span>
           <div class="glass-container">
-            <div ref="box_chart" style="width: 1000px; height: 600px;margin-top: 20px"></div>
+            <div ref="box_chart" style="width: 90%; height: 560px;margin-top: 20px"/>
           </div>
         </div>
         <div style="width: 100%;">
@@ -105,10 +105,10 @@
             </div>
           </el-container>
         </div>
-        <div v-show="activePage==='after'">
+        <div style="width: 80%;" v-show="activePage==='after'">
           <span style="font-style: oblique;font-size: large">热力图</span>
           <div class="glass-container">
-            <div ref="hot_chart" style="width: 1000px; height: 600px;margin-top: 20px"></div>
+            <div ref="hot_chart" style="width: 90%; height: 560px;margin-top: 20px"/>
           </div>
         </div>
       </el-main>
@@ -154,7 +154,10 @@ export default {
       total1: 0, // 数据总量
       currentPage1: 1,
       length:'',
-      activePage: "before",
+      chartInstance: null,
+      activePage: 'before', // 由父组件控制
+      hotChartInstance: null,
+      resizeObserver: null,
       tableData1:[],
       selectedFile: null,  // 当前选中文件
       chartInstance1: null,
@@ -257,11 +260,39 @@ export default {
       },
     };
   },
+  watch: {
+    activePage(newVal) {
+      if (newVal === 'before') {
+        this.$nextTick(() => {
+          if (!this.chartInstance) {
+            this.initChart();
+          } else {
+            this.chartInstance.resize();
+          }
+        });
+      }else if (newVal === 'after') {
+        this.$nextTick(() => {
+          if (!this.hotChartInstance) {
+            this.initHotChart()
+          } else {
+            // 确保容器尺寸更新后重绘
+            this.hotChartInstance.resize()
+          }
+        })
+      }
+    },
+  },
   mounted() {
     this.chartInstance1 = echarts.init(this.$refs.box_chart);
     this.chartInstance1.setOption(this.box_option);
     this.chartInstance2 = echarts.init(this.$refs.hot_chart);
     this.chartInstance2.setOption(this.hot_option);
+    if (this.activePage === 'before') {
+      this.initChart();
+    };
+    if (this.activePage === 'after') {
+      this.initHotChart()
+    }
   },
   methods: {
     updatePaginatedData() {
@@ -509,8 +540,67 @@ export default {
       } catch (error) {
         console.error('Error downloading file:', error);
       }
+    },
+    initChart() {
+      const chartDom = this.$refs.box_chart;
+      this.chartInstance = echarts.init(chartDom);
+      const option = {
+        // 你的图表配置
+      };
+      this.chartInstance.setOption(option);
+
+      // 窗口变化自适应
+      window.addEventListener('resize', () => {
+        this.chartInstance.resize();
+      });
+
+      // 父容器变化自适应（可选）
+      const observer = new ResizeObserver(() => {
+        this.chartInstance.resize();
+      });
+      observer.observe(chartDom);
+    },
+    initHotChart() {
+      const chartDom = this.$refs.hot_chart
+      this.hotChartInstance = echarts.init(chartDom)
+
+      // 初始化图表配置
+      const option = {
+        // 你的热力图配置项
+        // ...
+      }
+      this.hotChartInstance.setOption(option)
+
+      // 窗口缩放监听
+      window.addEventListener('resize', this.handleHotChartResize)
+
+      // 容器尺寸变化监听 (现代浏览器)
+      if (typeof ResizeObserver !== 'undefined') {
+        this.resizeObserver = new ResizeObserver(() => {
+          this.hotChartInstance.resize()
+        })
+        this.resizeObserver.observe(chartDom)
+      }
+    },
+    handleHotChartResize() {
+      this.hotChartInstance && this.hotChartInstance.resize()
+    },
+  },
+  beforeDestroy() {
+    if (this.chartInstance) {
+      this.chartInstance.dispose();
     }
   },
+  beforeDestroy1() {
+    // 清理资源
+    if (this.hotChartInstance) {
+      this.hotChartInstance.dispose()
+      window.removeEventListener('resize', this.handleHotChartResize)
+    }
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect()
+    }
+  }
 };
 </script>
 
@@ -519,6 +609,7 @@ export default {
 
 .el-container{
   overflow-y: hidden;
+  height: calc(100vh - 7rem);
 }
 .table-container {
   height: auto; /* 可以根据需要调整最大高度 */
@@ -584,7 +675,7 @@ th, td {
   line-height: 160px;
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100vh - 60px); /* 假设顶部按钮占150px */
+  height: calc(100vh - 6.75rem); /* 假设顶部按钮占150px */
   align-items: center;
   justify-items: center;
   padding: 20px;
@@ -618,12 +709,14 @@ input {
 }
 .glass-container{
   padding: 20px;
+  margin: 0;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  width: 1000px;
-  height: 600px;
+  width: 100%;
+  min-height: 600px;
+  height: auto;
   display: flex;
   align-items: center;
   justify-items: center;

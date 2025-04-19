@@ -333,7 +333,9 @@ export default {
   background-position: -5px -5px;
 }
 .chatbox {
-  width: 1100px;
+  max-width: 68.75rem;
+  min-width: 50rem;
+  width: 55%;
   height: 100vh;
   margin: 20px auto;
   display: flex;

@@ -2,7 +2,7 @@
   <el-container style="overflow: hidden">
     <el-main class="main">
       <p style="line-height: 20px;justify-self: center; font-weight: bolder" class="glass-text">箱线图</p>
-      <div ref="boxplot" style="justify-self: center" class="glass-container"></div>
+      <div ref="boxplot" style="justify-self: center;" class="glass-container"></div>
     </el-main>
     <el-aside width="400px" class="aside">
       <p style="margin: 20px;line-height: 40px;font-weight: bolder">控制台</p>
@@ -181,7 +181,7 @@ export default {
   background-color: #E9EEF3;
   color: #333;
   overflow: auto;
-  height: calc(100vh - 60px); /* 动态计算高度 */
+  height: 100vh; /* 动态计算高度 */
 }
 .aside {
   background-color: #D3DCE6;
