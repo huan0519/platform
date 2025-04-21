@@ -21,12 +21,17 @@
           >
             <span slot="title">数据可视化</span>
           </el-menu-item>
-          <el-menu-item
-              index="/cloud_platform/data_preprocess"
-              @click="goToPart('data_preprocess')"
-          >
-            <span slot="title">数据预处理</span>
-          </el-menu-item>
+          <el-submenu index="/cloud_platform/data_preprocess">
+            <template>
+              <span slot="title" style="color: #00bbff">数据预处理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/cloud_platform/data_normalization" @click="goToPart('data_normalization')">数据归一化</el-menu-item>
+              <el-menu-item index="/cloud_platform/reinforce" @click="goToPart('reinforce')">补值</el-menu-item>
+              <el-menu-item index="/cloud_platform/alignment" @click="goToPart('alignment')">数据对齐</el-menu-item>
+              <el-menu-item index="/cloud_platform/data_enhancement" @click="goToPart('data_enhancement')">数据降维</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
           <el-menu-item
               index="/cloud_platform/prediction"
               @click="goToPart('prediction')"
@@ -62,6 +67,7 @@ export default {
         "/cloud_platform/data_visualization/",
         "/cloud_platform/data_preprocess/",
         "/cloud_platform/prediction/",
+        "/cloud_platform/"
       ], // 合法路径列表
     };
   },

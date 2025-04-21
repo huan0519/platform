@@ -1,87 +1,337 @@
 <template>
-  <!-- 热力图容器 -->
-  <div style="width: 80%;" v-show="activePage === 'after'">
-    <span style="font-style: oblique; font-size: large">热力图</span>
-    <div class="glass-container">
-      <div ref="hot_chart" style="width: 90%; height: 560px; margin-top: 20px"></div>
+  <!-- From Uiverse.io by Dennyhml -->
+  <div id="app" class="back" @click="createSplash($event)">
+    <el-container style="max-height: 100vh;margin-top: 15%">
+      <div class="container1">
+        <div class="heading" style="margin: 20px">Sign In</div>
+        <div class="form">
+          <el-form ref="user" :model="user" :rules="rules" label-width="100px">
+            <el-form-item label="账号" prop="username">
+              <input type="text" class="button_back" v-model="user.username" placeholder="请输入账号"/>
+            </el-form-item>
+            <el-form-item label="密码" prop="password">
+              <input class="button_back" type="password" v-model="user.password" placeholder="请输入密码"/>
+            </el-form-item>
+            <el-form-item class="button_group">
+              <el-button type="primary" style="width: 120px;" @click="handleLogin" class="custom-button">登录</el-button>
+              <el-button type="link" @click="goToRegister" class="custom-button">注册</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+      </div>
+    </el-container>
+
+    <div style="width: 10rem;position: relative;bottom: 60%">
+      <div class="bubble">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="bubble">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="bubble">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="bubble">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="bubble">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import anime from "animejs";
+
 export default {
+
   data() {
     return {
-      activePage: '', // 由父组件控制
-      hotChartInstance: null,
-      resizeObserver: null
-    }
-  },
-  watch: {
-    activePage(newVal) {
-      if (newVal === 'after') {
-        this.$nextTick(() => {
-          if (!this.hotChartInstance) {
-            this.initHotChart()
-          } else {
-            // 确保容器尺寸更新后重绘
-            this.hotChartInstance.resize()
-          }
-        })
-      }
-    },
-
-  },
-  mounted() {
-    // 如果初始状态需要显示
-    if (this.activePage === 'after') {
-      this.initHotChart()
-    }
+      user: {
+        username: '',
+        password: '',
+        avatar_url: '',
+        token: '',
+      },
+      rules: {
+        username: [
+          {required: true, message: '请输入用户名', trigger: 'blur'},
+          {min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur'}
+        ],
+        password: [
+          {required: true, message: '请输入密码', trigger: 'blur'},
+          {min: 8, max: 20, message: '长度在 8 到 20 个字符', trigger: 'blur'}
+        ],
+      },
+    };
   },
   methods: {
-    initHotChart() {
-      const chartDom = this.$refs.hot_chart
-      this.hotChartInstance = echarts.init(chartDom)
+    createSplash(event) {
+      const {clientX, clientY} = event;
 
-      // 初始化图表配置
-      const option = {
-        // 你的热力图配置项
-        // ...
-      }
-      this.hotChartInstance.setOption(option)
+      // 创建一个新的水花 DOM 元素
+      const splash = document.createElement("div");
+      splash.classList.add("splash");
 
-      // 窗口缩放监听
-      window.addEventListener('resize', this.handleHotChartResize)
+      // 设置初始位置并考虑宽高居中
+      const size = 70; // 水花大小
+      splash.style.width = `${size}px`;
+      splash.style.height = `${size}px`;
+      splash.style.left = `${clientX - size / 2}px`;
+      splash.style.top = `${clientY - size / 2}px`;
 
-      // 容器尺寸变化监听 (现代浏览器)
-      if (typeof ResizeObserver !== 'undefined') {
-        this.resizeObserver = new ResizeObserver(() => {
-          this.hotChartInstance.resize()
-        })
-        this.resizeObserver.observe(chartDom)
-      }
+      document.body.appendChild(splash);
+
+      // 动画效果
+      anime({
+        targets: splash,
+        scale: [0, 1],
+        opacity: [1, 0],
+        easing: "easeOutQuad",
+        duration: 800,
+        complete: () => {
+          // 动画完成后移除 DOM 元素
+          splash.remove();
+        },
+      });
     },
-    handleHotChartResize() {
-      this.hotChartInstance && this.hotChartInstance.resize()
+    handleLogin() {
+      console.log('Logging in with:', this.user);
+      this.$refs['user'].validate((valid) => {
+        if (valid) {
+          axios.post("http://localhost:8085/user/login", this.user).then(res => {
+            if (res.data.code === '200') {
+              const {username, avatar_url} = res.data.data;
+
+              // 使用 Vuex 更新全局状态
+              this.$store.dispatch('login', {username, avatar_url});
+              localStorage.setItem("user", JSON.stringify(res.data.data))
+              this.$router.push("/")
+              this.$message.success("登录成功")
+            } else {
+              this.$message.error(res.data.msg)
+            }
+          })
+        } else {
+          return false;
+        }
+      });
+    },
+    goToRegister() {
+      // 跳转到注册页面
+      this.$router.push('/Register');
+    },
+    handleClick() {
+      //回主页
+      this.$router.push('/');
     }
   },
-  beforeDestroy() {
-    // 清理资源
-    if (this.hotChartInstance) {
-      this.hotChartInstance.dispose()
-      window.removeEventListener('resize', this.handleHotChartResize)
-    }
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect()
-    }
+  created() {
+    axios.get('http://localhost:8080').then(function (res) {
+      let that = this;
+      that.user = res.data;
+    }).catch(err => err)
   }
-}
+};
 </script>
 
-<style>
-/* 确保容器链式继承 */
-.glass-container {
-  width: 100%; /* 继承父级80%宽度 */
-  height: 600px; /* 总高度 = 560px + 20px margin-top */
+<style scoped>
+.bubble {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.25);
+  animation: animate_4010 8s ease-in-out infinite;
+}
+
+.bubble:nth-child(2) {
+  position: relative;
+  zoom: 0.45;
+  left: -10px;
+  top: -100px;
+  animation-delay: -4s;
+}
+
+.bubble:nth-child(3) {
+  position: relative;
+  zoom: 0.45;
+  right: -80px;
+  top: -300px;
+  animation-delay: -6s;
+}
+
+.bubble:nth-child(4) {
+  position: relative;
+  zoom: 0.35;
+  left: -120px;
+  bottom: -200px;
+  animation-delay: -3s;
+}
+
+.bubble:nth-child(5) {
+  position: relative;
+  zoom: 0.5;
+  left: 0px;
+  top: 200px;
+  animation-delay: -5s;
+}
+
+@keyframes animate_4010 {
+  0%, 100% {
+    transform: translateY(-20px);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+.bubble::before {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: 45px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  z-index: 10;
+  filter: blur(2px);
+}
+
+.bubble::after {
+  content: '';
+  position: absolute;
+  top: 80px;
+  left: 80px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  z-index: 10;
+  filter: blur(2px);
+}
+
+.bubble span {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.bubble span:nth-child(1) {
+  inset: 10px;
+  border-left: 15px solid #0fb4ff;
+  filter: blur(8px);
+}
+
+.bubble span:nth-child(2) {
+  inset: 10px;
+  border-right: 15px solid #ff4484;
+  filter: blur(8px);
+}
+
+.bubble span:nth-child(3) {
+  inset: 10px;
+  border-top: 15px solid #ffeb3b;
+  filter: blur(8px);
+}
+
+.bubble span:nth-child(4) {
+  inset: 30px;
+  border-left: 15px solid #ff4484;
+  filter: blur(12px);
+}
+
+.bubble span:nth-child(5) {
+  inset: 10px;
+  border-bottom: 10px solid #fff;
+  filter: blur(8px);
+  transform: rotate(330deg);
+}
+
+.el-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back {
+  height: 100vh;
+  background-image: linear-gradient(to bottom right, #efeced, #3F5EFB);
+  overflow: hidden;
+}
+
+.button_back {
+  width: 160px;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 9999px;
+  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  color: #000000;
+}
+
+.custom-button {
+  width: 70px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.button-group {
+  display: flex; /* 启用 Flexbox */
+  justify-content: space-between; /* 按钮之间的空间均匀分布 */
+}
+
+.splash {
+  position: absolute;
+  background-color: rgba(0, 150, 255, 0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* 防止水花干扰点击事件 */
+}
+
+.container1 {
+  max-width: 350px;
+  background: #f8f9fd;
+  background: linear-gradient(
+      0deg,
+      rgb(255, 255, 255) 0%,
+      rgb(244, 247, 251) 100%
+  );
+  border-radius: 40px;
+  padding: 25px 35px;
+  border: 5px solid rgb(255, 255, 255);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+  margin: 20px;
+}
+
+.heading {
+  text-align: center;
+  font-weight: 900;
+  font-size: 30px;
+  color: rgb(16, 137, 211);
 }
 </style>

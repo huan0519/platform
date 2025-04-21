@@ -68,7 +68,7 @@ export default {
         { id: 13, title: '3D柱状图', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' },
         { id: 14, title: '虚线柱状图', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' },
         { id: 15, title: '数据对齐', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' },
-        { id: 16, title: '数据增强（PCA）', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' },
+        { id: 16, title: '数据降维', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' },
         { id: 17, title: 'AI数据分析助手', content: 'Vue Router用于处理页面导航...<br><img src="/images/vue-router.png" alt="Vue Router">' },
       ]
     };

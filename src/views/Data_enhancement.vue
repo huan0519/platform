@@ -1,4 +1,4 @@
-<!--数据加强-->
+<!--数据降维-->
 <template>
     <el-container class="el-container" style="display: flex;overflow: hidden;">
       <el-main class="main">
