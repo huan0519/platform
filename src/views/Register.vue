@@ -6,13 +6,13 @@
         <div class="heading"><a>Sign Up</a></div>
         <el-form ref="user" :model="user" :rules="rules" label-width="100px">
           <el-form-item label="用户名" prop="username">
-            <input class="button-back" style="width: 320px;" v-model="user.username" placeholder="请输入用户名" prefix-icon="el-icon-user" clearable></input>
+            <el-input class="custom-input" style="width: 320px;" v-model="user.username" placeholder="请输入用户名" prefix-icon="el-icon-user" clearable></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <input class="button-back" style="width: 320px;" type="password" v-model="user.password" prefix-icon="el-icon-lock" placeholder="请输入密码" clearable show-password></input>
+            <el-input class="custom-input" style="width: 320px;" type="password" v-model="user.password" prefix-icon="el-icon-lock" placeholder="请输入密码" clearable show-password></el-input>
           </el-form-item>
           <el-form-item label="确认密码" prop="confirmPassword">
-            <input class="button-back" style="width: 320px;" type="password" v-model="user.confirmPassword" prefix-icon="el-icon-lock" placeholder="请再次输入密码" clearable show-password></input>
+            <el-input class="custom-input" style="width: 320px;" type="password" v-model="user.confirmPassword" prefix-icon="el-icon-lock" placeholder="请再次输入密码" clearable show-password></el-input>
           </el-form-item>
           <el-form-item class="button_group">
             <el-button type="primary" style="width: 200px;" @click="handleRegister" class="custom-button">注册</el-button>
@@ -23,7 +23,7 @@
         </el-form>
       </div>
       </el-container>
-      <div style="width: 10rem;position: relative;bottom: 60%">
+      <div style="width: 10rem;position: relative;bottom: 68%">
         <div class="bubble">
           <span></span>
           <span></span>
@@ -285,5 +285,32 @@
     color: rgb(16, 137, 211);
     margin-bottom: 20px;
     margin-right: 20px
+  }
+  .custom-input ::v-deep .el-input__inner {
+    width: 350px;
+    background: none;
+    border: none !important; /* 需要强制覆盖 */
+    outline: none;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 9999px !important;
+    box-shadow: inset 2px 5px 10px rgb(5 5 5 / 20%);
+    color: #000;
+    transition: all 0.3s;
+  }
+  /* 处理聚焦状态 */
+  .custom-input ::v-deep .el-input.is-focus .el-input__inner {
+    box-shadow: inset 2px 5px 10px rgb(5 5 5 / 30%);
+  }
+
+  /* 处理悬停状态 */
+  .custom-input ::v-deep .el-input:hover .el-input__inner {
+    box-shadow: inset 2px 5px 10px rgb(5 5 5 / 25%);
+  }
+
+  /* 处理禁用状态 */
+  .custom-input ::v-deep .el-input.is-disabled .el-input__inner {
+    box-shadow: inset 2px 5px 10px rgb(5 5 5 / 10%);
+    background-color: #f5f5f5;
   }
   </style>

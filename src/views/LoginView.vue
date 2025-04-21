@@ -7,10 +7,10 @@
         <div class="form">
           <el-form ref="user" :model="user" :rules="rules" label-width="100px">
             <el-form-item label="账号" prop="username">
-              <input type="text" class="button_back" v-model="user.username" placeholder="请输入账号"/>
+              <el-input type="text" class="custom-input" v-model="user.username" prefix-icon="el-icon-user" placeholder="请输入账号"/>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-              <input class="button_back" type="password" v-model="user.password" placeholder="请输入密码"/>
+              <el-input class="custom-input" type="password" v-model="user.password" prefix-icon="el-icon-lock" show-password placeholder="请输入密码"/>
             </el-form-item>
             <el-form-item class="button_group">
               <el-button type="primary" style="width: 120px;" @click="handleLogin" class="custom-button">登录</el-button>
@@ -20,8 +20,7 @@
         </div>
       </div>
     </el-container>
-
-    <div style="width: 10rem;position: relative;bottom: 60%">
+    <div style="width: 10rem;position: relative;bottom: 68%">
       <div class="bubble">
         <span></span>
         <span></span>
@@ -63,6 +62,11 @@
 
 <script>
 import anime from "animejs";
+import Vue from "vue";
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+Vue.use(ElementUI);
 
 export default {
 
@@ -279,17 +283,6 @@ export default {
   background-image: linear-gradient(to bottom right,#efeced,#3F5EFB);
   overflow: hidden;
 }
-.button_back {
-  width: 160px;
-  background: none;
-  border: none;
-  outline: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 9999px;
-  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
-  color: #000000;
-}
 .custom-button{
   width: 70px;
   font-weight: bold;
@@ -307,7 +300,7 @@ export default {
   pointer-events: none; /* 防止水花干扰点击事件 */
 }
 .container1 {
-  max-width: 350px;
+  max-width: 420px;
   background: #f8f9fd;
   background: linear-gradient(
       0deg,
@@ -326,5 +319,33 @@ export default {
   font-weight: 900;
   font-size: 30px;
   color: rgb(16, 137, 211);
+}
+.custom-input ::v-deep .el-input__inner {
+  width: 250px;
+  background: none;
+  border: none !important; /* 需要强制覆盖 */
+  outline: none;
+  padding: 10px 30px;
+  font-size: 16px;
+  border-radius: 9999px !important;
+  box-shadow: inset 2px 5px 10px rgb(5 5 5 / 20%);
+  color: #000;
+  transition: all 0.3s;
+}
+
+/* 处理聚焦状态 */
+.custom-input ::v-deep .el-input.is-focus .el-input__inner {
+  box-shadow: inset 2px 5px 10px rgb(5 5 5 / 30%);
+}
+
+/* 处理悬停状态 */
+.custom-input ::v-deep .el-input:hover .el-input__inner {
+  box-shadow: inset 2px 5px 10px rgb(5 5 5 / 25%);
+}
+
+/* 处理禁用状态 */
+.custom-input ::v-deep .el-input.is-disabled .el-input__inner {
+  box-shadow: inset 2px 5px 10px rgb(5 5 5 / 10%);
+  background-color: #f5f5f5;
 }
 </style>
