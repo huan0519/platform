@@ -29,6 +29,7 @@ import ThermodynamicDiagram from "@/views/Thermodynamic-Diagram.vue";
 import Reinforce from "@/views/reinforce.vue";
 import Alignment from "@/views/alignment.vue";
 import Data_enhancement from "@/views/Data_enhancement.vue";
+import file_Download from "@/views/file-Download.vue"
 
 Vue.use(VueRouter)
 
@@ -153,7 +154,12 @@ const router = new VueRouter({
           path:'/ai_analysis',
           name:'ai_analysis',
           component: ai_analysis
-        }
+        },
+        {
+          path:'/file_download',
+          name:'file_download',
+          component: file_Download
+        },
       ]
     },
 

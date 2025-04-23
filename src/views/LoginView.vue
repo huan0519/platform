@@ -7,10 +7,10 @@
         <div class="form">
           <el-form ref="user" :model="user" :rules="rules" label-width="100px">
             <el-form-item label="账号" prop="username">
-              <el-input type="text" class="custom-input" v-model="user.username" prefix-icon="el-icon-user" placeholder="请输入账号"/>
+              <el-input type="text" class="custom-input" v-model="user.username" prefix-icon="el-icon-user" clearable placeholder="请输入账号"/>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-              <el-input class="custom-input" type="password" v-model="user.password" prefix-icon="el-icon-lock" show-password placeholder="请输入密码"/>
+              <el-input class="custom-input" type="password" v-model="user.password" prefix-icon="el-icon-lock" clearable show-password placeholder="请输入密码"/>
             </el-form-item>
             <el-form-item class="button_group">
               <el-button type="primary" style="width: 120px;" @click="handleLogin" class="custom-button">登录</el-button>

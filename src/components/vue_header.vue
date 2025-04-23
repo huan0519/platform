@@ -9,11 +9,6 @@
       </div>
     <el-menu :default-active="activeIndex" class="h-el-menu" mode="horizontal">
       <p class="header_line"></p>
-      <el-menu-item class="h-el-menu-item" index="homepage" @click="navigate('homepage')">
-        <div class="h-item-group1">首页</div>
-        <div class="h-item-group2">index</div>
-      </el-menu-item>
-      <p class="header_line"></p>
       <el-menu-item class="h-el-menu-item" index="cloud_platform" @click="navigate('cloud_platform')">
         <div class="h-item-group1">云平台</div>
         <div class="h-item-group2">icloud</div>
@@ -22,6 +17,11 @@
       <el-menu-item class="h-el-menu-item" index="ai_analysis" @click="navigate('ai_analysis')">
         <div class="h-item-group1">大模型</div>
         <div class="h-item-group2">AI</div>
+      </el-menu-item>
+      <p class="header_line"></p>
+      <el-menu-item class="h-el-menu-item" index="file_download" @click="navigate('file_download')">
+        <div class="h-item-group1">文件下载</div>
+        <div class="h-item-group2">download</div>
       </el-menu-item>
       <p class="header_line"></p>
       <el-menu-item class="h-el-menu-item" index="help" @click="navigate('help')">
@@ -79,10 +79,11 @@ export default {
         "/help": "help",
         "/personal_center": "personal_center",
         "/ai_analysis": "ai_analysis",
+        "/file_download": "file_download"
       };
 
       // 特殊处理子路径匹配的逻辑
-      let currentIndex = "homepage"; // 默认首页
+      let currentIndex = "cloud_platform"; // 默认首页
       if (path.startsWith("/cloud_platform")) {
         currentIndex = "cloud_platform";
       } else if (path.startsWith("/help")) {
@@ -91,6 +92,8 @@ export default {
         currentIndex = "personal_center";
       } else if (path.startsWith("/ai_analysis")) {
         currentIndex = "ai_analysis";
+      } else if (path.startsWith("/file_download")) {
+        currentIndex = "file_download";
       }
 
       // 更新高亮状态
@@ -177,7 +180,7 @@ export default {
 }
 .h-item-group2{
   color: #8c8c8c;
-  font-family: "AniMe Matrix - MB_EN";
+  font-family: "AniMe Vision - MB_EN";
   font-size: .9375rem;
   height: 1rem;
   margin-top: -10px;
