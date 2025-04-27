@@ -1,7 +1,7 @@
 <template>
   <el-container style="overflow: auto">
     <el-main class="main">
-      <p style="line-height: 20px;justify-self: center; font-weight: bolder" class="glass-text">玫瑰图</p>
+      <p style="justify-self: center; font-weight: bolder" class="glass-text">玫瑰图</p>
       <div ref="rose_chart" style="justify-self: center" class="glass-container"></div>
     </el-main>
     <el-aside width="400px" class="aside">
@@ -30,6 +30,7 @@
       </div>
       <div class="input-container">
         <p style="line-height: 40px;font-weight: bolder">图表样式</p>
+        <div style="height: 20px;"></div>
         <div class="input-row">
           <label for="chart_title">标题名称:</label>
           <el-input id="chart_title" style="width: 350px" type="text" v-model="chart_title"></el-input>
@@ -153,6 +154,7 @@ export default {
   background-color: #E9EEF3;
   color: #333;
   overflow: auto;
+  line-height: 160px;
   height: calc(100vh - 60px); /* 动态计算高度 */
 }
 .aside {

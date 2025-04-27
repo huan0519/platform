@@ -1,7 +1,7 @@
 <template>
   <el-container style="overflow: hidden">
     <el-main class="main">
-      <p style="line-height: 20px;justify-self: center; font-weight: bolder" class="glass-text">箱线图</p>
+      <p style="justify-self: center; font-weight: bolder" class="glass-text">箱线图</p>
       <div ref="boxplot" style="justify-self: center;" class="glass-container"></div>
     </el-main>
     <el-aside width="400px" class="aside">
@@ -30,6 +30,7 @@
       </div>
       <div class="input-container">
         <p style="line-height: 40px;font-weight: bolder">图表样式</p>
+        <div style="height: 20px"></div>
         <div class="input-row">
           <label for="x_name">x轴名称:</label>
           <el-input id="x_name" style="width: 350px" type="text" v-model="x_name"></el-input>
@@ -181,6 +182,7 @@ export default {
   background-color: #E9EEF3;
   color: #333;
   overflow: auto;
+  line-height: 160px;
   height: 100vh; /* 动态计算高度 */
 }
 .aside {

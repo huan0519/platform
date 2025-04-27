@@ -2,7 +2,7 @@
   <div id="app">
     <el-container>
       <el-main class="pre-main">
-        <p style="line-height: 20px;justify-self: center; font-weight: bolder" class="glass-text">分析报告</p>
+        <p style="justify-self: center; font-weight: bolder" class="glass-text">分析报告</p>
         <el-card style="height: 1200px" v-if="report && Object.keys(report).length > 0">
           <div style="font-size: 14px;">
             <!-- 准确率 -->
