@@ -304,7 +304,7 @@ export default {
   border-radius: 12px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  width: 1000px;
-  height: 600px;
+  width: 60vw;
+  height: 60vh;
 }
 </style>
