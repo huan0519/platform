@@ -48,6 +48,10 @@ export default{
 </script>
 
 <style>
+body{
+  overflow: hidden;
+  height: 100vh;
+}
 .splash {
   position: absolute;
   background-color: rgba(0, 150, 255, 0.6);

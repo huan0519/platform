@@ -333,10 +333,11 @@ export default {
   background-position: -5px -5px;
 }
 .chatbox {
-  max-width: 68.75rem;
+  max-width: 88.75rem;
   min-width: 50rem;
   width: 55%;
   height: 100vh;
+  max-height: 67rem;
   margin: 20px auto;
   display: flex;
   flex-direction: column;
@@ -362,7 +363,7 @@ export default {
   background-color: #fff;
   border-radius: 10px;
   min-height: 300px;
-  max-height: 600px;
+  max-height: 800px;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 }
 

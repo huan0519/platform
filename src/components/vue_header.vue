@@ -10,7 +10,7 @@
       <p class="header_line"></p>
       <el-menu-item class="h-el-menu-item" index="cloud_platform" @click="navigate('cloud_platform')">
         <div class="h-item-group1">云平台</div>
-        <div class="h-item-group2">icloud</div>
+        <div class="h-item-group2">ICLOUD</div>
       </el-menu-item>
       <p class="header_line"></p>
       <el-menu-item class="h-el-menu-item" index="ai_analysis" @click="navigate('ai_analysis')">
@@ -20,12 +20,12 @@
       <p class="header_line"></p>
       <el-menu-item class="h-el-menu-item" index="file_download" @click="navigate('file_download')">
         <div class="h-item-group1">文件下载</div>
-        <div class="h-item-group2">download</div>
+        <div class="h-item-group2">DOWNLOAD</div>
       </el-menu-item>
       <p class="header_line"></p>
       <el-menu-item class="h-el-menu-item" index="help" @click="navigate('help')">
         <div class="h-item-group1">帮助</div>
-        <div class="h-item-group2">help</div>
+        <div class="h-item-group2">HELP</div>
       </el-menu-item>
       <p class="header_line"></p>
       <div style="margin-left: 70px; margin-right: 40px">
@@ -152,10 +152,10 @@ export default {
 }
 .h-item-group2{
   color: #8c8c8c;
-  font-family: "AniMe Vision - MB_EN";
+  font-family: "JetBrains Mono Thin";
   font-size: .9375rem;
   height: 1rem;
-  margin-top: -10px;
+  margin-top: -7px;
 }
 .loading svg polyline {
   fill: none;

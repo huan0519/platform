@@ -1,5 +1,6 @@
 <template>
-  <el-container style="min-height: 100vh;overflow: auto">
+  <div id="app" style="min-height: 100vh;overflow: auto">
+  <el-container>
     <el-aside :width="sideWidth + 'px'" style="box-shadow: 2px 0 6px rgb(0 21 41 / 35%)">
       <file_aside :is-collapse="isCollapse" />
     </el-aside>
@@ -12,6 +13,7 @@
       </el-main>
     </el-container>
   </el-container>
+  </div>
 </template>
 
 <script>
