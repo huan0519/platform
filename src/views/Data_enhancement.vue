@@ -1,8 +1,8 @@
-<!--数据降维-->
+<!--数据加强-->
 <template>
-    <el-container class="el-container" style="display: flex;overflow: hidden;">
+    <el-container class="el-container" style="display: flex">
       <el-main class="main">
-        <el-row style="height: 150px;margin-left: 30px;width: 100%;">
+        <el-row style="height: 70px;margin-left: 30px;width: 100%;">
           <el-button-group>
             <el-button
                 type="primary"
@@ -57,10 +57,9 @@
             </div>
           </el-container>
         </div>
-        <div style="width: 80%;" v-show="activePage==='before'">
-          <span style="font-style: oblique;font-size: large">箱线图</span>
+        <div v-show="activePage==='before'">
           <div class="glass-container">
-            <div ref="box_chart" style="width: 90%; height: 560px;margin-top: 20px"/>
+            <div ref="box_chart" style="width: 1000px; height: 600px;"></div>
           </div>
         </div>
         <div style="width: 100%">
@@ -104,33 +103,53 @@
             </div>
           </el-container>
         </div>
-        <div style="width: 80%;" v-show="activePage==='after'">
-          <span style="font-style: oblique;font-size: large">热力图</span>
+        <div v-show="activePage==='after'">
           <div class="glass-container">
-            <div ref="hot_chart" style="width: 90%; height: 560px;margin-top: 20px"/>
+           <div ref="hot_chart" style="width: 900px;height: 600px"></div>
           </div>
         </div>
       </el-main>
       <el-aside width="400px" class="aside">
         <p style="margin: 20px;line-height: 40px;font-weight: bolder">控制台</p>
         <el-button class="chart-button" @click="submitUpload">提交</el-button>
-        <el-upload
-            class="upload-demo"
-            ref="upload"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :auto-upload="false"
-            :on-change="handleFileUpload"
-            :before-upload="beforeUpload"
-            :file-list="fileList"
-            accept=".txt,.csv,.xls,.xlsx">
-          <div>
-            <el-button class="sel_button">选择文件</el-button>
-            <button
-                style="border: none; height: 40px; font-weight: normal; width: 280px; text-align: center; opacity: 0.5;">
-              仅能上传txt, csv, xls, xlsx格式
-            </button>
+        <div class="upload-demo">
+          <el-button @click="dialogVisible = true" class="sel_button">选择文件</el-button>
+          <button
+              style="border: none; height: 40px; font-weight: normal; width: 280px; text-align: center; opacity: 0.5;">
+            仅能上传txt, csv, xls, xlsx格式
+          </button>
+        </div>
+        <el-dialog
+            title="数据降维"
+            :visible.sync="dialogVisible"
+            width="40%"
+            :before-close="handleClose">
+          <el-upload
+              drag
+              action="https://jsonplaceholder.typicode.com/posts/"
+              :auto-upload="false"
+              :on-change="handleFileUpload"
+              :before-upload="beforeUpload"
+              :file-list="fileList"
+              accept=".txt,.csv,.xls,.xlsx"
+          >
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+          </el-upload>
+          <div style="margin-top: 10px">
+            <span style="font-size: medium">数据来源：</span>
+            <el-input style="width: 350px" v-model="data_source" placeholder="请输入内容"></el-input>
           </div>
-        </el-upload>
+          <div style="margin-top: 10px">
+            <span style="font-size: medium">是否保存结果：</span>
+            <el-radio v-model="radio" label="1">是</el-radio>
+            <el-radio v-model="radio" label="2">否</el-radio>
+          </div>
+          <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="read_file">确 定</el-button>
+        </span>
+        </el-dialog>
         <div>
           <button @click="downloadFile" class="dl_button"><i class="el-icon-download"></i> 下载示例</button>
         </div>
@@ -153,15 +172,13 @@ export default {
       total1: 0, // 数据总量
       currentPage1: 1,
       length:'',
-      chartInstance: null,
-      activePage: 'before', // 由父组件控制
-      hotChartInstance: null,
-      resizeObserver: null,
+      activePage: "before",
       tableData1:[],
       selectedFile: null,  // 当前选中文件
       chartInstance1: null,
       chartInstance2:null,
       fileList: [],
+      file:"",
       formData:{},
       tableData: [], // 用于存储完整的表格数据
       columns: [],
@@ -257,29 +274,10 @@ export default {
           },
         ]
       },
+      dialogVisible:false,
+      data_source:"",
+      radio:'1',
     };
-  },
-  watch: {
-    activePage(newVal) {
-      if (newVal === 'before') {
-        this.$nextTick(() => {
-          if (!this.chartInstance) {
-            this.initChart();
-          } else {
-            this.chartInstance.resize();
-          }
-        });
-      }else if (newVal === 'after') {
-        this.$nextTick(() => {
-          if (!this.hotChartInstance) {
-            this.initHotChart()
-          } else {
-            // 确保容器尺寸更新后重绘
-            this.hotChartInstance.resize()
-          }
-        })
-      }
-    },
   },
   mounted() {
     this.chartInstance1 = echarts.init(this.$refs.box_chart);
@@ -452,6 +450,7 @@ export default {
           })
     },
     handleFileUpload(file,filelist) {
+      this.file=file;
       this.fileList = filelist;
       const len = this.fileList.length;
       if (len === 0) {
@@ -461,7 +460,10 @@ export default {
       const formData = new FormData();
       formData.append("file", this.fileList[len - 1].raw);
       this.formData = formData;
-      this.initBoxplot();
+
+    },
+    read_file(){
+      this.dialogVisible = false;
       const reader = new FileReader();
       // 文件加载完成事件
       reader.onload = (e) => {
@@ -510,7 +512,8 @@ export default {
         alert("文件读取失败，请重试！");
       };
 
-      reader.readAsArrayBuffer(file.raw); // 以二进制数组格式读取
+      reader.readAsArrayBuffer(this.file.raw); // 以二进制数组格式读取
+      this.initBoxplot();
     },
     async downloadFile() {
       const filename = 'pca.xlsx';  // 需要下载的 Excel 文件名
@@ -534,66 +537,14 @@ export default {
         console.error('Error downloading file:', error);
       }
     },
-    initChart() {
-      const chartDom = this.$refs.box_chart;
-      this.chartInstance = echarts.init(chartDom);
-      const option = {
-        // 你的图表配置
-      };
-      this.chartInstance.setOption(option);
-
-      // 窗口变化自适应
-      window.addEventListener('resize', () => {
-        this.chartInstance.resize();
-      });
-
-      // 父容器变化自适应（可选）
-      const observer = new ResizeObserver(() => {
-        this.chartInstance.resize();
-      });
-      observer.observe(chartDom);
-    },
-    initHotChart() {
-      const chartDom = this.$refs.hot_chart
-      this.hotChartInstance = echarts.init(chartDom)
-
-      // 初始化图表配置
-      const option = {
-        // 你的热力图配置项
-        // ...
-      }
-      this.hotChartInstance.setOption(option)
-
-      // 窗口缩放监听
-      window.addEventListener('resize', this.handleHotChartResize)
-
-      // 容器尺寸变化监听 (现代浏览器)
-      if (typeof ResizeObserver !== 'undefined') {
-        this.resizeObserver = new ResizeObserver(() => {
-          this.hotChartInstance.resize()
-        })
-        this.resizeObserver.observe(chartDom)
-      }
-    },
-    handleHotChartResize() {
-      this.hotChartInstance && this.hotChartInstance.resize()
-    },
-  },
-  beforeDestroy() {
-    if (this.chartInstance) {
-      this.chartInstance.dispose();
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
     }
   },
-  beforeDestroy1() {
-    // 清理资源
-    if (this.hotChartInstance) {
-      this.hotChartInstance.dispose()
-      window.removeEventListener('resize', this.handleHotChartResize)
-    }
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect()
-    }
-  }
 };
 </script>
 
@@ -657,10 +608,10 @@ th, td {
 .main {
   background-color: #E9EEF3;
   color: #333;
-  line-height: 160px;
+  line-height: 70px;
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100vh - 6.75rem); /* 假设顶部按钮占150px */
+  height: calc(100vh - 60px); /* 假设顶部按钮占150px */
   align-items: center;
   justify-items: center;
   padding: 20px;
@@ -694,14 +645,12 @@ input {
 }
 .glass-container{
   padding: 20px;
-  margin: 0;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  min-height: 600px;
-  height: auto;
+  width: 900px;
+  height: 600px;
   display: flex;
   align-items: center;
   justify-items: center;

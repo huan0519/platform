@@ -7,17 +7,15 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from "@/store";
 import echarts from 'echarts'
-import VueParticles from "vue2-particles";
+import './assets/gloable.css'
 
 Vue.prototype.$echarts = echarts;
 
 Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
+Vue.use(ElementUI,{size: 'small'})
 
-Vue.use(ElementUI);
-
-Vue.use(VueParticles);
 
 new Vue({
   router,

@@ -1,9 +1,9 @@
 <!--页面框架-->
 <template>
   <div id="app" style="display: flex">
-    <Vue_header style="  background-color: #0f172a;;position: relative;min-width: 80%;flex-shrink: 0;height: 6.25rem"></Vue_header>
-    <router-view :key="$route.path" style="height: calc(100vh - 9vh)"></router-view>
-    <div style="height: 1.25rem;background: #0f172a"></div>
+    <Vue_header style="  background-color: #0f172a;;position: relative;min-width: 80%;flex-shrink: 0;height: 4.8rem"></Vue_header>
+    <router-view :key="$route.path"></router-view>
+    <div style="height: 1.25rem;background: #0f172a;"></div>
   </div>
 </template>
 

@@ -5,10 +5,9 @@ import Home from '@/views/Home.vue'
 import Login from '@/views/LoginView.vue'
 import Register from '@/views/Register.vue'
 import Personal_center from "@/views/Personal_center.vue"
-import Cloud_platform from "@/views/Cloud_platform.vue"
+import Cloud_platform from "@/views/cloud_platform.vue"
 import Homepage from "@/views/homepage.vue"
 import Help from "@/views/Help.vue"
-import Applied from "@/views/Applied.vue"
 import Data_normalization from "@/views/Data_normalization.vue"
 import Data_preprocess from "@/views/Data_preprocess.vue"
 import Data_visualization from "@/views/Data_visualization.vue"
@@ -30,8 +29,20 @@ import Reinforce from "@/views/reinforce.vue";
 import Alignment from "@/views/alignment.vue";
 import Data_enhancement from "@/views/Data_enhancement.vue";
 import file_Download from "@/views/file-Download.vue"
+import alignment_info_file from "@/views/info/alignment_info_file.vue";
+import normalization_file from "@/views/file/normalization_file.vue";
+import reinforce_file from "@/views/file/reinforce_file.vue";
+import file_sum from "@/views/file/file_sum.vue";
+import alignment_file from "@/views/file/alignment_file.vue";
+import file_info_sum from "@/views/info/file_info_sum.vue";
+import normalization_info_file from "@/views/info/normalization_info_file.vue";
+import reinforce_info_file from "@/views/info/reinforce_info_file.vue";
+import result_file from "@/views/file/result_file.vue";
+import dimension_file from "@/views/file/dimension_file.vue";
+import store from "@/store";
 
 Vue.use(VueRouter)
+
 
 const router = new VueRouter({
   mode: "history",
@@ -40,7 +51,7 @@ const router = new VueRouter({
       path: '/',
       name: 'home',
       component: Home,
-      redirect: '/homepage',
+      redirect: '/cloud_platform',
       children:[
         {
           path:'/homepage',
@@ -157,8 +168,60 @@ const router = new VueRouter({
         },
         {
           path:'/file_download',
-          name:'file_download',
-          component: file_Download
+          name:'文件',
+          component: file_Download,
+          children:[
+            {
+              path:'file_sum',
+              name:'数据总览',
+              component: file_sum,
+            },
+            {
+              path:'file_info_sum',
+              name:'数据信息总览',
+              component: file_info_sum,
+            },
+            {
+              path:'normalization_info_file',
+              name:'归一化信息',
+              component: normalization_info_file,
+            },
+            {
+              path:'reinforce_info_file',
+              name:'补值后信息',
+              component: reinforce_info_file,
+            },
+            {
+              path:'alignment_info_file',
+              name:'对齐后信息',
+              component: alignment_info_file,
+            },
+            {
+              path:'normalization_file',
+              name:'归一化数据',
+              component: normalization_file,
+            },
+            {
+              path:'reinforce_file',
+              name:'补值后数据',
+              component: reinforce_file,
+            },
+            {
+              path:'alignment_file',
+              name:'对齐后数据',
+              component: alignment_file,
+            },
+            {
+              path:'dimension_file',
+              name:'降维后数据',
+              component: dimension_file,
+            },
+            {
+              path:'result_file',
+              name:'训练结果数据',
+              component: result_file,
+            },
+          ]
         },
       ]
     },
@@ -187,6 +250,13 @@ const router = new VueRouter({
       component:Demo1
     }
   ]
+})
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  localStorage.setItem('currentPathName', to.name)
+  store.commit('setPath')
+  next()
 })
 
 export default router

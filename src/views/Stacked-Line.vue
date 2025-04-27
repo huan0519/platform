@@ -1,5 +1,5 @@
 <template>
-  <el-container style="overflow: hidden;">
+  <el-container style="overflow: auto;">
     <el-main class="main">
       <p style="line-height: 20px;justify-self: center; font-weight: bolder" class="glass-text">堆叠折线图</p>
       <div ref="lineChart" style="justify-self: center" class="glass-container"></div>

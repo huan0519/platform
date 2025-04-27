@@ -1,142 +1,186 @@
 <!--数据归一化-->
 <template>
-    <el-container class="el-container" style="display: flex">
-      <el-main class="main" style="flex-grow: 1">
-        <el-row style="height: 130px;margin-left: 30px;width: 100%;">
-          <el-button-group>
-            <el-button
-                type="primary"
-                :plain="activePage !== 'before'"
-                @click="activePage = 'before'"
+  <el-container class="el-container" style="display: flex">
+    <el-main class="main">
+      <el-row style="height: 70px;margin-left: 30px;width: 100%;">
+        <el-button-group>
+          <el-button
+              type="primary"
+              :plain="activePage !== 'before'"
+              @click="activePage = 'before'"
+          >
+            处理前
+          </el-button>
+          <el-button
+              type="primary"
+              :plain="activePage !== 'after'"
+              @click="activePage = 'after'"
+          >
+            处理后
+          </el-button>
+        </el-button-group>
+      </el-row>
+      <div style="width: 100%">
+        <el-container v-if="activePage === 'before'" class="table-container">
+          <el-pagination
+              style="float: left;flex-basis: 100%;padding: 0;margin-bottom: 10px;height: 20px"
+              @size-change="handleSizeChange1"
+              @current-change="handleCurrentChange1"
+              :current-page.sync="currentPage1"
+              :page-sizes="[10, 20, 50, 100]"
+              :page-size="pageSize1"
+              layout=" sizes"
+              :total="total1">
+          </el-pagination>
+          <el-table :data="paginatedTableData" :default-sort = "{prop: 'date', order: 'descending'}" border style="flex-basis: 100%;margin-top: 1px;">
+            <el-table-column
+                v-for="(value, key) in tableData1[0] || {}"
+                :key="key"
+                :prop="key"
+                :label="key"
+                align="center"
+                sortable
             >
-              处理前
-            </el-button>
-            <el-button
-                type="primary"
-                :plain="activePage !== 'after'"
-                @click="activePage = 'after'"
-            >
-              处理后
-            </el-button>
-          </el-button-group>
-        </el-row>
-        <div style="width: 100%">
-          <el-container v-if="activePage === 'before'" class="table-container">
+            </el-table-column>
+          </el-table>
+          <div style="flex-basis: 100%">
             <el-pagination
-                style="float: left;flex-basis: 100%;padding: 0;margin-bottom: 10px;height: 20px"
+                style="float: right;padding: 4px;margin-top: 15px;flex-basis: 100%;"
                 @size-change="handleSizeChange1"
                 @current-change="handleCurrentChange1"
                 :current-page.sync="currentPage1"
                 :page-sizes="[10, 20, 50, 100]"
                 :page-size="pageSize1"
-                layout=" sizes"
+                layout="total, prev, pager, next, jumper"
                 :total="total1">
             </el-pagination>
-            <el-table :data="paginatedTableData" :default-sort = "{prop: 'date', order: 'descending'}" border style="flex-basis: 100%;margin-top: 1px;">
-              <el-table-column
-                  v-for="(value, key) in tableData1[0] || {}"
-                  :key="key"
-                  :prop="key"
-                  :label="key"
-                  align="center"
-                  sortable
-              >
-              </el-table-column>
-            </el-table>
-            <div style="flex-basis: 100%">
-              <el-pagination
-                  style="float: right;padding: 4px;margin-top: 15px;flex-basis: 100%;"
-                  @size-change="handleSizeChange1"
-                  @current-change="handleCurrentChange1"
-                  :current-page.sync="currentPage1"
-                  :page-sizes="[10, 20, 50, 100]"
-                  :page-size="pageSize1"
-                  layout="total, prev, pager, next, jumper"
-                  :total="total1">
-              </el-pagination>
-            </div>
-          </el-container>
-        </div>
-
-        <div style="width: 80%;" v-show="activePage==='before'">
-            <span style="font-style: oblique;font-size: large">箱线图</span>
-          <div class="glass-container">
-            <div ref="box_chart" style="width: 90%; height: 560px;margin-top: 20px"/>
           </div>
-        </div>
-        <div style="width: 100%;">
-          <el-container v-if="activePage === 'after'" class="table-container">
+        </el-container>
+      </div>
+      <div style="width: 100%">
+        <el-container v-if="activePage === 'after'" class="table-container">
+          <el-pagination
+              background
+              layout="sizes"
+              :page-size="perPage"
+              :page-sizes="[10, 20, 50, 100]"
+              :current-page.sync="currentPage"
+              :total="totalRows"
+              @current-change="handlePageChange"
+              @size-change="handleSizeChange"
+              style="float: left;flex-basis: 100%;padding: 0;margin-bottom: 10px;height: 20px"
+          />
+          <!-- 表格显示 -->
+          <el-table :data="tableData" :default-sort = "{prop: 'date', order: 'descending'}" border style="flex-basis: 100%;margin-top: 1px;">
+            <!-- 动态生成表头 -->
+            <el-table-column
+                v-for="col in columns"
+                :key="col.field"
+                :label="col.label"
+                :prop="col.field.toString()"
+                align="center"
+                sortable
+            />
+          </el-table>
+          <!-- 分页组件 -->
+          <div style="flex-basis: 100%">
             <el-pagination
                 background
-                layout="sizes"
+                layout="total, prev, pager, next, jumper"
                 :page-size="perPage"
                 :page-sizes="[10, 20, 50, 100]"
                 :current-page.sync="currentPage"
                 :total="totalRows"
                 @current-change="handlePageChange"
                 @size-change="handleSizeChange"
-                style="float: left;flex-basis: 100%;padding: 0;margin-bottom: 10px;height: 20px"
+                style="float: right;padding: 4px;margin-top: 15px;flex-basis: 100%;"
             />
-            <!-- 表格显示 -->
-            <el-table :data="tableData" :default-sort = "{prop: 'date', order: 'descending'}" border style="flex-basis: 100%;margin-top: 1px;">
-              <!-- 动态生成表头 -->
-              <el-table-column
-                  v-for="col in columns"
-                  :key="col.field"
-                  :label="col.label"
-                  :prop="col.field.toString()"
-                  align="center"
-                  sortable
-              />
-            </el-table>
-            <!-- 分页组件 -->
-            <div style="flex-basis: 100%">
-              <el-pagination
-                  background
-                  layout="total, prev, pager, next, jumper"
-                  :page-size="perPage"
-                  :page-sizes="[10, 20, 50, 100]"
-                  :current-page.sync="currentPage"
-                  :total="totalRows"
-                  @current-change="handlePageChange"
-                  @size-change="handleSizeChange"
-                  style="float: right;padding: 4px;margin-top: 15px;flex-basis: 100%;"
-              />
-            </div>
-          </el-container>
-        </div>
-        <div style="width: 80%;" v-show="activePage==='after'">
-          <span style="font-style: oblique;font-size: large">热力图</span>
-          <div class="glass-container">
-            <div ref="hot_chart" style="width: 90%; height: 560px;margin-top: 20px"/>
           </div>
+        </el-container>
+      </div>
+      <div v-show="activePage==='after'">
+        <div class="glass-container">
+          <div ref="box_chart" style="width: 900px; height: 600px;"></div>
         </div>
-      </el-main>
-      <el-aside width="400px" class="aside">
-        <p style="margin: 20px;line-height: 40px;font-weight: bolder">控制台</p>
-        <el-button class="chart-button" @click="submitUpload">提交</el-button>
-        <el-upload
-            class="upload-demo"
-            ref="upload"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :auto-upload="false"
-            :on-change="handleFileUpload"
-            :before-upload="beforeUpload"
-            :file-list="fileList"
-            accept=".txt,.csv,.xls,.xlsx">
-          <div>
-            <el-button class="sel_button">选择文件</el-button>
-            <button
-                style="border: none; height: 40px; font-weight: normal; width: 280px; text-align: center; opacity: 0.5;">
-              仅能上传txt, csv, xls, xlsx格式
-            </button>
-          </div>
-        </el-upload>
-        <div>
-          <button @click="downloadFile" class="dl_button"><i class="el-icon-download"></i> 下载示例</button>
+      </div>
+    </el-main>
+    <el-aside width="400px" class="aside">
+      <p style="margin: 20px;line-height: 40px;font-weight: bolder">控制台</p>
+      <el-button class="chart-button" @click="submitUpload">提交</el-button>
+      <div class="select_file">
+        <el-button style="height: 40px" @click="dialogVisible = true" class="sel_button">选择文件</el-button>
+        <button
+            style="border: none; height: 40px; font-weight: normal; width: 280px; text-align: center; opacity: 0.5;">
+          仅能上传txt, csv, xls, xlsx格式
+        </button>
+      </div>
+      <el-dialog
+          title="归一化数据"
+          :visible.sync="dialogVisible"
+          width="40%"
+          :before-close="handleClose">
+        <div style="display: flex;align-items: center">
+          <span style="font-size: medium">数据文件：</span>
+          <el-upload
+              ref="upload"
+              class="upload-demo"
+              action="https://jsonplaceholder.typicode.com/posts/"
+              :auto-upload="false"
+              :before-upload="beforeUpload"
+              :on-change="handleFileUpload1"
+              :show-file-list="false"
+              accept=".txt,.csv,.xls,.xlsx"
+          >
+            <!-- 1. 用 el-input 展示文件名 -->
+            <el-input
+                v-model="filename1"
+                placeholder="请选择文件"
+                readonly
+                style="width: 350px; margin-right: 8px;"
+            >
+              <!-- 2. append slot 放“选择文件”按钮 -->
+              <el-button slot="trigger" size="medium" type="primary">选择文件</el-button>
+            </el-input>
+          </el-upload>
         </div>
-      </el-aside>
-    </el-container>
+        <div style="display: flex; align-items: center;margin-top: 10px">
+          <span style="font-size: medium">数据标签：</span>
+          <el-upload
+              ref="upload"
+              class="upload-demo"
+              action="https://jsonplaceholder.typicode.com/posts/"
+              :auto-upload="false"
+              :before-upload="beforeUpload"
+              :on-change="handleFileUpload2"
+              :show-file-list="false"
+              accept=".txt,.csv,.xls,.xlsx"
+          >
+            <!-- 1. 用 el-input 展示文件名 -->
+            <el-input
+                v-model="filename2"
+                placeholder="请选择文件"
+                readonly
+                style="width: 350px; margin-right: 8px;"
+            >
+              <!-- 2. append slot 放“选择文件”按钮 -->
+              <el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+            </el-input>
+          </el-upload>
+        </div>
+        <div style="margin-top: 10px">
+          <span style="font-size: medium">数据来源：</span>
+          <el-input style="width: 350px" v-model="data_source" placeholder="请输入内容"></el-input>
+        </div>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="read_file">确 定</el-button>
+        </span>
+      </el-dialog>
+      <div>
+        <button @click="downloadFile" class="dl_button"><i class="el-icon-download"></i> 下载示例</button>
+      </div>
+    </el-aside>
+  </el-container>
 </template>
 
 <script type="module">
@@ -154,15 +198,15 @@ export default {
       total1: 0, // 数据总量
       currentPage1: 1,
       length:'',
-      chartInstance: null,
-      activePage: 'before', // 由父组件控制
-      hotChartInstance: null,
-      resizeObserver: null,
+      activePage: "before",
       tableData1:[],
       selectedFile: null,  // 当前选中文件
       chartInstance1: null,
       chartInstance2:null,
-      fileList: [],
+      file1:"",
+      file2:"",
+      filename1:"",
+      filename2:"",
       formData:{},
       tableData: [], // 用于存储完整的表格数据
       columns: [],
@@ -170,44 +214,6 @@ export default {
       totalRows: 0, // 数据总条数，用于分页
       currentPage: 1, // 当前页码
       force_update:0,
-      hot_option: {
-        tooltip: {
-          position: "top",
-          formatter: (params) =>
-              `${this.hot_option.xAxis.data[params.value[0]]} 对 ${this.hot_option.yAxis.data[params.value[1]]}: ${params.value[2].toFixed(2)}`,
-        },
-        xAxis: {
-          type: "category",
-          data: [], // 原始特征名
-          splitArea: { show: true },
-        },
-        yAxis: {
-          type: "category",
-          data: [], // 主成分列
-          splitArea: { show: true },
-        },
-        visualMap: {
-          min: 0,
-          max: 1,
-          calculable: true,
-          orient: "horizontal",
-          left: "center",
-          bottom: "2%",
-        },
-        series: [
-          {
-            name: "Loadings Matrix",
-            type: "heatmap",
-            data: [], // 热图的数据格式 [x, y, value]
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowColor: "rgba(0, 0, 0, 0.5)",
-              },
-            },
-          },
-        ],
-      },
       box_option: {
         tooltip: {
           trigger: 'item',
@@ -234,7 +240,9 @@ export default {
         },
         yAxis: {
           type: 'value',
-          splitLine: { show: true }
+          splitLine: { show: true },
+          min: -2,  // 设置 y 轴最小值
+          max: 2, // 设置 y 轴最大值
         },
         dataZoom: [
           {
@@ -258,41 +266,13 @@ export default {
           },
         ]
       },
+      dialogVisible:false,
+      data_source:"",
     };
-  },
-  watch: {
-    activePage(newVal) {
-      if (newVal === 'before') {
-        this.$nextTick(() => {
-          if (!this.chartInstance) {
-            this.initChart();
-          } else {
-            this.chartInstance.resize();
-          }
-        });
-      }else if (newVal === 'after') {
-        this.$nextTick(() => {
-          if (!this.hotChartInstance) {
-            this.initHotChart()
-          } else {
-            // 确保容器尺寸更新后重绘
-            this.hotChartInstance.resize()
-          }
-        })
-      }
-    },
   },
   mounted() {
     this.chartInstance1 = echarts.init(this.$refs.box_chart);
     this.chartInstance1.setOption(this.box_option);
-    this.chartInstance2 = echarts.init(this.$refs.hot_chart);
-    this.chartInstance2.setOption(this.hot_option);
-    if (this.activePage === 'before') {
-      this.initChart();
-    };
-    if (this.activePage === 'after') {
-      this.initHotChart()
-    }
   },
   methods: {
     updatePaginatedData() {
@@ -346,11 +326,12 @@ export default {
       const params = {
         page: this.currentPage,
         per_page: this.perPage,
+        data_source: this.data_source,
         force_update: this.force_update,
       };
       axios
           .post(
-              `http://localhost:8000/pca`,
+              `http://localhost:8000/normalizeData`,
               this.formData, // 包括分页数据和文件
               {
                 headers: {
@@ -371,7 +352,8 @@ export default {
               this.tableData = data.rows.map((row) => {
                 const rowData = {};
                 data.columns.forEach((col, index) => {
-                  rowData[col] = row[index];
+                  // 对数值进行格式化，限制小数位数
+                  rowData[col] = typeof row[index] === 'number' ? row[index].toFixed(6) : row[index];
                 });
                 return rowData;
               });
@@ -381,25 +363,14 @@ export default {
               this.$message.error("后端返回数据格式错误");
             }
             if(this.force_update===1){
-              if (data.loadings_matrix && data.features) {
-                const loadingsMatrix = data.loadings_matrix;
-
-                // 使用原始特征名 (features) 初始化 X 轴
-                this.hot_option.xAxis.data = data.features;
-
-                // 使用主成分 (PC1, PC2, ...) 初始化 Y 轴
-                this.hot_option.yAxis.data = data.columns.slice(1); // 跳过 'id'
-
-                // 格式化 loadings_matrix 为热图需要的 [xIndex, yIndex, value] 数据
-                this.hot_option.series[0].data = loadingsMatrix.flatMap((row, rowIndex) =>
-                    row.map((value, colIndex) => [colIndex, rowIndex, value]) // 确保数据的每个值都能被遍历
-                );
-
-                console.log(this.hot_option.series[0].data);
-
-                // 更新热图
-                this.chartInstance2.setOption(this.hot_option);
-                this.$message.success("热图已生成！");
+              if (data.boxplot_columns && data.boxplot_data) {
+                const { boxplot_columns, boxplot_data } = response.data;
+                // 更新数据到图表
+                this.box_option.series[0].data = boxplot_data; // 设置箱线图数据
+                this.box_option.xAxis.data = boxplot_columns; // 设置 X 轴分类标签
+                // 使用新的配置项和数据更新图表
+                this.chartInstance1.setOption(this.box_option);
+                this.$message.success("图表已生成！");
               } else {
                 this.$message.error("后端返回数据格式错误！");
               }
@@ -411,13 +382,13 @@ export default {
           });
     },
     submitUpload() {
-      const len = this.fileList.length;
-      if (len === 0) {
+      if (!this.file1||!this.file2) {
         this.$message.warning('请先选择文件');
         return;
       }
       const formData = new FormData();
-      formData.append("file", this.fileList[len - 1].raw);
+      formData.append("file1", this.file1.raw);
+      formData.append("file2", this.file2.raw);
       this.formData = formData;
       this.force_update=1;
       this.fetchData();
@@ -434,41 +405,16 @@ export default {
       this.$message.error('文件上传失败');
       console.error('上传失败:', err);
     },
-    initBoxplot(){
-      const params = {
-        box_update: 1,
-      };
-      axios
-          .post(
-              `http://localhost:8000/boxplot`,
-              this.formData, // 包括分页数据和文件
-              {
-                headers: {
-                  "Content-Type": "multipart/form-data",
-                },
-                params: params,
-              }
-          )
-          .then((response) => {
-            const { columns, boxplot_data } = response.data;
-            // 更新数据到图表
-            this.box_option.series[0].data = boxplot_data; // 设置箱线图数据
-            this.box_option.xAxis.data = columns; // 设置 X 轴分类标签
-            // 使用新的配置项和数据更新图表
-            this.chartInstance1.setOption(this.box_option);
-          })
+    handleFileUpload1(file) {
+      this.file1=file;
+      this.filename1=file.name;
     },
-    handleFileUpload(file,filelist) {
-      this.fileList = filelist;
-      const len = this.fileList.length;
-      if (len === 0) {
-        this.$message.warning('请先选择文件');
-        return;
-      }
-      const formData = new FormData();
-      formData.append("file", this.fileList[len - 1].raw);
-      this.formData = formData;
-      this.initBoxplot();
+    handleFileUpload2(file) {
+      this.file2=file;
+      this.filename2=file.name;
+    },
+    read_file(){
+      this.dialogVisible = false;
       const reader = new FileReader();
       // 文件加载完成事件
       reader.onload = (e) => {
@@ -517,7 +463,7 @@ export default {
         alert("文件读取失败，请重试！");
       };
 
-      reader.readAsArrayBuffer(file.raw); // 以二进制数组格式读取
+      reader.readAsArrayBuffer(this.file1.raw); // 以二进制数组格式读取
     },
     async downloadFile() {
       const filename = 'pca.xlsx';  // 需要下载的 Excel 文件名
@@ -541,76 +487,20 @@ export default {
         console.error('Error downloading file:', error);
       }
     },
-    initChart() {
-      const chartDom = this.$refs.box_chart;
-      this.chartInstance = echarts.init(chartDom);
-      const option = {
-        // 你的图表配置
-      };
-      this.chartInstance.setOption(option);
 
-      // 窗口变化自适应
-      window.addEventListener('resize', () => {
-        this.chartInstance.resize();
-      });
-
-      // 父容器变化自适应（可选）
-      const observer = new ResizeObserver(() => {
-        this.chartInstance.resize();
-      });
-      observer.observe(chartDom);
-    },
-    initHotChart() {
-      const chartDom = this.$refs.hot_chart
-      this.hotChartInstance = echarts.init(chartDom)
-
-      // 初始化图表配置
-      const option = {
-        // 你的热力图配置项
-        // ...
-      }
-      this.hotChartInstance.setOption(option)
-
-      // 窗口缩放监听
-      window.addEventListener('resize', this.handleHotChartResize)
-
-      // 容器尺寸变化监听 (现代浏览器)
-      if (typeof ResizeObserver !== 'undefined') {
-        this.resizeObserver = new ResizeObserver(() => {
-          this.hotChartInstance.resize()
-        })
-        this.resizeObserver.observe(chartDom)
-      }
-    },
-    handleHotChartResize() {
-      this.hotChartInstance && this.hotChartInstance.resize()
-    },
-  },
-  beforeDestroy() {
-    if (this.chartInstance) {
-      this.chartInstance.dispose();
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
     }
   },
-  beforeDestroy1() {
-    // 清理资源
-    if (this.hotChartInstance) {
-      this.hotChartInstance.dispose()
-      window.removeEventListener('resize', this.handleHotChartResize)
-    }
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect()
-    }
-  }
 };
 </script>
 
 
 <style scoped>
-
-.el-container{
-  overflow-y: hidden;
-  height: calc(100vh - 7rem);
-}
 .table-container {
   height: auto; /* 可以根据需要调整最大高度 */
   overflow-y: hidden; /* 垂直方向滚动条 */
@@ -632,15 +522,11 @@ th, td {
   text-align: left;
   white-space: nowrap;
   font-size: 14px;
-  text-overflow: ellipsis; /* 超出部分显示省略号 */
 }
 .aside {
   background-color: #D3DCE6;
   color: #333;
-  overflow-y: hidden;
-  height: 100vh;
-  position: sticky;
-  top: 0;
+  width: 100vw;
 }
 .dl_button{
   background: linear-gradient(45deg, #ff007f, #007fff, #7fff00);
@@ -672,17 +558,17 @@ th, td {
 .main {
   background-color: #E9EEF3;
   color: #333;
-  line-height: 160px;
+  line-height: 70px;
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100vh - 6.75rem); /* 假设顶部按钮占150px */
+  height: calc(100vh - 60px); /* 假设顶部按钮占150px */
   align-items: center;
   justify-items: center;
   padding: 20px;
   flex: 1;
 }
 
-.upload-demo {
+.select_file {
   margin-top: 40px;
   margin-left: 3px;
 }
@@ -703,20 +589,15 @@ th, td {
 input {
   margin-bottom: 16px;
 }
-.chart-input{
-  width: 200px;
-  font-size: 15px;
-}
+
 .glass-container{
   padding: 20px;
-  margin: 0;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  min-height: 600px;
-  height: auto;
+  width: 900px;
+  height: 600px;
   display: flex;
   align-items: center;
   justify-items: center;

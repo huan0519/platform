@@ -96,7 +96,7 @@ export default {
   display: flex;
   height: 100vh;
   width: 100vw;
-  overflow: auto;
+  overflow: hidden;
 }
 .tutorial-page {
   height: 100vh;

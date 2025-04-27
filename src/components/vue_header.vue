@@ -1,5 +1,4 @@
 <template>
-<!--  <div class="scanline-header">-->
   <div>
       <div class="loading" style="float: left;margin-left: 1rem;padding: 1.25rem">
         <svg width="64px" height="48px">
@@ -37,12 +36,9 @@
 </template>
 
 <script>
-import ElementUI from "element-ui";
 import { mapState, mapActions } from "vuex";
-import Vue from "vue";
 import userinfo from "@/components/userinfo.vue";
 
-Vue.use(ElementUI);
 
 export default {
   components: {
@@ -116,30 +112,6 @@ export default {
   border-radius: 5%;
   height: 100%;
 }
-.scanline-header {
-  background-repeat: no-repeat;
-  background-position: 70%;
-  background-size: cover;
-  color: black;
-  flex: none;
-  width: 100%;
-  background-color: #f6f5f5;
-  z-index: 20;
-}
-.scanline-header::after{
-  background-image: linear-gradient(180deg, #0003, #00000005 40%, #0000);
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  content: "";
-  display: block;
-  height: 3rem;
-  left: 0;
-  pointer-events: none;
-  position: absolute;
-  top: 100%;
-  width: 100%;
-}
 .h-el-menu.el-menu--horizontal {
   margin-left: auto;
   margin-right: 40px;
@@ -147,12 +119,12 @@ export default {
   background-color: rgba(0, 255, 0, 0);
 }
 .el-menu--horizontal .el-menu-item:hover {
-  border-bottom: 3px solid #fb923c !important; /* 自定义颜色 */
+  border-bottom: 3px solid #f6f5f5 !important; /* 自定义颜色 */
   background-color: transparent !important;
   border-radius: 5%;
 }
 .el-menu--horizontal > .el-menu-item.is-active {
-  border-bottom: 3px solid 	#fb923c; /* 自定义激活状态横条颜色 */
+  border-bottom: 3px solid 	#f6f5f5; /* 自定义激活状态横条颜色 */
   background-color: transparent !important;
 }
 .el-menu--horizontal > .el-menu-item{
@@ -161,22 +133,22 @@ export default {
 }
 .h-el-menu-item {
   height: 100%;
-  min-width: 90px; /* Use min-width instead of width */
+  min-width: 75px; /* Use min-width instead of width */
   font-weight: bold;
   width: 150px;
   transition: border-color 0.3s; /* 添加过渡动画 */
 }
 .header_line {
-  height: 30px;
+  height: 25px;
   width: 1px;
   background-color: #77ddff;
 }
 .h-item-group1{
   color: whitesmoke;
-  font-size: 19px;
+  font-size: 15px;
   padding: 0;
-  height: 40%;
-  margin-top: 10px;
+  height: 30%;
+  margin-top: 5px;
 }
 .h-item-group2{
   color: #8c8c8c;

@@ -1,5 +1,5 @@
 <template>
-  <el-container style="overflow: hidden">
+  <el-container style="overflow: auto">
     <el-main class="main">
       <p style="line-height: 20px;justify-self: center; font-weight: bolder" class="glass-text">玫瑰图</p>
       <div ref="rose_chart" style="justify-self: center" class="glass-container"></div>

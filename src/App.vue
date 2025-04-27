@@ -48,11 +48,6 @@ export default{
 </script>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  height: 100vh;
-}
 .splash {
   position: absolute;
   background-color: rgba(0, 150, 255, 0.6);
