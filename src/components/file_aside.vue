@@ -2,15 +2,16 @@
   <el-menu :default-openeds="['1', '2']"
            :collapse="isCollapse"
            :collapse-transition="false"
+           :default-active="currentActive"
            style="min-height: 100vh;overflow: hidden"
            background-color="#545c64"
-           text-color="#fff"
-           active-text-color="#ffd04b"
+           text-color="#DDDDDD"
            router
+           class="aside_menu"
   >
     <div style="height: 60px; line-height: 60px; text-align: center">
       <img src="../assets/1.png" alt="" style="width: 25px;height: 25px; margin-right: 5px; position: relative; top: 5px"/>
-      <b style="color: white" v-show="logotextshow">文件管理</b>
+      <b style="color: #DDDDDD" v-show="logotextshow">文件管理</b>
     </div>
     <el-menu-item index="/file_download/file_sum">
       <i class="el-icon-s-data"></i>
@@ -64,17 +65,33 @@ export default {
   name: "file_aside",
   props:{
     isCollapse: Boolean,
-    logotextshow: Boolean
+    logotextshow: Boolean,
   },
   data() {
     return {
-
+      currentActive: this.$route.path,
     };
   },
   methods: {
+    handleSelect(index) {
+      if (this.$route.path !== index) {
+        this.$router.push(index).catch(err => err);
+      }
+    }
   }
 };
 </script>
 
 <style scoped>
+.aside_menu{
+  background: #0d45a5;
+}
+::v-deep(.el-menu-item.is-active) {
+  color: #00bbff !important;
+  background-color: #000000;
+  border-right-style: groove;
+}
+
+
+
 </style>

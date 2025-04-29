@@ -6,7 +6,7 @@
         <div class="heading"><a>Sign Up</a></div>
         <el-form ref="user" :model="user" :rules="rules" label-width="100px">
           <el-form-item label="用户名" prop="username">
-            <el-input class="custom-input" style="width: 250px;" v-model="user.username" placeholder="请输入用户名" prefix-icon="el-icon-user" clearable/>
+            <el-input class="custom-input" style="width: 210px;" v-model="user.username" placeholder="请输入用户名" prefix-icon="el-icon-user" clearable/>
           </el-form-item>
           <el-form-item label="密码" prop="password">
             <el-input class="custom-input" style="width: 250px;" type="password" v-model="user.password" prefix-icon="el-icon-lock" placeholder="请输入密码" clearable show-password/>
@@ -287,7 +287,7 @@
     margin-right: 20px
   }
   .custom-input ::v-deep .el-input__inner {
-    width: 350px;
+    width: 260px;
     background: none;
     border: none !important; /* 需要强制覆盖 */
     outline: none;

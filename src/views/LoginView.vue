@@ -317,7 +317,7 @@ export default {
   color: rgb(16, 137, 211);
 }
 .custom-input ::v-deep .el-input__inner {
-  width: 250px;
+  width: 230px;
   background: none;
   border: none !important; /* 需要强制覆盖 */
   outline: none;

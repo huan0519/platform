@@ -138,11 +138,11 @@ body{
 .ant-row-line{
   padding-left: 10px;
   padding-right: 10px;
-  width: 24rem;
+  width: 384px;
 }
 .shadow{
   cursor: pointer;
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out;
 }
 .shadow:hover{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
