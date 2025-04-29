@@ -9,14 +9,15 @@
            router
   >
     <div style="height: 60px; line-height: 60px; text-align: center">
-      <b style="color: white">文件管理</b>
+      <img src="../assets/1.png" alt="" style="width: 25px;height: 25px; margin-right: 5px; position: relative; top: 5px"/>
+      <b style="color: white" v-show="logotextshow">文件管理</b>
     </div>
     <el-menu-item index="/file_download/file_sum">
-      <i class="el-icon-house"></i>
+      <i class="el-icon-s-data"></i>
       <span slot="title">数据总览</span>
     </el-menu-item>
     <el-menu-item index="/file_download/file_info_sum">
-      <i class="el-icon-house"></i>
+      <i class="el-icon-document"></i>
       <span slot="title">数据信息总览</span>
     </el-menu-item>
     <el-submenu index="1">
@@ -42,7 +43,7 @@
     </el-submenu>
     <el-submenu index="2">
       <template slot="title">
-        <i class="el-icon-house"></i>
+        <i class="el-icon-notebook-2"></i>
         <span slot="title">数据信息管理</span>
       </template>
       <el-menu-item index="/file_download/normalization_info_file">
@@ -62,7 +63,8 @@
 export default {
   name: "file_aside",
   props:{
-    isCollapse: Boolean
+    isCollapse: Boolean,
+    logotextshow: Boolean
   },
   data() {
     return {

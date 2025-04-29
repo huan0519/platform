@@ -31,7 +31,6 @@
       <el-table-column prop="data_source" label="数据来源"></el-table-column>
       <el-table-column label="操作" width="300" align="center">
         <template slot-scope="scope">
-          <el-button type="success" @click="download_file(scope.row)">下载 <i class="el-icon-edit"></i></el-button>
           <el-button type="primary" @click="update_file(scope.row)">修改 <i class="el-icon-edit"></i></el-button>
           <el-popconfirm
               style="margin-left: 5px"
@@ -58,6 +57,23 @@
           :page-count="total">
       </el-pagination>
     </div>
+    <el-dialog title="文件信息" :visible.sync="dialogFormVisible" width="30%">
+      <el-form label-width="80px" size="small">
+        <el-form-item label="文件名">
+          <el-input v-model="form.filename" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="操作类型">
+          <el-input disabled v-model="form.processing_type" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="数据来源">
+          <el-input v-model="form.data_source" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="save">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -78,6 +94,7 @@ export default {
       headerbg: 'headerbg',
       process_type: '',
       dataSource: '',
+      dialogFormVisible:false,
     }
   },
   created () {
@@ -98,10 +115,6 @@ export default {
         }
       })
     },
-    handleEdit (row) {
-      this.form = row
-      this.dialogFormVisible = true
-    },
     del (user) {
 
     },
@@ -113,14 +126,29 @@ export default {
     load () {
       axios.get('http://localhost:8000/file_sum/paginate', {
         params: {
-          process_type: this.process_type,
-          dataSource: this.dataSource,
+          processing_type: this.process_type,
+          data_source: this.dataSource,
           page: this.pagenum,
           size: this.pagesize
         }
       }).then(res => {
         this.tableData = res.data.data
         this.total = res.data.total
+      })
+    },
+    update_file(row){
+      this.form = row
+      this.dialogFormVisible = true
+    },
+    save(){
+      axios.post('http://localhost:8000/update/file_sum', {
+        id: this.form.id,
+        data:this.form,
+      }
+      ).then(res => {
+        this.load()
+        this.dialogFormVisible = false
+        this.$message.success('更新成功');
       })
     },
     handleSizeChange (pagesize) {

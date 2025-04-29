@@ -1,11 +1,11 @@
 <template>
   <div>
-      <div class="loading" style="float: left;margin-left: 1rem;padding: 1.25rem">
-        <svg width="64px" height="48px">
-          <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
-          <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
-        </svg>
-      </div>
+<!--      <div class="loading" style="float: left;margin-left: 1rem;padding: 1.25rem">-->
+<!--        <svg width="64px" height="48px">-->
+<!--          <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>-->
+<!--          <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>-->
+<!--        </svg>-->
+<!--      </div>-->
     <el-menu :default-active="activeIndex" class="h-el-menu" mode="horizontal">
       <p class="header_line"></p>
       <el-menu-item class="h-el-menu-item" index="cloud_platform" @click="navigate('cloud_platform')">
@@ -18,7 +18,7 @@
         <div class="h-item-group2">AI</div>
       </el-menu-item>
       <p class="header_line"></p>
-      <el-menu-item class="h-el-menu-item" index="file_download" @click="navigate('file_download')">
+      <el-menu-item class="h-el-menu-item" index="file_download" @click="navigate('file_download/file_sum')">
         <div class="h-item-group1">文件下载</div>
         <div class="h-item-group2">DOWNLOAD</div>
       </el-menu-item>

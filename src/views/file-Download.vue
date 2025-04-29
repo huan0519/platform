@@ -2,7 +2,7 @@
   <div id="app" style="min-height: 100vh;overflow: auto">
   <el-container>
     <el-aside :width="sideWidth + 'px'" style="box-shadow: 2px 0 6px rgb(0 21 41 / 35%)">
-      <file_aside :is-collapse="isCollapse" />
+      <file_aside :is-collapse="isCollapse" :logotextshow="logotextshow" />
     </el-aside>
     <el-container style="overflow: auto">
       <el-header style="border-bottom: 1px solid #ccc;">
@@ -27,7 +27,8 @@ export default {
       // 侧边栏折叠相关
       isCollapse: false,
       sideWidth: 200,
-      collapseBtnClass: 'el-icon-s-fold'
+      collapseBtnClass: 'el-icon-s-fold',
+      logotextshow: true,
     };
   },
   methods: {
@@ -37,9 +38,11 @@ export default {
       if (this.isCollapse) {
         this.sideWidth = 64;
         this.collapseBtnClass = 'el-icon-s-unfold';
+        this.logotextshow=false
       } else {
         this.sideWidth = 200;
         this.collapseBtnClass = 'el-icon-s-fold';
+        this.logotextshow=true
       }
     }
   }

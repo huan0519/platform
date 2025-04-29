@@ -112,30 +112,66 @@
       <el-aside width="400px" class="aside">
         <p style="margin: 20px;line-height: 40px;font-weight: bolder">控制台</p>
         <el-button class="chart-button" @click="submitUpload">提交</el-button>
-        <div class="upload-demo">
-          <el-button @click="dialogVisible = true" class="sel_button">选择文件</el-button>
+        <div class="select_file">
+          <el-button style="height: 40px" @click="dialogVisible = true" class="sel_button">选择文件</el-button>
           <button
               style="border: none; height: 40px; font-weight: normal; width: 280px; text-align: center; opacity: 0.5;">
             仅能上传txt, csv, xls, xlsx格式
           </button>
         </div>
         <el-dialog
-            title="数据降维"
+            title="降维数据"
             :visible.sync="dialogVisible"
             width="40%"
             :before-close="handleClose">
-          <el-upload
-              drag
-              action="https://jsonplaceholder.typicode.com/posts/"
-              :auto-upload="false"
-              :on-change="handleFileUpload"
-              :before-upload="beforeUpload"
-              :file-list="fileList"
-              accept=".txt,.csv,.xls,.xlsx"
-          >
-            <i class="el-icon-upload"></i>
-            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-          </el-upload>
+          <div style="display: flex;align-items: center">
+            <span style="font-size: medium">数据文件：</span>
+            <el-upload
+                ref="upload"
+                class="upload-demo"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :auto-upload="false"
+                :before-upload="beforeUpload"
+                :on-change="handleFileUpload1"
+                :show-file-list="false"
+                accept=".txt,.csv,.xls,.xlsx"
+            >
+              <!-- 1. 用 el-input 展示文件名 -->
+              <el-input
+                  v-model="filename1"
+                  placeholder="请选择文件"
+                  readonly
+                  style="width: 350px; margin-right: 8px;"
+              >
+                <!-- 2. append slot 放“选择文件”按钮 -->
+                <el-button slot="trigger" size="medium" type="primary">选择文件</el-button>
+              </el-input>
+            </el-upload>
+          </div>
+          <div style="display: flex; align-items: center;margin-top: 10px">
+            <span style="font-size: medium">数据标签：</span>
+            <el-upload
+                ref="upload"
+                class="upload-demo"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :auto-upload="false"
+                :before-upload="beforeUpload"
+                :on-change="handleFileUpload2"
+                :show-file-list="false"
+                accept=".txt,.csv,.xls,.xlsx"
+            >
+              <!-- 1. 用 el-input 展示文件名 -->
+              <el-input
+                  v-model="filename2"
+                  placeholder="请选择文件"
+                  readonly
+                  style="width: 350px; margin-right: 8px;"
+              >
+                <!-- 2. append slot 放“选择文件”按钮 -->
+                <el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+              </el-input>
+            </el-upload>
+          </div>
           <div style="margin-top: 10px">
             <span style="font-size: medium">数据来源：</span>
             <el-input style="width: 350px" v-model="data_source" placeholder="请输入内容"></el-input>
@@ -177,8 +213,10 @@ export default {
       selectedFile: null,  // 当前选中文件
       chartInstance1: null,
       chartInstance2:null,
-      fileList: [],
-      file:"",
+      file1:"",
+      file2:"",
+      filename1:"",
+      filename2:"",
       formData:{},
       tableData: [], // 用于存储完整的表格数据
       columns: [],
@@ -449,18 +487,13 @@ export default {
             this.chartInstance1.setOption(this.box_option);
           })
     },
-    handleFileUpload(file,filelist) {
-      this.file=file;
-      this.fileList = filelist;
-      const len = this.fileList.length;
-      if (len === 0) {
-        this.$message.warning('请先选择文件');
-        return;
-      }
-      const formData = new FormData();
-      formData.append("file", this.fileList[len - 1].raw);
-      this.formData = formData;
-
+    handleFileUpload1(file) {
+      this.file1=file;
+      this.filename1=file.name;
+    },
+    handleFileUpload2(file) {
+      this.file2=file;
+      this.filename2=file.name;
     },
     read_file(){
       this.dialogVisible = false;
@@ -618,7 +651,7 @@ th, td {
   flex: 1;
 }
 
-.upload-demo {
+.select_file {
   margin-top: 40px;
   margin-left: 3px;
 }

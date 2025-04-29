@@ -65,24 +65,80 @@
       <el-aside width="400px" class="pre-aside">
         <p style="margin: 20px;line-height: 40px;font-weight: bolder">控制台</p>
         <el-button class="chart-button" @click="submitUpload">提交</el-button>
-        <el-upload
-            class="upload-demo"
-            ref="upload"
-            :before-remove="beforeRemove"
-            :on-change="handleFileChange"
-            :before-upload="beforeUpload"
-            :on-success="handleUploadSuccess"
-            :on-error="handleUploadError"
-            :auto-upload="false"
-            :file-list="fileList"
-            accept=".txt,.csv,.xls,.xlsx"
-        >
-          <div style="display: flex">
-            <button class="sel_button">选择</button>
-            <button style="border: none;height: 40px;font-weight: normal;width: 280px;text-align: center;opacity: 0.5;">仅能上传txt,csv,xls,xlsx格式
-            </button>
+        <div class="select_file">
+          <el-button style="height: 40px" @click="dialogVisible = true" class="sel_button">选择文件</el-button>
+          <button
+              style="border: none; height: 40px; font-weight: normal; width: 280px; text-align: center; opacity: 0.5;">
+            仅能上传txt, csv, xls, xlsx格式
+          </button>
+        </div>
+        <el-dialog
+            title="降维数据"
+            :visible.sync="dialogVisible"
+            width="40%"
+            :before-close="handleClose">
+          <div style="display: flex;align-items: center">
+            <span style="font-size: medium">训练数据：</span>
+            <el-upload
+                ref="upload"
+                class="upload-demo"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :auto-upload="false"
+                :before-upload="beforeUpload"
+                :on-change="handleFileUpload1"
+                :show-file-list="false"
+                accept=".txt,.csv,.xls,.xlsx"
+            >
+              <!-- 1. 用 el-input 展示文件名 -->
+              <el-input
+                  v-model="filename1"
+                  placeholder="请选择文件"
+                  readonly
+                  style="width: 350px; margin-right: 8px;"
+              >
+                <!-- 2. append slot 放“选择文件”按钮 -->
+                <el-button slot="trigger" size="medium" type="primary">选择文件</el-button>
+              </el-input>
+            </el-upload>
           </div>
-        </el-upload>
+          <div style="display: flex; align-items: center;margin-top: 10px">
+            <span style="font-size: medium">预测数据：</span>
+            <el-upload
+                ref="upload"
+                class="upload-demo"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :auto-upload="false"
+                :before-upload="beforeUpload"
+                :on-change="handleFileUpload2"
+                :show-file-list="false"
+                accept=".txt,.csv,.xls,.xlsx"
+            >
+              <!-- 1. 用 el-input 展示文件名 -->
+              <el-input
+                  v-model="filename2"
+                  placeholder="请选择文件"
+                  readonly
+                  style="width: 350px; margin-right: 8px;"
+              >
+                <!-- 2. append slot 放“选择文件”按钮 -->
+                <el-button slot="trigger" size="small" type="primary">选择文件</el-button>
+              </el-input>
+            </el-upload>
+          </div>
+          <div style="margin-top: 10px">
+            <span style="font-size: medium">数据来源：</span>
+            <el-input style="width: 350px" v-model="data_source" placeholder="请输入内容"></el-input>
+          </div>
+          <div style="margin-top: 10px">
+            <span style="font-size: medium">是否保存结果：</span>
+            <el-radio v-model="radio" label="1">是</el-radio>
+            <el-radio v-model="radio" label="2">否</el-radio>
+          </div>
+          <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary">确 定</el-button>
+        </span>
+        </el-dialog>
         <div>
           <button @click="downloadFile" class="dl_button"><i class="el-icon-download"></i> 下载示例</button>
         </div>
@@ -102,6 +158,9 @@ export default {
       fileList: [],
       formData: [],
       report: {},
+      dialogVisible:false,
+      data_source:'',
+      radio:'1',
       options: {
         tooltip: {
           trigger: 'axis'
@@ -252,6 +311,14 @@ export default {
     // 格式化特征重要性为字符串
     formatFeatureImportance(featureImportance) {
       return featureImportance.join(', ');
+    },
+
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
     }
   }
 };
@@ -306,7 +373,7 @@ export default {
   border-radius: 5%;
 }
 
-.upload-demo {
+.select_file {
   margin-top: 40px;
   margin-left: 3px;
 }
