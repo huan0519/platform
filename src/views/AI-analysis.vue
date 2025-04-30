@@ -362,8 +362,7 @@ export default {
   padding: 10px;
   background-color: #fff;
   border-radius: 10px;
-  min-height: 300px;
-  max-height: 800px;
+  max-height: 52vh;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
